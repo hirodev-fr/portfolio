@@ -1,0 +1,152 @@
+---
+interface Props {
+	class?: string;
+	items?: { label: string; url: string; target?: string }[];
+}
+const { class: className, items = [] } = Astro.props;
+---
+
+<nav-menu class={className}>
+	<button
+		type="button"
+		class="menu-toggle z-100 flex items-center gap-3 cursor-pointer text-ink hover:text-accent transition-colors duration-300 relative"
+		aria-label="Menu"
+		aria-expanded="false"
+	>
+		<span class="font-mono text-xl uppercase tracking-widest block menu-label-open">
+			[Menu]
+		</span>
+		<span class="font-mono text-xl uppercase tracking-widest menu-label-close hidden">
+			[Fermer]
+		</span>
+	</button>
+
+	<div class="menu-overlay fixed inset-0 z-50 bg-base flex-col justify-center items-center hidden opacity-0 transition-opacity duration-400">
+		<nav class="relative z-10 flex flex-col gap-4 md:gap-8">
+			{items.map((link, i) => (
+				<a
+					href={link.url}
+					target={link.target}
+					style={`--delay: ${100 + i * 100}ms;`}
+					class="menu-link group relative flex items-baseline gap-4 md:gap-8 overflow-hidden opacity-0"
+				>
+					<span
+						class="font-mono text-xs md:text-sm text-accent/80 translate-y-[-20%] transition-transform group-hover:translate-x-2"
+					>
+						{String(i + 1).padStart(2, '0')}
+					</span>
+
+					<span
+						class="font-display font-bold text-5xl md:text-8xl text-ink uppercase tracking-tight transition-all duration-500 group-hover:translate-x-2 group-hover:text-transparent group-hover:text-stroke-hiro"
+					>
+						{link.label}
+					</span>
+
+					<span
+						class="absolute top-1/2 left-0 w-full h-0.5 bg-accent origin-left scale-x-0 transition-transform duration-500 group-hover:scale-x-100"
+					></span>
+				</a>
+			))}
+		</nav>
+
+		<div
+			class="menu-footer absolute bottom-12 left-0 w-full text-center opacity-0 translate-y-5"
+		>
+			<p class="font-mono text-xs text-ink/50 uppercase tracking-widest">
+				Designed & Coded in Lyon
+			</p>
+		</div>
+	</div>
+</nav-menu>
+
+<script>
+	class NavMenu extends HTMLElement {
+		constructor() {
+			super();
+			let isOpen = false;
+			const toggleBtn = this.querySelector('.menu-toggle');
+			const labelOpen = this.querySelector('.menu-label-open');
+			const labelClose = this.querySelector('.menu-label-close');
+			const overlay = this.querySelector('.menu-overlay');
+			const links = this.querySelectorAll('.menu-link');
+			const footer = this.querySelector('.menu-footer');
+
+			const toggleMenu = () => {
+				isOpen = !isOpen;
+				toggleBtn?.setAttribute('aria-expanded', String(isOpen));
+				
+				if (isOpen) {
+					labelOpen?.classList.add('hidden');
+					labelClose?.classList.remove('hidden');
+					overlay?.classList.remove('hidden');
+					overlay?.classList.add('flex');
+					// small delay to allow display block to take effect before transition
+					requestAnimationFrame(() => {
+						overlay?.classList.remove('opacity-0');
+						
+						links.forEach(link => {
+							link.classList.add('animate-reveal-up-menu');
+						});
+						footer?.classList.add('animate-reveal-up-footer');
+					});
+				} else {
+					labelOpen?.classList.remove('hidden');
+					labelClose?.classList.add('hidden');
+					
+					overlay?.classList.add('opacity-0');
+					
+					links.forEach(link => {
+						link.classList.remove('animate-reveal-up-menu');
+					});
+					footer?.classList.remove('animate-reveal-up-footer');
+					
+					setTimeout(() => {
+						if (!isOpen) {
+							overlay?.classList.add('hidden');
+							overlay?.classList.remove('flex');
+						}
+					}, 400); // match transition duration
+				}
+			};
+
+			toggleBtn?.addEventListener('click', toggleMenu);
+			
+			// Close menu on link click
+			links.forEach(link => {
+				link.addEventListener('click', () => {
+					if (isOpen) toggleMenu();
+				});
+			});
+		}
+	}
+	
+	customElements.define('nav-menu', NavMenu);
+</script>
+
+<style>
+	/* outline effect */
+	.group:hover .group-hover\:text-stroke-hiro {
+		-webkit-text-stroke: 1px var(--color-ink);
+	}
+	
+	.animate-reveal-up-menu {
+		animation: reveal-up 800ms cubic-bezier(0.16, 1, 0.3, 1) forwards;
+		animation-delay: var(--delay);
+	}
+	
+	.animate-reveal-up-footer {
+		animation: reveal-up 800ms cubic-bezier(0.16, 1, 0.3, 1) forwards;
+		animation-delay: 600ms;
+	}
+	
+	@keyframes reveal-up {
+		from {
+			opacity: 0;
+			transform: translateY(50px);
+		}
+		to {
+			opacity: 1;
+			transform: translateY(0);
+		}
+	}
+</style>

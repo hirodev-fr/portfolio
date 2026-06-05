@@ -1,0 +1,39 @@
+---
+import { cva, type VariantProps } from 'class-variance-authority';
+
+const button = cva(
+	[
+		'flex w-full items-center justify-center bg-accent py-3 text-base uppercase ring-base transition-all duration-300 hover:cursor-pointer hover:bg-base hover:text-accent hover:ring-1 hover:ring-accent',
+		'hover:bg-base hover:text-accent hover:ring-1 hover:ring-accent',
+		'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-base',
+	],
+	{
+		variants: {
+			variant: {
+				default: 'px-4 md:px-6 lg:px-8',
+				compact: 'px-2',
+			},
+		},
+		defaultVariants: {
+			variant: 'default',
+		},
+	},
+);
+
+export interface Props extends VariantProps<typeof button> {
+	as?: 'a' | 'button';
+	href?: string;
+	class?: string;
+}
+
+const { as: Tag = 'button', href, variant, class: className } = Astro.props;
+const isExternal = href && (href.startsWith('http') || href.startsWith('//'));
+---
+
+<Tag
+	href={href}
+	class={button({ variant, className })}
+	rel={isExternal ? 'noopener noreferrer' : undefined}
+>
+	<slot />
+</Tag>
