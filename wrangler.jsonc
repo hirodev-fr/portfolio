@@ -1,19 +1,19 @@
 {
 	"$schema": "node_modules/wrangler/config-schema.json",
-	"name": "my-portfolio-site",
+	"name": "hirodev",
 	"main": "./src/worker.ts",
 	"compatibility_date": "2026-02-24",
 	"compatibility_flags": ["nodejs_compat"],
 	"d1_databases": [
 		{
 			"binding": "DB",
-			"database_name": "my-portfolio-site",
+			"database_name": "hirodev-db",
 		},
 	],
 	"r2_buckets": [
 		{
 			"binding": "MEDIA",
-			"bucket_name": "my-portfolio-media",
+			"bucket_name": "hirodev-storage",
 		},
 	],
 	// Worker Loader for plugin sandboxing
