@@ -4,6 +4,8 @@ import { d1, r2 } from '@emdash-cms/cloudflare';
 import { defineConfig, fontProviders } from 'astro/config';
 import emdash from 'emdash/astro';
 
+import tailwindcss from '@tailwindcss/vite';
+
 export default defineConfig({
 	output: 'server',
 	adapter: cloudflare(),
@@ -28,4 +30,7 @@ export default defineConfig({
 		},
 	],
 	devToolbar: { enabled: false },
+	vite: {
+		plugins: [tailwindcss()],
+	},
 });

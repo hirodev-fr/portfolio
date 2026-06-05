@@ -20,10 +20,12 @@
 		"@astrojs/cloudflare": "=13.5.3",
 		"@astrojs/react": "=5.0.0",
 		"@emdash-cms/cloudflare": "=0.16.1",
+		"@tailwindcss/vite": "^4.3.0",
 		"astro": "=6.3.0",
 		"emdash": "=0.16.1",
 		"react": "19.2.4",
-		"react-dom": "19.2.4"
+		"react-dom": "19.2.4",
+		"tailwindcss": "^4.3.0"
 	},
 	"devDependencies": {
 		"@astrojs/check": "=0.9.7",
