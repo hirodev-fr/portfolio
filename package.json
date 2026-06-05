@@ -33,7 +33,7 @@
 		"wrangler": "=4.95.0"
 	},
 	"emdash": {
-		"label": "Portfolio",
+		"label": "HIRO DEV",
 		"seed": "seed/seed.json"
 	}
 }
