@@ -1,0 +1,101 @@
+@import 'tailwindcss';
+
+@theme {
+	/* base color*/
+	--color-base: oklch(0.96 0.005 110);
+	/* font-colors */
+	--color-ink: oklch(0.18 0 0);
+	--color-ink-light: oklch(0.38 0 0);
+
+	/* accent color */
+	--color-accent: oklch(0.6 0.197 25);
+	--color-accent-hover: oklch(0.54 0.176 25);
+
+	/* line color*/
+	--color-line: oklch(0.7953 0.005 110);
+
+	/* title font */
+	--font-display: 'Space Grotesk', system-ui, sans-serif;
+
+	/* text font */
+	--font-mono: 'JetBrains Mono', monospace;
+
+	/* emdash aliases */
+	--font-serif: var(--font-display);
+	--font-sans: var(--font-mono);
+
+	/* bezier animation*/
+	--ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+
+	--animate-reveal-up: reveal-up 1s var(--ease-out-expo) forwards;
+	--animate-reveal-in: reveal-in 1.2s var(--ease-out-expo) forwards;
+	--animate-line-grow: line-grow 1.5s var(--ease-out-expo) forwards;
+
+	@keyframes reveal-up {
+		from {
+			opacity: 0;
+			transform: translateY(40px);
+		}
+		to {
+			opacity: 1;
+			transform: translateY(0);
+		}
+	}
+
+	@keyframes reveal-in {
+		from {
+			opacity: 0;
+			transform: scale(0.98);
+			filter: blur(4px);
+		}
+		to {
+			opacity: 1;
+			transform: scale(1);
+			filter: blur(0);
+		}
+	}
+
+	@keyframes line-grow {
+		from {
+			height: 0%;
+		}
+		to {
+			height: 100%;
+		}
+	}
+}
+
+@layer base {
+	body {
+		background-color: var(--color-base);
+		color: var(--color-ink);
+		font-family: var(--font-mono);
+		font-weight: 400;
+		font-size: 14px;
+		line-height: 1.6;
+
+		/* font antialiasing */
+		-webkit-font-smoothing: antialiased;
+		-moz-osx-font-smoothing: grayscale;
+	}
+
+	h1,
+	h2,
+	h3 {
+		font-family: var(--font-display);
+		font-weight: 700;
+		letter-spacing: -0.03em;
+		line-height: 0.95;
+	}
+
+	/* text selection color*/
+	::selection {
+		background-color: var(--color-accent);
+		color: var(--color-base);
+	}
+}
+
+/* grid container class */
+@utility container-grid {
+	@apply max-w-[360] mx-auto px-6 border-x border-line;
+}
