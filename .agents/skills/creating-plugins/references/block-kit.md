@@ -332,38 +332,38 @@ Show/hide fields based on other field values. Evaluated client-side, no round-tr
 `@emdash-cms/blocks` provides TypeScript helpers:
 
 ```typescript
-import { blocks, elements } from "@emdash-cms/blocks";
+import { blocks, elements } from '@emdash-cms/blocks';
 
 const { header, form, section, stats, timeseriesChart, customChart, banner: bannerBlock } = blocks;
 const { textInput, toggle, select, button } = elements;
 
 return {
 	blocks: [
-		header("Settings"),
+		header('Settings'),
 		form({
-			blockId: "settings",
+			blockId: 'settings',
 			fields: [
-				textInput("site_title", "Site Title", { initialValue: "My Site" }),
-				toggle("generate_sitemap", "Generate Sitemap", { initialValue: true }),
-				select("robots", "Default Robots", [
-					{ label: "Index, Follow", value: "index,follow" },
-					{ label: "No Index", value: "noindex,follow" },
+				textInput('site_title', 'Site Title', { initialValue: 'My Site' }),
+				toggle('generate_sitemap', 'Generate Sitemap', { initialValue: true }),
+				select('robots', 'Default Robots', [
+					{ label: 'Index, Follow', value: 'index,follow' },
+					{ label: 'No Index', value: 'noindex,follow' },
 				]),
 			],
-			submit: { label: "Save", actionId: "save" },
+			submit: { label: 'Save', actionId: 'save' },
 		}),
 		// Timeseries chart
 		timeseriesChart({
 			series: [
 				{
-					name: "Page Views",
+					name: 'Page Views',
 					data: [
 						[Date.now() - 3600000, 100],
 						[Date.now(), 150],
 					],
 				},
 			],
-			yAxisName: "Views",
+			yAxisName: 'Views',
 			gradient: true,
 		}),
 		// Pie chart via custom ECharts options
@@ -371,10 +371,10 @@ return {
 			options: {
 				series: [
 					{
-						type: "pie",
+						type: 'pie',
 						data: [
-							{ value: 335, name: "Published" },
-							{ value: 234, name: "Draft" },
+							{ value: 335, name: 'Published' },
+							{ value: 234, name: 'Draft' },
 						],
 					},
 				],
@@ -410,6 +410,6 @@ return {
 	blocks: [
 		/* ... */
 	],
-	toast: { message: "Settings saved", type: "success" }, // "success" | "error" | "info"
+	toast: { message: 'Settings saved', type: 'success' }, // "success" | "error" | "info"
 };
 ```
