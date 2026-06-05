@@ -7,6 +7,9 @@ node_modules/
 # astro
 .astro/
 
+# wrangler
+.wrangler/
+
 # local data
 data.db
 data.db-journal
