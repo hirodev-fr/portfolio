@@ -23,10 +23,17 @@ export default defineConfig({
 	fonts: [
 		{
 			provider: fontProviders.google(),
-			name: 'Playfair Display',
-			cssVariable: '--font-serif',
-			weights: [400, 500, 600, 700],
-			fallbacks: ['serif'],
+			name: 'Space Grotesk',
+			cssVariable: '--font-display',
+			weights: [400, 500, 700],
+			fallbacks: ['sans-serif'],
+		},
+		{
+			provider: fontProviders.google(),
+			name: 'JetBrains Mono',
+			cssVariable: '--font-mono',
+			weights: [400],
+			fallbacks: ['monospace'],
 		},
 	],
 	devToolbar: { enabled: false },
