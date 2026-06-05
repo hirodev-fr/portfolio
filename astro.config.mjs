@@ -9,10 +9,12 @@ import tailwindcss from '@tailwindcss/vite';
 export default defineConfig({
 	output: 'server',
 	adapter: cloudflare(),
+
 	image: {
 		layout: 'constrained',
 		responsiveStyles: true,
 	},
+
 	integrations: [
 		react(),
 		emdash({
@@ -20,6 +22,7 @@ export default defineConfig({
 			storage: r2({ binding: 'MEDIA' }),
 		}),
 	],
+
 	fonts: [
 		{
 			provider: fontProviders.google(),
@@ -36,8 +39,16 @@ export default defineConfig({
 			fallbacks: ['monospace'],
 		},
 	],
+
 	devToolbar: { enabled: false },
+
 	vite: {
 		plugins: [tailwindcss()],
+
+		// TODO : remove before prod
+		// fix 500 : require is not defined
+		optimizeDeps: {
+			include: ['@emdash-cms/registry-client > semver'],
+		},
 	},
 });
