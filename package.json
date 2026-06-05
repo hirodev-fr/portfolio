@@ -17,20 +17,20 @@
 		"check:safe": "bun run lint:safe && bun run format:safe"
 	},
 	"dependencies": {
-		"@astrojs/cloudflare": "^13.5.3",
-		"@astrojs/react": "^5.0.0",
-		"@emdash-cms/cloudflare": "^0.16.1",
-		"astro": "^6.3.0",
-		"emdash": "^0.16.1",
+		"@astrojs/cloudflare": "=13.5.3",
+		"@astrojs/react": "=5.0.0",
+		"@emdash-cms/cloudflare": "=0.16.1",
+		"astro": "=6.3.0",
+		"emdash": "=0.16.1",
 		"react": "19.2.4",
 		"react-dom": "19.2.4"
 	},
 	"devDependencies": {
-		"@astrojs/check": "^0.9.7",
-		"@cloudflare/workers-types": "^4.20260305.1",
-		"oxfmt": "^0.53.0",
-		"oxlint": "^1.68.0",
-		"wrangler": "^4.95.0"
+		"@astrojs/check": "=0.9.7",
+		"@cloudflare/workers-types": "=4.20260305.1",
+		"oxfmt": "=0.53.0",
+		"oxlint": "=1.68.0",
+		"wrangler": "=4.95.0"
 	},
 	"emdash": {
 		"label": "Portfolio",
