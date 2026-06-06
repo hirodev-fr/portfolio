@@ -7,7 +7,6 @@ import {
 	getTermsForEntries,
 } from "emdash";
 import Base from "../../layouts/Base.astro";
-import ProjectCard from "../../components/ProjectCard.astro";
 
 // Get filter from query param. When set, push the filter down to the
 // database via `where` instead of loading every project and filtering
@@ -75,17 +74,6 @@ const projectsWithTags = sortedProjects.map((project) => ({
 		projectsWithTags.length > 0 ? (
 			<section class="projects">
 				<div class="projects-grid">
-					{projectsWithTags.map(({ project, projectTags }) => (
-						<ProjectCard
-							title={project.data.title ?? "Untitled"}
-							summary={project.data.summary}
-							featuredImage={project.data.featured_image ?? ""}
-							href={`/work/${project.id}`}
-							client={project.data.client}
-							year={project.data.year}
-							tags={projectTags.map((t) => t.label)}
-						/>
-					))}
 				</div>
 			</section>
 		) : (
