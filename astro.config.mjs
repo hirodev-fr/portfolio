@@ -1,14 +1,21 @@
-import cloudflare from '@astrojs/cloudflare';
-import react from '@astrojs/react';
-import { d1, r2 } from '@emdash-cms/cloudflare';
 import { defineConfig, fontProviders } from 'astro/config';
-import emdash from 'emdash/astro';
 
+import node from '@astrojs/node';
+import { sqlite } from 'emdash/db';
+import emdash, { local } from 'emdash/astro';
+
+// TODO : use cloudflare in prod
+// import cloudflare from '@astrojs/cloudflare';
+// import { d1, r2 } from '@emdash-cms/cloudflare';
+
+import react from '@astrojs/react';
 import tailwindcss from '@tailwindcss/vite';
 
 export default defineConfig({
 	output: 'server',
-	adapter: cloudflare(),
+	adapter: node({ mode: 'standalone' }),
+	// TODO : use cloudflare in prod
+	// adapter: cloudflare(),
 
 	image: {
 		layout: 'constrained',
@@ -18,8 +25,14 @@ export default defineConfig({
 	integrations: [
 		react(),
 		emdash({
-			database: d1({ binding: 'DB', session: 'auto' }),
-			storage: r2({ binding: 'MEDIA' }),
+			database: sqlite({ url: 'file:./data/data.db' }),
+			storage: local({
+				directory: './data/uploads',
+				baseUrl: '/_emdash/api/media/file',
+			}),
+			// TODO : use cloudflare in prod
+			// database: d1({ binding: "DB" }),
+			// storage: r2({ binding: "MEDIA" }),
 		}),
 	],
 
