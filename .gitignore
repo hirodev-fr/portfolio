@@ -11,6 +11,7 @@ node_modules/
 .wrangler/
 
 # local data
+data/
 data.db
 data.db-journal
 uploads/
