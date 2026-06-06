@@ -8,8 +8,8 @@
 	--color-ink-light: oklch(0.38 0 0);
 
 	/* accent color */
-	--color-accent: oklch(0.6 0.197 25);
-	--color-accent-hover: oklch(0.54 0.176 25);
+	--color-primary: oklch(0.6 0.197 25);
+	--color-primary-hover: oklch(0.54 0.176 25);
 
 	/* line color*/
 	--color-line: oklch(0.7953 0.005 110);
@@ -65,6 +65,16 @@
 	}
 }
 
+:root {
+	--color-bg: var(--color-base);
+	--color-text: var(--color-ink);
+	--color-muted: var(--color-ink-light);
+	--color-border: var(--color-ink);
+	--color-surface: var(--color-base);
+	--color-accent: var(--color-primary);
+	--color-accent-muted: var(--color-primary--hover);
+}
+
 @layer base {
 	body {
 		background-color: var(--color-base);
@@ -90,7 +100,7 @@
 
 	/* text selection color*/
 	::selection {
-		background-color: var(--color-accent);
+		background-color: var(--color-primary-hover);
 		color: var(--color-base);
 	}
 }
