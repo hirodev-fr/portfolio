@@ -2,7 +2,6 @@
 import { getEmDashEntry, getEmDashCollection, decodeSlug } from "emdash";
 import { Image, PortableText } from "emdash/ui";
 import Base from "../../layouts/Base.astro";
-import ProjectCard from "../../components/ProjectCard.astro";
 
 const slug = decodeSlug(Astro.params.slug);
 
@@ -123,16 +122,6 @@ function getImageSrc(img: unknown): string | undefined {
 				<div class="more-inner">
 					<h2 class="more-title">More Work</h2>
 					<div class="more-grid">
-						{otherProjects.map((p) => (
-							<ProjectCard
-								title={p.data.title ?? "Untitled"}
-								summary={p.data.summary}
-								featuredImage={p.data.featured_image ?? ""}
-								href={`/work/${p.id}`}
-								client={p.data.client}
-								year={p.data.year}
-							/>
-						))}
 					</div>
 				</div>
 			</section>
