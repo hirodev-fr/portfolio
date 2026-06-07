@@ -1,4 +1,4 @@
-import { defineConfig, fontProviders } from 'astro/config';
+import { defineConfig, fontProviders, envField } from 'astro/config';
 
 import node from '@astrojs/node';
 import { sqlite } from 'emdash/db';
@@ -64,6 +64,17 @@ export default defineConfig({
 		// fix 500 : require is not defined
 		optimizeDeps: {
 			include: ['@emdash-cms/registry-client > semver'],
+		},
+	},
+
+	env: {
+		schema: {
+			IN_BUILD: envField.boolean({ context: 'client', access: 'public', default: false }),
+			ALLOW_POLICIES_IN_BUILD: envField.boolean({
+				context: 'client',
+				access: 'public',
+				default: false,
+			}),
 		},
 	},
 });
