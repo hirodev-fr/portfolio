@@ -10,6 +10,9 @@ node_modules/
 # wrangler
 .wrangler/
 
+# old content
+old/
+
 # local data
 data/
 data.db
