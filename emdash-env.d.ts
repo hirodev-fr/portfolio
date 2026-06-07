@@ -5,30 +5,12 @@
 
 import type { ContentBylineCredit, PortableTextBlock } from 'emdash';
 
-export interface Page {
+export interface Policy {
 	id: string;
 	slug: string | null;
 	status: string;
 	title: string;
-	content?: PortableTextBlock[];
-	createdAt: Date;
-	updatedAt: Date;
-	publishedAt: Date | null;
-	bylines?: ContentBylineCredit[];
-}
-
-export interface Project {
-	id: string;
-	slug: string | null;
-	status: string;
-	title: string;
-	featured_image: { id: string; src?: string; alt?: string; width?: number; height?: number };
-	client?: string;
-	year?: string;
-	summary?: string;
-	content?: PortableTextBlock[];
-	gallery?: unknown;
-	url?: string;
+	content: PortableTextBlock[];
 	createdAt: Date;
 	updatedAt: Date;
 	publishedAt: Date | null;
@@ -37,7 +19,6 @@ export interface Project {
 
 declare module 'emdash' {
 	interface EmDashCollections {
-		pages: Page;
-		projects: Project;
+		policies: Policy;
 	}
 }
