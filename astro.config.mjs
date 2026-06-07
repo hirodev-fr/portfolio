@@ -12,7 +12,9 @@ import { d1, r2 } from '@emdash-cms/cloudflare';
 
 import react from '@astrojs/react';
 import tailwindcss from '@tailwindcss/vite';
-import hiro from './src/plugins/hiro/index.ts';
+
+// needs dynamic workers
+// import hiro from './src/plugins/hiro/index.ts';
 
 export default defineConfig({
 	output: 'server',
@@ -33,7 +35,10 @@ export default defineConfig({
 			// 	directory: './data/uploads',
 			// 	baseUrl: '/_emdash/api/media/file',
 			// }),
-			plugins: [hiro()],
+
+			// needs dynamic workers
+			// plugins: [hiro()],
+
 			// TODO : use cloudflare in prod
 			database: d1({ binding: 'DB' }),
 			storage: r2({ binding: 'MEDIA' }),
