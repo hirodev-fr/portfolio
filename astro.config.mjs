@@ -10,6 +10,7 @@ import emdash, { local } from 'emdash/astro';
 
 import react from '@astrojs/react';
 import tailwindcss from '@tailwindcss/vite';
+import hiro from './src/plugins/hiro/index.ts';
 
 export default defineConfig({
 	output: 'server',
@@ -30,6 +31,7 @@ export default defineConfig({
 				directory: './data/uploads',
 				baseUrl: '/_emdash/api/media/file',
 			}),
+			plugins: [hiro()],
 			// TODO : use cloudflare in prod
 			// database: d1({ binding: "DB" }),
 			// storage: r2({ binding: "MEDIA" }),
