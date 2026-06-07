@@ -1,5 +1,7 @@
 ---
+import { getEmDashEntry } from "emdash";
 import Base from "../layouts/Base.astro";
+import Button from "../components/Button.astro";
 
 // Handle form submission
 let formStatus: "idle" | "success" | "error" = "idle";
@@ -15,343 +17,88 @@ if (Astro.request.method === "POST") {
 		// Basic validation
 		if (!name || !email || !message) {
 			formStatus = "error";
-			formMessage = "Please fill in all fields.";
+			formMessage = "Veuillez remplir tous les champs.";
 		} else if (!email.includes("@")) {
 			formStatus = "error";
-			formMessage = "Please enter a valid email address.";
+			formMessage = "Veuillez entrer une adresse e-mail valide.";
 		} else {
-			// In a real implementation, you would send this to an email service,
-			// save to database, or forward to a webhook.
-			// For this template, we just show a success message.
+			// TODO in prod : implement real email sender
 			console.log("Contact form submission:", { name, email, message });
 			formStatus = "success";
-			formMessage = "Thanks for reaching out! We'll get back to you soon.";
+			formMessage = "Merci de nous avoir contactés ! Nous vous répondrons bientôt.";
 		}
 	} catch {
 		formStatus = "error";
-		formMessage = "Something went wrong. Please try again.";
+		formMessage = "Une erreur est survenue. Veuillez réessayer.";
 	}
 }
+
+const privacyPolicy = await getEmDashEntry("policies", "privacy")
+const termsOfUsePolicy = await getEmDashEntry("policies", "terms-of-use")
+
+const privacyPolicyURL = `/policies/${privacyPolicy.entry?.data.slug}`
+const termsOfUsePolicyURL = `/policies/${termsOfUsePolicy.entry?.data.slug}`
 ---
 
-<Base title="Contact" description="Get in touch with us about your next project.">
-	<div class="contact-page">
-		<header class="contact-header">
-			<h1 class="contact-title">Get in Touch</h1>
-			<p class="contact-intro">
-				Have a project in mind? We'd love to hear about it. Fill out the form below
-				and we'll get back to you within 24 hours.
-			</p>
-		</header>
-
-		<div class="contact-grid">
-			<div class="contact-form-wrapper">
-				{formStatus === "success" ? (
-					<div class="form-success">
-						<h2>Message Sent</h2>
-						<p>{formMessage}</p>
-						<a href="/contact" class="form-reset">Send another message</a>
-					</div>
-				) : (
-					<form method="POST" class="contact-form">
-						{formStatus === "error" && (
-							<div class="form-error">
-								<p>{formMessage}</p>
-							</div>
-						)}
-
-						<div class="form-field">
-							<label for="name">Name</label>
-							<input
-								type="text"
-								id="name"
-								name="name"
-								required
-								placeholder="Your name"
-								autocomplete="name"
-							/>
-						</div>
-
-						<div class="form-field">
-							<label for="email">Email</label>
-							<input
-								type="email"
-								id="email"
-								name="email"
-								required
-								placeholder="you@example.com"
-								autocomplete="email"
-							/>
-						</div>
-
-						<div class="form-field">
-							<label for="message">Message</label>
-							<textarea
-								id="message"
-								name="message"
-								required
-								rows="6"
-								placeholder="Tell us about your project..."
-							></textarea>
-						</div>
-
-						<button type="submit" class="form-submit">
-							Send Message
-						</button>
-					</form>
-				)}
+<Base title="Contact" description="Parlons de votre projet. Contactez l'équipe HIRO DEV.">
+	<div class="flex flex-col flex-1 space-y-10 py-9 px-4 sm:px-6 md:px-14">
+		{formStatus === "success" ? (
+			<div class="flex flex-col space-y-6">
+				<h1 class="uppercase text-4xl sm:text-5xl md:text-6xl">
+					Merci !
+				</h1>
+				<p class="text-lg text-ink-light">
+					{formMessage}
+				</p>
+				<p>
+					<a href="/contact" class="text-accent underline font-mono text-sm uppercase">Envoyer un autre message</a>
+				</p>
 			</div>
+		) : (
+			<form method="POST" class="flex flex-col flex-1 space-y-10">
+				<h1 class="uppercase text-4xl sm:text-5xl md:text-6xl">
+					Parlons de votre projet.
+				</h1>
+				
+				{formStatus === "error" && (
+					<div class="p-4 bg-red-100/10 border border-red-500/30 text-red-500 text-sm font-mono uppercase">
+						{formMessage}
+					</div>
+				)}
 
-			<aside class="contact-info">
-				<div class="info-section">
-					<h3>Email</h3>
-					<p>
-						<a href="mailto:hello@studio.example">hello@studio.example</a>
-					</p>
+				<div class="flex flex-col flex-1 gap-5">
+					<div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+						<input
+							type="text"
+							name="name"
+							required
+							placeholder="NOM"
+							class="w-full h-14 px-4 ring ring-ink focus:outline-none focus:ring-accent focus:ring-2 placeholder:text-ink/45 bg-transparent"
+						/>
+						<input
+							type="email"
+							name="email"
+							required
+							placeholder="EMAIL"
+							class="w-full h-14 px-4 ring ring-ink focus:outline-none focus:ring-accent focus:ring-2 placeholder:text-ink/45 bg-transparent"
+						/>
+					</div>
+					<textarea
+						name="message"
+						required
+						placeholder="MESSAGE"
+						class="flex-1 w-full p-4 px-4 ring ring-ink focus:outline-none focus:ring-accent focus:ring-2 placeholder:text-ink/45 bg-transparent min-h-80"
+					></textarea>
 				</div>
-
-				<div class="info-section">
-					<h3>Location</h3>
-					<p>San Francisco, CA</p>
-				</div>
-
-				<div class="info-section">
-					<h3>Social</h3>
-					<ul class="social-links">
-						<li><a href="https://twitter.com" target="_blank" rel="noopener noreferrer">Twitter</a></li>
-						<li><a href="https://instagram.com" target="_blank" rel="noopener noreferrer">Instagram</a></li>
-						<li><a href="https://dribbble.com" target="_blank" rel="noopener noreferrer">Dribbble</a></li>
-						<li><a href="https://linkedin.com" target="_blank" rel="noopener noreferrer">LinkedIn</a></li>
-					</ul>
-				</div>
-			</aside>
-		</div>
+				
+				<p class="col-span-full w-full">
+					En envoyant un message, vous acceptez notre <a href={privacyPolicyURL} class="underline decoration-primary">politique de confidentialité</a> et nos <a href={termsOfUsePolicyURL} class="underline decoration-primary">conditions générales d'utilisation</a>.
+				</p>
+				
+				<Button variant="compact" class="ml-auto w-full sm:w-1/2 md:w-1/3 lg:w-1/4">
+					Envoyer
+				</Button>
+			</form>
+		)}
 	</div>
 </Base>
-
-<style>
-	.contact-page {
-		max-width: var(--wide-width);
-		margin: 0 auto;
-		padding: var(--spacing-2xl) var(--spacing-lg) var(--spacing-4xl);
-	}
-
-	.contact-header {
-		max-width: var(--max-width);
-		margin-bottom: var(--spacing-3xl);
-	}
-
-	.contact-title {
-		font-family: var(--font-serif);
-		font-size: var(--font-size-4xl);
-		font-weight: 500;
-		line-height: 1.1;
-		margin-bottom: var(--spacing-lg);
-	}
-
-	.contact-intro {
-		font-size: var(--font-size-lg);
-		color: var(--color-muted);
-		line-height: 1.6;
-	}
-
-	.contact-grid {
-		display: grid;
-		grid-template-columns: 2fr 1fr;
-		gap: var(--spacing-4xl);
-	}
-
-	.contact-form {
-		display: flex;
-		flex-direction: column;
-		gap: var(--spacing-lg);
-	}
-
-	.form-field {
-		display: flex;
-		flex-direction: column;
-		gap: var(--spacing-sm);
-	}
-
-	.form-field label {
-		font-size: var(--font-size-sm);
-		font-weight: 500;
-	}
-
-	.form-field input,
-	.form-field textarea {
-		padding: var(--spacing-md);
-		font-family: inherit;
-		font-size: var(--font-size-base);
-		color: var(--color-text);
-		background: var(--color-surface);
-		border: 1px solid var(--color-border);
-		border-radius: var(--radius);
-		transition:
-			border-color var(--transition-fast),
-			box-shadow var(--transition-fast);
-	}
-
-	.form-field input:focus,
-	.form-field textarea:focus {
-		outline: none;
-		border-color: var(--color-primary);
-		box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.1);
-	}
-
-	.form-field input::placeholder,
-	.form-field textarea::placeholder {
-		color: var(--color-muted);
-	}
-
-	.form-field textarea {
-		resize: vertical;
-		min-height: 150px;
-	}
-
-	.form-submit {
-		align-self: flex-start;
-		padding: var(--spacing-md) var(--spacing-xl);
-		font-family: inherit;
-		font-size: var(--font-size-sm);
-		font-weight: 500;
-		color: var(--color-bg);
-		background: var(--color-text);
-		border: none;
-		border-radius: var(--radius);
-		cursor: pointer;
-		transition:
-			background var(--transition-fast),
-			transform var(--transition-fast);
-	}
-
-	.form-submit:hover {
-		background: var(--color-primary);
-		color: white;
-		transform: translateY(-1px);
-	}
-
-	.form-submit:active {
-		transform: translateY(0);
-	}
-
-	.form-error {
-		padding: var(--spacing-md);
-		background: #fef2f2;
-		border: 1px solid #fecaca;
-		border-radius: var(--radius);
-		color: #dc2626;
-		font-size: var(--font-size-sm);
-	}
-
-	@media (prefers-color-scheme: dark) {
-		.form-error {
-			background: rgba(239, 68, 68, 0.1);
-			border-color: rgba(239, 68, 68, 0.3);
-			color: #f87171;
-		}
-	}
-
-	.form-success {
-		padding: var(--spacing-2xl);
-		background: var(--color-surface);
-		border: 1px solid var(--color-border);
-		border-radius: var(--radius);
-		text-align: center;
-	}
-
-	.form-success h2 {
-		font-family: var(--font-serif);
-		font-size: var(--font-size-xl);
-		font-weight: 500;
-		margin-bottom: var(--spacing-sm);
-	}
-
-	.form-success p {
-		color: var(--color-muted);
-		margin-bottom: var(--spacing-lg);
-	}
-
-	.form-reset {
-		font-size: var(--font-size-sm);
-		color: var(--color-primary);
-		text-decoration: none;
-	}
-
-	.form-reset:hover {
-		text-decoration: underline;
-	}
-
-	.contact-info {
-		position: sticky;
-		top: var(--spacing-xl);
-		align-self: start;
-	}
-
-	.info-section {
-		margin-bottom: var(--spacing-2xl);
-	}
-
-	.info-section h3 {
-		font-family: var(--font-serif);
-		font-size: var(--font-size-lg);
-		font-weight: 500;
-		margin-bottom: var(--spacing-sm);
-	}
-
-	.info-section p,
-	.info-section a {
-		font-size: var(--font-size-sm);
-		color: var(--color-muted);
-	}
-
-	.info-section a {
-		text-decoration: none;
-		transition: color var(--transition-fast);
-	}
-
-	.info-section a:hover {
-		color: var(--color-text);
-	}
-
-	.social-links {
-		list-style: none;
-		display: flex;
-		flex-direction: column;
-		gap: var(--spacing-sm);
-	}
-
-	.social-links a {
-		color: var(--color-muted);
-	}
-
-	@media (max-width: 768px) {
-		.contact-grid {
-			grid-template-columns: 1fr;
-			gap: var(--spacing-2xl);
-		}
-
-		.contact-title {
-			font-size: var(--font-size-3xl);
-		}
-
-		.contact-info {
-			position: static;
-			display: grid;
-			grid-template-columns: repeat(3, 1fr);
-			gap: var(--spacing-xl);
-			padding-top: var(--spacing-xl);
-			border-top: 1px solid var(--color-border);
-		}
-
-		.info-section {
-			margin-bottom: 0;
-		}
-	}
-
-	@media (max-width: 480px) {
-		.contact-info {
-			grid-template-columns: 1fr;
-		}
-	}
-</style>
