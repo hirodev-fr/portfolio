@@ -20,6 +20,8 @@ const siteTitle = settings?.title || import.meta.env.ASTRO_APP_NAME || "HIRO DEV
 const fullTitle = title ? `${title} — ${siteTitle}` : siteTitle;
 const siteDescription = settings?.tagline || "";
 
+const githubURL = settings.social?.github
+
 const menu = await getMenu("primary");
 
 const pageCtx = createPublicPageContext({
@@ -83,6 +85,13 @@ const policies = await getEmDashCollection("policies");
 					<p class="mt-7">
 						<a href="/_emdash/admin/" class="underline">Admin</a>
 					</p>
+					{
+						githubURL && (
+							<p>
+								<a href={githubURL} target="_blank" rel="noopener noreferrer" class="underline">Github</a>
+							</p>
+						)
+					}
 				</div>
 				<div class="flex flex-col space-y-3 md:self-end">
 					<p>Contact : <a href="mailto:contact@hirodev.fr" class="underline decoration-primary">contact@hirodev.fr</a></p>
