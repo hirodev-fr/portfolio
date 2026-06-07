@@ -1,0 +1,14 @@
+---
+import Base from '../../layouts/Base.astro';
+import ProjectsExplorer from '../../components/ProjectsExplorer.tsx';
+import { getEmDashCollection } from 'emdash'
+
+const projects = await getEmDashCollection('projects');
+
+const map = Object.values(projects.entries).map((value) => value.data)
+
+---
+
+<Base>
+	<ProjectsExplorer projects={map} client:load />
+</Base>
