@@ -1,5 +1,5 @@
 ---
-import { getMenu, getSiteSettings } from "emdash";
+import { getMenu, getSiteSettings, getEmDashCollection } from "emdash";
 import { EmDashHead } from "emdash/ui";
 import { createPublicPageContext } from "emdash/page";
 import Logo from "../components/Logo.astro";
@@ -34,6 +34,8 @@ const pageCtx = createPublicPageContext({
 	seo: { ogImage: image },
 	siteName: siteTitle,
 });
+
+const policies = await getEmDashCollection("policies");
 ---
 
 <!doctype html>
@@ -71,15 +73,13 @@ const pageCtx = createPublicPageContext({
 		<footer class="px-4 md:px-11 w-full border-t border-t-line">
 			<div class="border-x-line border-x w-full py-10 px-4 sm:px-6 md:px-14 lg:px-20 flex flex-col md:flex-row justify-center md:justify-between space-y-10 md:space-y-0 text-sm md:text-md font-mono font-light">
 				<div class="flex flex-col space-y-3">
+					{
+						policies.entries.map(policy => (
 					<p>
-						<a href="/legal-notice" class="underline decoration-primary">Mentions légales</a>
+								<a href={`/policies/${policy.data.slug}`} class="underline decoration-primary">{policy.data.title}</a>
 					</p>
-					<p>
-						<a href="/terms-of-service" class="underline decoration-primary">Conditions d'utilisation</a>
-					</p>
-					<p>
-						<a href="/privacy-policy" class="underline decoration-primary">Politique de confidentialité</a>
-					</p>
+						))
+					}
 					<p class="mt-7">
 						<a href="/_emdash/admin/" class="underline">Admin</a>
 					</p>
