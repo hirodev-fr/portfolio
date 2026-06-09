@@ -14,7 +14,8 @@
 		"format": "oxfmt .",
 		"format:safe": "oxfmt --no-error-on-unmatched-pattern .",
 		"check": "bun lint && bun format",
-		"check:safe": "bun run lint:safe && bun run format:safe"
+		"check:safe": "bun run lint:safe && bun run format:safe",
+		"seed:generate": "emdash export-seed -d data/data.db"
 	},
 	"dependencies": {
 		"@astrojs/cloudflare": "=13.6.1",
