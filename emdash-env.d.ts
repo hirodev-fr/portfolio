@@ -10,7 +10,31 @@ export interface Policy {
 	slug: string | null;
 	status: string;
 	title: string;
+	index: number;
 	content: PortableTextBlock[];
+	createdAt: Date;
+	updatedAt: Date;
+	publishedAt: Date | null;
+	bylines?: ContentBylineCredit[];
+}
+
+export interface Project {
+	id: string;
+	slug: string | null;
+	status: string;
+	name: string;
+	description: string;
+	launch_date: string;
+	cover: {
+		id: string;
+		src?: string;
+		alt?: string;
+		width?: number;
+		height?: number;
+		provider?: string;
+		previewUrl?: string;
+		meta?: Record<string, unknown>;
+	};
 	createdAt: Date;
 	updatedAt: Date;
 	publishedAt: Date | null;
@@ -20,5 +44,6 @@ export interface Policy {
 declare module 'emdash' {
 	interface EmDashCollections {
 		policies: Policy;
+		projects: Project;
 	}
 }
