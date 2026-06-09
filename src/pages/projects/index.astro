@@ -5,10 +5,9 @@ import { getEmDashCollection } from 'emdash'
 
 const projects = await getEmDashCollection('projects');
 
-const map = Object.values(projects.entries).map((value) => value.data)
-
+const map = Object.values(projects.entries).map((value) => value.data);
 ---
 
 <Base>
-	<ProjectsExplorer projects={map} client:load />
+  <ProjectsExplorer projects={map} client:load />
 </Base>

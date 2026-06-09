@@ -1,104 +1,122 @@
 ---
-import { getEmDashEntry } from "emdash";
-import Base from "../layouts/Base.astro";
-import Button from "../components/Button.astro";
+import { getEmDashEntry } from 'emdash';
+import Base from '../layouts/Base.astro';
+import Button from '../components/Button.astro';
 
 // Handle form submission
-let formStatus: "idle" | "success" | "error" = "idle";
-let formMessage = "";
+let formStatus: 'idle' | 'success' | 'error' = 'idle';
+let formMessage = '';
 
-if (Astro.request.method === "POST") {
-	try {
-		const formData = await Astro.request.formData();
-		const name = formData.get("name")?.toString() || "";
-		const email = formData.get("email")?.toString() || "";
-		const message = formData.get("message")?.toString() || "";
+if (Astro.request.method === 'POST') {
+  try {
+    const formData = await Astro.request.formData();
+    const name = formData.get('name')?.toString() || '';
+    const email = formData.get('email')?.toString() || '';
+    const message = formData.get('message')?.toString() || '';
 
-		// Basic validation
-		if (!name || !email || !message) {
-			formStatus = "error";
-			formMessage = "Veuillez remplir tous les champs.";
-		} else if (!email.includes("@")) {
-			formStatus = "error";
-			formMessage = "Veuillez entrer une adresse e-mail valide.";
-		} else {
-			// TODO in prod : implement real email sender
-			console.log("Contact form submission:", { name, email, message });
-			formStatus = "success";
-			formMessage = "Merci de nous avoir contactés ! Nous vous répondrons bientôt.";
-		}
-	} catch {
-		formStatus = "error";
-		formMessage = "Une erreur est survenue. Veuillez réessayer.";
-	}
+    // Basic validation
+    if (!name || !email || !message) {
+      formStatus = 'error';
+      formMessage = 'Veuillez remplir tous les champs.';
+    } else if (!email.includes('@')) {
+      formStatus = 'error';
+      formMessage = 'Veuillez entrer une adresse e-mail valide.';
+    } else {
+      // TODO in prod : implement real email sender
+      console.log('Contact form submission:', { name, email, message });
+      formStatus = 'success';
+      formMessage =
+        'Merci de nous avoir contactés ! Nous vous répondrons bientôt.';
+    }
+  } catch {
+    formStatus = 'error';
+    formMessage = 'Une erreur est survenue. Veuillez réessayer.';
+  }
 }
 
-const privacyPolicy = await getEmDashEntry("policies", "privacy")
-const termsOfUsePolicy = await getEmDashEntry("policies", "terms-of-use")
+const privacyPolicy = await getEmDashEntry('policies', 'privacy');
+const termsOfUsePolicy = await getEmDashEntry('policies', 'terms-of-use');
 
-const privacyPolicyURL = `/policies/${privacyPolicy.entry?.data.slug}`
-const termsOfUsePolicyURL = `/policies/${termsOfUsePolicy.entry?.data.slug}`
+const privacyPolicyURL = `/policies/${privacyPolicy.entry?.data.slug}`;
+const termsOfUsePolicyURL = `/policies/${termsOfUsePolicy.entry?.data.slug}`;
 ---
 
-<Base title="Contact" description="Parlons de votre projet. Contactez l'équipe HIRO DEV.">
-	<div class="flex flex-col flex-1 space-y-10 py-9 px-4 sm:px-6 md:px-14">
-		{formStatus === "success" ? (
-			<div class="flex flex-col space-y-6">
-				<h1 class="uppercase text-4xl sm:text-5xl md:text-6xl">
-					Merci !
-				</h1>
-				<p class="text-lg text-ink-light">
-					{formMessage}
-				</p>
-				<p>
-					<a href="/contact" class="text-accent underline font-mono text-sm uppercase">Envoyer un autre message</a>
-				</p>
-			</div>
-		) : (
-			<form method="POST" class="flex flex-col flex-1 space-y-10">
-				<h1 class="uppercase text-4xl sm:text-5xl md:text-6xl">
-					Parlons de votre projet.
-				</h1>
-				
-				{formStatus === "error" && (
-					<div class="p-4 bg-red-100/10 border border-red-500/30 text-red-500 text-sm font-mono uppercase">
-						{formMessage}
-					</div>
-				)}
+<Base
+  title='Contact'
+  description="Parlons de votre projet. Contactez l'équipe HIRO DEV."
+>
+  <div class='flex flex-col flex-1 space-y-10 py-9 px-4 sm:px-6 md:px-14'>
+    {
+      formStatus === 'success' ? (
+        <div class='flex flex-col space-y-6'>
+          <h1 class='uppercase text-4xl sm:text-5xl md:text-6xl'>Merci !</h1>
+          <p class='text-lg text-ink-light'>{formMessage}</p>
+          <p>
+            <a
+              href='/contact'
+              class='text-accent underline font-mono text-sm uppercase'
+            >
+              Envoyer un autre message
+            </a>
+          </p>
+        </div>
+      ) : (
+        <form method='POST' class='flex flex-col flex-1 space-y-10'>
+          <h1 class='uppercase text-4xl sm:text-5xl md:text-6xl'>
+            Parlons de votre projet.
+          </h1>
 
-				<div class="flex flex-col flex-1 gap-5">
-					<div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
-						<input
-							type="text"
-							name="name"
-							required
-							placeholder="NOM"
-							class="w-full h-14 px-4 ring ring-ink focus:outline-none focus:ring-accent focus:ring-2 placeholder:text-ink/45 bg-transparent"
-						/>
-						<input
-							type="email"
-							name="email"
-							required
-							placeholder="EMAIL"
-							class="w-full h-14 px-4 ring ring-ink focus:outline-none focus:ring-accent focus:ring-2 placeholder:text-ink/45 bg-transparent"
-						/>
-					</div>
-					<textarea
-						name="message"
-						required
-						placeholder="MESSAGE"
-						class="flex-1 w-full p-4 px-4 ring ring-ink focus:outline-none focus:ring-accent focus:ring-2 placeholder:text-ink/45 bg-transparent min-h-80"
-					></textarea>
-				</div>
-				
-				<p class="col-span-full w-full">
-					En envoyant un message, vous acceptez notre <a href={privacyPolicyURL} class="underline decoration-primary">politique de confidentialité</a> et nos <a href={termsOfUsePolicyURL} class="underline decoration-primary">conditions générales d'utilisation</a>.
-				</p>
-				
-				<Button variant="compact" class="ml-auto w-full sm:w-1/2 md:w-1/3 lg:w-1/4">
-					Envoyer
-				</Button>
-			</form>
-		)}
-	</div>
+          {formStatus === 'error' && (
+            <div class='p-4 bg-red-100/10 border border-red-500/30 text-red-500 text-sm font-mono uppercase'>
+              {formMessage}
+            </div>
+          )}
+
+          <div class='flex flex-col flex-1 gap-5'>
+            <div class='grid grid-cols-1 sm:grid-cols-2 gap-5'>
+              <input
+                type='text'
+                name='name'
+                required
+                placeholder='NOM'
+                class='w-full h-14 px-4 ring ring-ink focus:outline-none focus:ring-accent focus:ring-2 placeholder:text-ink/45 bg-transparent'
+              />
+              <input
+                type='email'
+                name='email'
+                required
+                placeholder='EMAIL'
+                class='w-full h-14 px-4 ring ring-ink focus:outline-none focus:ring-accent focus:ring-2 placeholder:text-ink/45 bg-transparent'
+              />
+            </div>
+            <textarea
+              name='message'
+              required
+              placeholder='MESSAGE'
+              class='flex-1 w-full p-4 px-4 ring ring-ink focus:outline-none focus:ring-accent focus:ring-2 placeholder:text-ink/45 bg-transparent min-h-80'
+            />
+          </div>
+
+          <p class='col-span-full w-full'>
+            En envoyant un message, vous acceptez notre{' '}
+            <a href={privacyPolicyURL} class='underline decoration-primary'>
+              politique de confidentialité
+            </a>{' '}
+            et nos{' '}
+            <a href={termsOfUsePolicyURL} class='underline decoration-primary'>
+              conditions générales d'utilisation
+            </a>
+            .
+          </p>
+
+          <Button
+            variant='compact'
+            class='ml-auto w-full sm:w-1/2 md:w-1/3 lg:w-1/4'
+          >
+            Envoyer
+          </Button>
+        </form>
+      )
+    }
+  </div>
 </Base>

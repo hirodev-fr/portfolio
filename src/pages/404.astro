@@ -1,14 +1,16 @@
 ---
-import Button from "../components/Button.astro"
-import Base from "../layouts/Base.astro"
+import Button from '../components/Button.astro';
+import Base from '../layouts/Base.astro';
 ---
 
 <Base>
-	<div class="w-3/4 sm:w-2/3 md:w-1/2 place-self-center flex space-x-auto py-auto items-center justify-center flex-1">
-    	<div class="w-full flex flex-col justify-center">
-    		<h1 class="text-4xl sm:text-5xl lg:text-7xl">404.</h1>
-    		<h2 class="text-lg md:text-xl lg:text-2xl">Page introuvable.</h2>
-    	</div>
-    	<Button as="a" href="/" class="w-min">Retour à l'accueil</Button>
-	</div>
+  <div
+    class='w-3/4 sm:w-2/3 md:w-1/2 place-self-center flex space-x-auto py-auto items-center justify-center flex-1'
+  >
+    <div class='w-full flex flex-col justify-center'>
+      <h1 class='text-4xl sm:text-5xl lg:text-7xl'>404.</h1>
+      <h2 class='text-lg md:text-xl lg:text-2xl'>Page introuvable.</h2>
+    </div>
+    <Button as='a' href='/' class='w-min'>Retour à l'accueil</Button>
+  </div>
 </Base>
