@@ -2,20 +2,124 @@
 	"$schema": "https://emdashcms.com/seed.schema.json",
 	"version": "1",
 	"meta": {
-		"name": "HIRO DEV",
-		"description": "Site portfolio de l'agence de développement web HIRO DEV."
+		"name": "Exported Seed",
+		"description": "Exported from existing EmDash database"
 	},
 	"settings": {
 		"title": "HIRO DEV",
 		"tagline": "Le développement web, à la lyonnaise.",
-		"dateFormat": "d MMMM yyyy"
+		"dateFormat": "d MMMM yyyy",
+		"logo": {
+			"mediaId": "01KTE9C465CTC91EWBCER0G4MM",
+			"alt": ""
+		},
+		"favicon": {
+			"mediaId": "01KTE9CNPTZRFD155AE36DQ171"
+		},
+		"url": "https://hirodev.fr",
+		"social": {
+			"github": "https://github.com/hirodev-fr"
+		}
 	},
-	"collections": [],
-	"taxonomies": [],
-	"bylines": [],
-	"menus": [],
-	"redirects": [],
-	"widgetAreas": [],
-	"sections": [],
-	"content": {}
+	"collections": [
+		{
+			"slug": "policies",
+			"label": "Policies",
+			"labelSingular": "Policy",
+			"description": "Pages légales du site",
+			"supports": ["drafts", "revisions", "preview"],
+			"fields": [
+				{
+					"slug": "title",
+					"label": "Titre",
+					"type": "string",
+					"required": true,
+					"unique": true
+				},
+				{
+					"slug": "index",
+					"label": "Index",
+					"type": "integer",
+					"required": true,
+					"unique": true
+				},
+				{
+					"slug": "content",
+					"label": "Contenu",
+					"type": "portableText",
+					"required": true
+				}
+			]
+		},
+		{
+			"slug": "projects",
+			"label": "Projects",
+			"labelSingular": "Project",
+			"supports": ["drafts", "revisions", "search"],
+			"fields": [
+				{
+					"slug": "name",
+					"label": "Nom",
+					"type": "string",
+					"required": true,
+					"unique": true,
+					"searchable": true
+				},
+				{
+					"slug": "description",
+					"label": "Description",
+					"type": "text",
+					"required": true
+				},
+				{
+					"slug": "launch_date",
+					"label": "Date de lancement",
+					"type": "datetime",
+					"required": true
+				},
+				{
+					"slug": "cover",
+					"label": "Cover",
+					"type": "image",
+					"required": true,
+					"validation": {
+						"allowedMimeTypes": ["image/"]
+					}
+				}
+			]
+		}
+	],
+	"taxonomies": [
+		{
+			"id": "tax:category",
+			"name": "category",
+			"label": "Categories",
+			"labelSingular": "Category",
+			"hierarchical": true,
+			"collections": ["posts"]
+		},
+		{
+			"id": "tax:tag",
+			"name": "tag",
+			"label": "Tags",
+			"labelSingular": "Tag",
+			"hierarchical": false,
+			"collections": ["posts"]
+		}
+	],
+	"menus": [
+		{
+			"id": "menu:primary",
+			"name": "primary",
+			"label": "Menu principal",
+			"items": [
+				{
+					"type": "custom",
+					"label": "Projets",
+					"url": "/projects"
+				}
+			]
+		}
+	],
+	"widgetAreas": []
 }
