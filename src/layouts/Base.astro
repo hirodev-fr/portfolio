@@ -41,6 +41,12 @@ const pageCtx = createPublicPageContext({
 
 const policies = await getEmDashCollection('policies')
 const sortedPolicies = sortCollectionByIndex(policies, 'ascendant')
+
+const adminLinks: { label: string, url: string }[] = [
+  { label: 'Admin', url: '/_emdash/admin/' },
+  { label: 'Github', url: githubURL ?? 'https://github.com' },
+]
+
 ---
 
 <!doctype html>
@@ -79,7 +85,7 @@ const sortedPolicies = sortCollectionByIndex(policies, 'ascendant')
       <div
         class='border-x-line border-x w-full py-10 px-4 sm:px-6 md:px-14 lg:px-20 flex flex-col md:flex-row justify-center md:justify-between space-y-10 md:space-y-0 text-sm md:text-md font-mono font-light'
       >
-        <div class='flex flex-col space-y-3'>
+        <div class='flex flex-col space-y-3 md:self-end'>
           {
             sortedPolicies.entries.map((policy) => (
               <p>
@@ -92,31 +98,36 @@ const sortedPolicies = sortCollectionByIndex(policies, 'ascendant')
               </p>
             ))
           }
-          <p class='mt-7'>
-            <a
-              href='/_emdash/admin/'
-              target='_blank'
-              rel='noopener noreferrer'
-              class='underline'>Admin</a
-            >
-          </p>
-          {
-            githubURL && (
+          
+        </div>
+        <div class="w-min h-min md:self-end flex justify-center items-center text-xs text-ink">
+        {
+          adminLinks.flatMap((link, index) => index < adminLinks.length - 1 ? (
               <p>
                 <a
-                  href={githubURL}
-                  target='_blank'
-                  rel='noopener noreferrer'
-                  class='underline'
-                >
-                  Github
+                href={link.url}
+                target='_blank'
+                rel='noopener noreferrer'
+                class='underline'>
+                  {link.label}
                 </a>
               </p>
-            )
-          }
-        </div>
+              <span class="px-1.5">&bull;</span>
+          ) : (
+            <p>
+                <a
+                href={link.url}
+                target='_blank'
+                rel='noopener noreferrer'
+                class='underline'>
+                  {link.label}
+                </a>
+              </p>
+          ))
+        }
+      </div>
         <div class='flex flex-col space-y-3 md:self-end'>
-          <p>
+          <p class='mt-7'>
             Contact : <a
               href='mailto:contact@hirodev.fr'
               class='underline decoration-primary'>contact@hirodev.fr</a>
