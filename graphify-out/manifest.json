@@ -1,0 +1,512 @@
+{
+	"/Users/raphael/DEV/_hiro/portfolio/.cursor/mcp.json": {
+		"mtime": 1780415364.0,
+		"ast_hash": "bee438fcf611069eb08a490cb04bc8c5",
+		"semantic_hash": "bee438fcf611069eb08a490cb04bc8c5"
+	},
+	"/Users/raphael/DEV/_hiro/portfolio/.mcp.json": {
+		"mtime": 1780415364.0,
+		"ast_hash": "bee438fcf611069eb08a490cb04bc8c5",
+		"semantic_hash": "bee438fcf611069eb08a490cb04bc8c5"
+	},
+	"/Users/raphael/DEV/_hiro/portfolio/.oxfmtrc.json": {
+		"mtime": 1780857111.543887,
+		"ast_hash": "8ee118c53fdaefd7f7016c4ed6431364",
+		"semantic_hash": "8ee118c53fdaefd7f7016c4ed6431364"
+	},
+	"/Users/raphael/DEV/_hiro/portfolio/.oxlintrc.json": {
+		"mtime": 1780857111.5440402,
+		"ast_hash": "2fdbe8e8d1977a21cfa7aabc26531b8a",
+		"semantic_hash": "2fdbe8e8d1977a21cfa7aabc26531b8a"
+	},
+	"/Users/raphael/DEV/_hiro/portfolio/.vscode/mcp.json": {
+		"mtime": 1780415364.0,
+		"ast_hash": "11b3badf41f14fabbef8064b93a07a76",
+		"semantic_hash": "11b3badf41f14fabbef8064b93a07a76"
+	},
+	"/Users/raphael/DEV/_hiro/portfolio/.vscode/settings.json": {
+		"mtime": 1780993851.7773676,
+		"ast_hash": "7006856a8f351bea57a74a386f3bef5e",
+		"semantic_hash": "7006856a8f351bea57a74a386f3bef5e"
+	},
+	"/Users/raphael/DEV/_hiro/portfolio/astro.config.mjs": {
+		"mtime": 1780865416.364923,
+		"ast_hash": "b70bbff2f2aef076d0739756b1197ea7",
+		"semantic_hash": "b70bbff2f2aef076d0739756b1197ea7"
+	},
+	"/Users/raphael/DEV/_hiro/portfolio/emdash-env.d.ts": {
+		"mtime": 1780997522.7515182,
+		"ast_hash": "2a43c2c3cf39c359c80a54923bbaf950",
+		"semantic_hash": "2a43c2c3cf39c359c80a54923bbaf950"
+	},
+	"/Users/raphael/DEV/_hiro/portfolio/package.json": {
+		"mtime": 1780998141.7595112,
+		"ast_hash": "2a099ec5beb822ea7186395ccd1520d8",
+		"semantic_hash": "2a099ec5beb822ea7186395ccd1520d8"
+	},
+	"/Users/raphael/DEV/_hiro/portfolio/seed/seed.json": {
+		"mtime": 1780998040.1241763,
+		"ast_hash": "31074c182f34a736cf3d765cbbce08e3",
+		"semantic_hash": "31074c182f34a736cf3d765cbbce08e3"
+	},
+	"/Users/raphael/DEV/_hiro/portfolio/src/components/Button.astro": {
+		"mtime": 1780994248.5220733,
+		"ast_hash": "6e4faaf037310afc0f138dcbc4a7d11a",
+		"semantic_hash": "6e4faaf037310afc0f138dcbc4a7d11a"
+	},
+	"/Users/raphael/DEV/_hiro/portfolio/src/components/Button.tsx": {
+		"mtime": 1780868685.727606,
+		"ast_hash": "31a159f54eb8dd1f69f204ff99d9f1da",
+		"semantic_hash": "31a159f54eb8dd1f69f204ff99d9f1da"
+	},
+	"/Users/raphael/DEV/_hiro/portfolio/src/components/Logo.astro": {
+		"mtime": 1780994237.534708,
+		"ast_hash": "e43969ed5df44e224f7c0c1ab55c1330",
+		"semantic_hash": "e43969ed5df44e224f7c0c1ab55c1330"
+	},
+	"/Users/raphael/DEV/_hiro/portfolio/src/components/Menu.astro": {
+		"mtime": 1780994227.4860244,
+		"ast_hash": "a5aa42f7e8350e723c64827ef433d825",
+		"semantic_hash": "a5aa42f7e8350e723c64827ef433d825"
+	},
+	"/Users/raphael/DEV/_hiro/portfolio/src/components/ProjectList.tsx": {
+		"mtime": 1780994545.2202668,
+		"ast_hash": "1d0b2854f40b0b9fc47c88d199e00c3e",
+		"semantic_hash": "1d0b2854f40b0b9fc47c88d199e00c3e"
+	},
+	"/Users/raphael/DEV/_hiro/portfolio/src/components/ProjectSort.tsx": {
+		"mtime": 1780994547.2327025,
+		"ast_hash": "782759daac23eb5676e0151a27ff25f6",
+		"semantic_hash": "782759daac23eb5676e0151a27ff25f6"
+	},
+	"/Users/raphael/DEV/_hiro/portfolio/src/layouts/Base.astro": {
+		"mtime": 1780997484.002703,
+		"ast_hash": "56580eb540f5b1bc0881e04395b1e572",
+		"semantic_hash": "56580eb540f5b1bc0881e04395b1e572"
+	},
+	"/Users/raphael/DEV/_hiro/portfolio/src/layouts/InBuild.astro": {
+		"mtime": 1780994185.3782628,
+		"ast_hash": "85347421384c26bbcd16c3bde0aaca27",
+		"semantic_hash": "85347421384c26bbcd16c3bde0aaca27"
+	},
+	"/Users/raphael/DEV/_hiro/portfolio/src/live.config.ts": {
+		"mtime": 1780857111.5510042,
+		"ast_hash": "69a0f30f5f28902da37b8e16f2948238",
+		"semantic_hash": "69a0f30f5f28902da37b8e16f2948238"
+	},
+	"/Users/raphael/DEV/_hiro/portfolio/src/middleware/index.ts": {
+		"mtime": 1780857111.551184,
+		"ast_hash": "3e70b5f4d7ffc8a4ccc4d9bd426ca3c2",
+		"semantic_hash": "3e70b5f4d7ffc8a4ccc4d9bd426ca3c2"
+	},
+	"/Users/raphael/DEV/_hiro/portfolio/src/pages/404.astro": {
+		"mtime": 1780994148.782316,
+		"ast_hash": "7b593f2e33d838831731c4a1ec7146cb",
+		"semantic_hash": "7b593f2e33d838831731c4a1ec7146cb"
+	},
+	"/Users/raphael/DEV/_hiro/portfolio/src/pages/about.astro": {
+		"mtime": 1780994133.5250492,
+		"ast_hash": "38cb5838ec499bae242dbcef8c62d1fe",
+		"semantic_hash": "38cb5838ec499bae242dbcef8c62d1fe"
+	},
+	"/Users/raphael/DEV/_hiro/portfolio/src/pages/contact.astro": {
+		"mtime": 1780994108.9720232,
+		"ast_hash": "f66374cd871f021daced6bcd7f8a9588",
+		"semantic_hash": "f66374cd871f021daced6bcd7f8a9588"
+	},
+	"/Users/raphael/DEV/_hiro/portfolio/src/pages/in-build.astro": {
+		"mtime": 1780994054.655326,
+		"ast_hash": "7e9facda8978bbe543112ee0bf03cc3e",
+		"semantic_hash": "7e9facda8978bbe543112ee0bf03cc3e"
+	},
+	"/Users/raphael/DEV/_hiro/portfolio/src/pages/index.astro": {
+		"mtime": 1780994025.2913306,
+		"ast_hash": "28a3b0646907fd45bee897c1dcf187f0",
+		"semantic_hash": "28a3b0646907fd45bee897c1dcf187f0"
+	},
+	"/Users/raphael/DEV/_hiro/portfolio/src/pages/policies/[slug].astro": {
+		"mtime": 1780993948.7706816,
+		"ast_hash": "6fb8c6d7a5a028c18ab573cee950d5c0",
+		"semantic_hash": "6fb8c6d7a5a028c18ab573cee950d5c0"
+	},
+	"/Users/raphael/DEV/_hiro/portfolio/src/pages/projects/index.astro": {
+		"mtime": 1780994559.35457,
+		"ast_hash": "76315ff53deafa5cee102d46eb242d34",
+		"semantic_hash": "76315ff53deafa5cee102d46eb242d34"
+	},
+	"/Users/raphael/DEV/_hiro/portfolio/src/pages/rss.xml.ts": {
+		"mtime": 1780857111.5524774,
+		"ast_hash": "2c461092fd2285382754e06860b03efd",
+		"semantic_hash": "2c461092fd2285382754e06860b03efd"
+	},
+	"/Users/raphael/DEV/_hiro/portfolio/src/plugins/hiro/admin.tsx": {
+		"mtime": 1780857111.5527124,
+		"ast_hash": "f8ec65cce13de64f7139b9494030ed05",
+		"semantic_hash": "f8ec65cce13de64f7139b9494030ed05"
+	},
+	"/Users/raphael/DEV/_hiro/portfolio/src/plugins/hiro/components/SettingsPage.tsx": {
+		"mtime": 1780857111.5529494,
+		"ast_hash": "e39a293c3f64b70582858c5f3ca35428",
+		"semantic_hash": "e39a293c3f64b70582858c5f3ca35428"
+	},
+	"/Users/raphael/DEV/_hiro/portfolio/src/plugins/hiro/index.ts": {
+		"mtime": 1780857111.5530753,
+		"ast_hash": "6e3d1317537d399dc273bacb62462f5d",
+		"semantic_hash": "6e3d1317537d399dc273bacb62462f5d"
+	},
+	"/Users/raphael/DEV/_hiro/portfolio/src/plugins/hiro/lib/api.ts": {
+		"mtime": 1780857111.5532386,
+		"ast_hash": "ba94a482b4e9f61e789b80ada347a8b7",
+		"semantic_hash": "ba94a482b4e9f61e789b80ada347a8b7"
+	},
+	"/Users/raphael/DEV/_hiro/portfolio/src/plugins/hiro/types.ts": {
+		"mtime": 1780857111.5533524,
+		"ast_hash": "28871e1f60b43fc829160c75cb8ce31c",
+		"semantic_hash": "28871e1f60b43fc829160c75cb8ce31c"
+	},
+	"/Users/raphael/DEV/_hiro/portfolio/src/utils.ts": {
+		"mtime": 1780995911.3443894,
+		"ast_hash": "1855ced232247722f7ffdbe3cb76674d",
+		"semantic_hash": "1855ced232247722f7ffdbe3cb76674d"
+	},
+	"/Users/raphael/DEV/_hiro/portfolio/src/worker.ts": {
+		"mtime": 1780857111.553697,
+		"ast_hash": "4e650ee5bbaa2f3f41ea7f4939eb5bde",
+		"semantic_hash": "4e650ee5bbaa2f3f41ea7f4939eb5bde"
+	},
+	"/Users/raphael/DEV/_hiro/portfolio/tsconfig.json": {
+		"mtime": 1780415364.0,
+		"ast_hash": "922646e633589504d87c8be0b05fc87d",
+		"semantic_hash": "922646e633589504d87c8be0b05fc87d"
+	},
+	"/Users/raphael/DEV/_hiro/portfolio/worker-configuration.d.ts": {
+		"mtime": 1780857111.5567062,
+		"ast_hash": "441f1332da03e25621343042ad1709f6",
+		"semantic_hash": "441f1332da03e25621343042ad1709f6"
+	},
+	"/Users/raphael/DEV/_hiro/portfolio/.agents/rules/graphify.md": {
+		"mtime": 1780998676.8165722,
+		"ast_hash": "52ab4665f0ffed45d29883e2bdcbfa05",
+		"semantic_hash": "52ab4665f0ffed45d29883e2bdcbfa05"
+	},
+	"/Users/raphael/DEV/_hiro/portfolio/.agents/skills/building-emdash-site/SKILL.md": {
+		"mtime": 1780857111.5407965,
+		"ast_hash": "e0fb46e52d03f9c307963cbb6f84b3a6",
+		"semantic_hash": "e0fb46e52d03f9c307963cbb6f84b3a6"
+	},
+	"/Users/raphael/DEV/_hiro/portfolio/.agents/skills/building-emdash-site/references/configuration.md": {
+		"mtime": 1780857111.5410964,
+		"ast_hash": "a834127f1cf97ccc461de6677f2a852c",
+		"semantic_hash": "a834127f1cf97ccc461de6677f2a852c"
+	},
+	"/Users/raphael/DEV/_hiro/portfolio/.agents/skills/building-emdash-site/references/querying-and-rendering.md": {
+		"mtime": 1780857111.541363,
+		"ast_hash": "784a998709720dd37c8e938f2d0737cb",
+		"semantic_hash": "784a998709720dd37c8e938f2d0737cb"
+	},
+	"/Users/raphael/DEV/_hiro/portfolio/.agents/skills/building-emdash-site/references/schema-and-seed.md": {
+		"mtime": 1780415364.0,
+		"ast_hash": "ac75446cd3a1b9e252bb50a54e43e02a",
+		"semantic_hash": "ac75446cd3a1b9e252bb50a54e43e02a"
+	},
+	"/Users/raphael/DEV/_hiro/portfolio/.agents/skills/building-emdash-site/references/site-features.md": {
+		"mtime": 1780857111.5416522,
+		"ast_hash": "92250b8bcbd27bf0b412c32ba213ba04",
+		"semantic_hash": "92250b8bcbd27bf0b412c32ba213ba04"
+	},
+	"/Users/raphael/DEV/_hiro/portfolio/.agents/skills/creating-plugins/SKILL.md": {
+		"mtime": 1780857111.5419827,
+		"ast_hash": "3f5dca3f0556e60927b1e5668d6e5ee5",
+		"semantic_hash": "3f5dca3f0556e60927b1e5668d6e5ee5"
+	},
+	"/Users/raphael/DEV/_hiro/portfolio/.agents/skills/creating-plugins/references/admin-ui.md": {
+		"mtime": 1780857111.5422282,
+		"ast_hash": "116c125fb26389d28386a97db0baaf9b",
+		"semantic_hash": "116c125fb26389d28386a97db0baaf9b"
+	},
+	"/Users/raphael/DEV/_hiro/portfolio/.agents/skills/creating-plugins/references/api-routes.md": {
+		"mtime": 1780857111.5424683,
+		"ast_hash": "28ac0bfb96e0d8375ea1468d9e1f4f44",
+		"semantic_hash": "28ac0bfb96e0d8375ea1468d9e1f4f44"
+	},
+	"/Users/raphael/DEV/_hiro/portfolio/.agents/skills/creating-plugins/references/block-kit.md": {
+		"mtime": 1780857111.5427263,
+		"ast_hash": "2b54332065ec019e823a59077d0c5090",
+		"semantic_hash": "2b54332065ec019e823a59077d0c5090"
+	},
+	"/Users/raphael/DEV/_hiro/portfolio/.agents/skills/creating-plugins/references/hooks.md": {
+		"mtime": 1780857111.5429776,
+		"ast_hash": "7b7de462d8aa38c4c7fa486d0bf1c796",
+		"semantic_hash": "7b7de462d8aa38c4c7fa486d0bf1c796"
+	},
+	"/Users/raphael/DEV/_hiro/portfolio/.agents/skills/creating-plugins/references/portable-text-blocks.md": {
+		"mtime": 1780857111.5432413,
+		"ast_hash": "074068c6a6ca5ae76298a7f05e242fae",
+		"semantic_hash": "074068c6a6ca5ae76298a7f05e242fae"
+	},
+	"/Users/raphael/DEV/_hiro/portfolio/.agents/skills/creating-plugins/references/publishing.md": {
+		"mtime": 1780415364.0,
+		"ast_hash": "e1a7544042cc49e8784fb153503a4e73",
+		"semantic_hash": "e1a7544042cc49e8784fb153503a4e73"
+	},
+	"/Users/raphael/DEV/_hiro/portfolio/.agents/skills/creating-plugins/references/storage.md": {
+		"mtime": 1780857111.5434952,
+		"ast_hash": "cbb63e6b55dcc76fb4c61f36f63f455e",
+		"semantic_hash": "cbb63e6b55dcc76fb4c61f36f63f455e"
+	},
+	"/Users/raphael/DEV/_hiro/portfolio/.agents/skills/emdash-cli/EDITING-FLOW.md": {
+		"mtime": 1780415364.0,
+		"ast_hash": "fad51278b5e54e62c1cb56c2a0e2ee8c",
+		"semantic_hash": "fad51278b5e54e62c1cb56c2a0e2ee8c"
+	},
+	"/Users/raphael/DEV/_hiro/portfolio/.agents/skills/emdash-cli/SKILL.md": {
+		"mtime": 1780415364.0,
+		"ast_hash": "caba4fe769e5e9b9101ceffab7474267",
+		"semantic_hash": "caba4fe769e5e9b9101ceffab7474267"
+	},
+	"/Users/raphael/DEV/_hiro/portfolio/.agents/skills/graphify/SKILL.md": {
+		"mtime": 1780998676.954389,
+		"ast_hash": "7688a8884596b9271bee687cf05a842e",
+		"semantic_hash": "7688a8884596b9271bee687cf05a842e"
+	},
+	"/Users/raphael/DEV/_hiro/portfolio/.agents/skills/graphify/references/add-watch.md": {
+		"mtime": 1780998677.0883408,
+		"ast_hash": "30ea754e6cb424ed76731603fc8ab682",
+		"semantic_hash": "30ea754e6cb424ed76731603fc8ab682"
+	},
+	"/Users/raphael/DEV/_hiro/portfolio/.agents/skills/graphify/references/exports.md": {
+		"mtime": 1780998677.1153321,
+		"ast_hash": "9c764b44d3f22867fe465ea431d6408b",
+		"semantic_hash": "9c764b44d3f22867fe465ea431d6408b"
+	},
+	"/Users/raphael/DEV/_hiro/portfolio/.agents/skills/graphify/references/extraction-spec.md": {
+		"mtime": 1780998472.6421354,
+		"ast_hash": "24808b03abfeaf5f6435bb69c0125b2c",
+		"semantic_hash": "24808b03abfeaf5f6435bb69c0125b2c"
+	},
+	"/Users/raphael/DEV/_hiro/portfolio/.agents/skills/graphify/references/github-and-merge.md": {
+		"mtime": 1780998677.0819921,
+		"ast_hash": "cc5805806709f8a762f85f5e1854323d",
+		"semantic_hash": "cc5805806709f8a762f85f5e1854323d"
+	},
+	"/Users/raphael/DEV/_hiro/portfolio/.agents/skills/graphify/references/hooks.md": {
+		"mtime": 1780998472.647177,
+		"ast_hash": "3f545db6ce646650bb9de588f5512a27",
+		"semantic_hash": "3f545db6ce646650bb9de588f5512a27"
+	},
+	"/Users/raphael/DEV/_hiro/portfolio/.agents/skills/graphify/references/query.md": {
+		"mtime": 1780998677.1019454,
+		"ast_hash": "e5257132d040810494508401a6966615",
+		"semantic_hash": "e5257132d040810494508401a6966615"
+	},
+	"/Users/raphael/DEV/_hiro/portfolio/.agents/skills/graphify/references/transcribe.md": {
+		"mtime": 1780998677.1008697,
+		"ast_hash": "78b2cd429518735a4cfb8daef262c9b3",
+		"semantic_hash": "78b2cd429518735a4cfb8daef262c9b3"
+	},
+	"/Users/raphael/DEV/_hiro/portfolio/.agents/skills/graphify/references/update.md": {
+		"mtime": 1780998677.106755,
+		"ast_hash": "3e62525765d8d7283188f4d4622512c6",
+		"semantic_hash": "3e62525765d8d7283188f4d4622512c6"
+	},
+	"/Users/raphael/DEV/_hiro/portfolio/.agents/workflows/graphify.md": {
+		"mtime": 1780998568.8141909,
+		"ast_hash": "0bc020d491fca99550c1ea3de0a5f862",
+		"semantic_hash": "0bc020d491fca99550c1ea3de0a5f862"
+	},
+	"/Users/raphael/DEV/_hiro/portfolio/.claude/skills/building-emdash-site/SKILL.md": {
+		"mtime": 1780857111.5407965,
+		"ast_hash": "e0fb46e52d03f9c307963cbb6f84b3a6",
+		"semantic_hash": "e0fb46e52d03f9c307963cbb6f84b3a6"
+	},
+	"/Users/raphael/DEV/_hiro/portfolio/.claude/skills/building-emdash-site/references/configuration.md": {
+		"mtime": 1780857111.5410964,
+		"ast_hash": "a834127f1cf97ccc461de6677f2a852c",
+		"semantic_hash": "a834127f1cf97ccc461de6677f2a852c"
+	},
+	"/Users/raphael/DEV/_hiro/portfolio/.claude/skills/building-emdash-site/references/querying-and-rendering.md": {
+		"mtime": 1780857111.541363,
+		"ast_hash": "784a998709720dd37c8e938f2d0737cb",
+		"semantic_hash": "784a998709720dd37c8e938f2d0737cb"
+	},
+	"/Users/raphael/DEV/_hiro/portfolio/.claude/skills/building-emdash-site/references/schema-and-seed.md": {
+		"mtime": 1780415364.0,
+		"ast_hash": "ac75446cd3a1b9e252bb50a54e43e02a",
+		"semantic_hash": "ac75446cd3a1b9e252bb50a54e43e02a"
+	},
+	"/Users/raphael/DEV/_hiro/portfolio/.claude/skills/building-emdash-site/references/site-features.md": {
+		"mtime": 1780857111.5416522,
+		"ast_hash": "92250b8bcbd27bf0b412c32ba213ba04",
+		"semantic_hash": "92250b8bcbd27bf0b412c32ba213ba04"
+	},
+	"/Users/raphael/DEV/_hiro/portfolio/.claude/skills/creating-plugins/SKILL.md": {
+		"mtime": 1780857111.5419827,
+		"ast_hash": "3f5dca3f0556e60927b1e5668d6e5ee5",
+		"semantic_hash": "3f5dca3f0556e60927b1e5668d6e5ee5"
+	},
+	"/Users/raphael/DEV/_hiro/portfolio/.claude/skills/creating-plugins/references/admin-ui.md": {
+		"mtime": 1780857111.5422282,
+		"ast_hash": "116c125fb26389d28386a97db0baaf9b",
+		"semantic_hash": "116c125fb26389d28386a97db0baaf9b"
+	},
+	"/Users/raphael/DEV/_hiro/portfolio/.claude/skills/creating-plugins/references/api-routes.md": {
+		"mtime": 1780857111.5424683,
+		"ast_hash": "28ac0bfb96e0d8375ea1468d9e1f4f44",
+		"semantic_hash": "28ac0bfb96e0d8375ea1468d9e1f4f44"
+	},
+	"/Users/raphael/DEV/_hiro/portfolio/.claude/skills/creating-plugins/references/block-kit.md": {
+		"mtime": 1780857111.5427263,
+		"ast_hash": "2b54332065ec019e823a59077d0c5090",
+		"semantic_hash": "2b54332065ec019e823a59077d0c5090"
+	},
+	"/Users/raphael/DEV/_hiro/portfolio/.claude/skills/creating-plugins/references/hooks.md": {
+		"mtime": 1780857111.5429776,
+		"ast_hash": "7b7de462d8aa38c4c7fa486d0bf1c796",
+		"semantic_hash": "7b7de462d8aa38c4c7fa486d0bf1c796"
+	},
+	"/Users/raphael/DEV/_hiro/portfolio/.claude/skills/creating-plugins/references/portable-text-blocks.md": {
+		"mtime": 1780857111.5432413,
+		"ast_hash": "074068c6a6ca5ae76298a7f05e242fae",
+		"semantic_hash": "074068c6a6ca5ae76298a7f05e242fae"
+	},
+	"/Users/raphael/DEV/_hiro/portfolio/.claude/skills/creating-plugins/references/publishing.md": {
+		"mtime": 1780415364.0,
+		"ast_hash": "e1a7544042cc49e8784fb153503a4e73",
+		"semantic_hash": "e1a7544042cc49e8784fb153503a4e73"
+	},
+	"/Users/raphael/DEV/_hiro/portfolio/.claude/skills/creating-plugins/references/storage.md": {
+		"mtime": 1780857111.5434952,
+		"ast_hash": "cbb63e6b55dcc76fb4c61f36f63f455e",
+		"semantic_hash": "cbb63e6b55dcc76fb4c61f36f63f455e"
+	},
+	"/Users/raphael/DEV/_hiro/portfolio/.claude/skills/emdash-cli/EDITING-FLOW.md": {
+		"mtime": 1780415364.0,
+		"ast_hash": "fad51278b5e54e62c1cb56c2a0e2ee8c",
+		"semantic_hash": "fad51278b5e54e62c1cb56c2a0e2ee8c"
+	},
+	"/Users/raphael/DEV/_hiro/portfolio/.claude/skills/emdash-cli/SKILL.md": {
+		"mtime": 1780415364.0,
+		"ast_hash": "caba4fe769e5e9b9101ceffab7474267",
+		"semantic_hash": "caba4fe769e5e9b9101ceffab7474267"
+	},
+	"/Users/raphael/DEV/_hiro/portfolio/.claude/skills/graphify/SKILL.md": {
+		"mtime": 1780998676.954389,
+		"ast_hash": "7688a8884596b9271bee687cf05a842e",
+		"semantic_hash": "7688a8884596b9271bee687cf05a842e"
+	},
+	"/Users/raphael/DEV/_hiro/portfolio/.claude/skills/graphify/references/add-watch.md": {
+		"mtime": 1780998677.0883408,
+		"ast_hash": "30ea754e6cb424ed76731603fc8ab682",
+		"semantic_hash": "30ea754e6cb424ed76731603fc8ab682"
+	},
+	"/Users/raphael/DEV/_hiro/portfolio/.claude/skills/graphify/references/exports.md": {
+		"mtime": 1780998677.1153321,
+		"ast_hash": "9c764b44d3f22867fe465ea431d6408b",
+		"semantic_hash": "9c764b44d3f22867fe465ea431d6408b"
+	},
+	"/Users/raphael/DEV/_hiro/portfolio/.claude/skills/graphify/references/extraction-spec.md": {
+		"mtime": 1780998472.6421354,
+		"ast_hash": "24808b03abfeaf5f6435bb69c0125b2c",
+		"semantic_hash": "24808b03abfeaf5f6435bb69c0125b2c"
+	},
+	"/Users/raphael/DEV/_hiro/portfolio/.claude/skills/graphify/references/github-and-merge.md": {
+		"mtime": 1780998677.0819921,
+		"ast_hash": "cc5805806709f8a762f85f5e1854323d",
+		"semantic_hash": "cc5805806709f8a762f85f5e1854323d"
+	},
+	"/Users/raphael/DEV/_hiro/portfolio/.claude/skills/graphify/references/hooks.md": {
+		"mtime": 1780998472.647177,
+		"ast_hash": "3f545db6ce646650bb9de588f5512a27",
+		"semantic_hash": "3f545db6ce646650bb9de588f5512a27"
+	},
+	"/Users/raphael/DEV/_hiro/portfolio/.claude/skills/graphify/references/query.md": {
+		"mtime": 1780998677.1019454,
+		"ast_hash": "e5257132d040810494508401a6966615",
+		"semantic_hash": "e5257132d040810494508401a6966615"
+	},
+	"/Users/raphael/DEV/_hiro/portfolio/.claude/skills/graphify/references/transcribe.md": {
+		"mtime": 1780998677.1008697,
+		"ast_hash": "78b2cd429518735a4cfb8daef262c9b3",
+		"semantic_hash": "78b2cd429518735a4cfb8daef262c9b3"
+	},
+	"/Users/raphael/DEV/_hiro/portfolio/.claude/skills/graphify/references/update.md": {
+		"mtime": 1780998677.106755,
+		"ast_hash": "3e62525765d8d7283188f4d4622512c6",
+		"semantic_hash": "3e62525765d8d7283188f4d4622512c6"
+	},
+	"/Users/raphael/DEV/_hiro/portfolio/AGENTS.md": {
+		"mtime": 1780998676.8842642,
+		"ast_hash": "30bbd51d40f7fdc74a09702f3b6f6daa",
+		"semantic_hash": "30bbd51d40f7fdc74a09702f3b6f6daa"
+	},
+	"/Users/raphael/DEV/_hiro/portfolio/CLAUDE.md": {
+		"mtime": 1780998676.8842642,
+		"ast_hash": "30bbd51d40f7fdc74a09702f3b6f6daa",
+		"semantic_hash": "30bbd51d40f7fdc74a09702f3b6f6daa"
+	},
+	"/Users/raphael/DEV/_hiro/portfolio/README.md": {
+		"mtime": 1780862348.6828425,
+		"ast_hash": "7ed910a4b71660515fc4483b728e8bc1",
+		"semantic_hash": "7ed910a4b71660515fc4483b728e8bc1"
+	},
+	"/Users/raphael/DEV/_hiro/portfolio/pnpm-workspace.yaml": {
+		"mtime": 1780857111.5477362,
+		"ast_hash": "0fe4292d9d15d4aac8ba2f0ca0f36df3",
+		"semantic_hash": "0fe4292d9d15d4aac8ba2f0ca0f36df3"
+	},
+	"/Users/raphael/DEV/_hiro/portfolio/public/icons/icon-128.png": {
+		"mtime": 1780857111.5480883,
+		"ast_hash": "6be11585705d23174238a876b61eadd7",
+		"semantic_hash": "6be11585705d23174238a876b61eadd7"
+	},
+	"/Users/raphael/DEV/_hiro/portfolio/public/icons/icon-16.png": {
+		"mtime": 1780857111.548203,
+		"ast_hash": "f97ff2802a34909213d968de2464232b",
+		"semantic_hash": "f97ff2802a34909213d968de2464232b"
+	},
+	"/Users/raphael/DEV/_hiro/portfolio/public/icons/icon-180.png": {
+		"mtime": 1780857111.548361,
+		"ast_hash": "3c6f335aaf4697110a5dd05a745c29ac",
+		"semantic_hash": "3c6f335aaf4697110a5dd05a745c29ac"
+	},
+	"/Users/raphael/DEV/_hiro/portfolio/public/icons/icon-192.png": {
+		"mtime": 1780857111.5485084,
+		"ast_hash": "ffcf277c186f34cce8c1615ab5a95580",
+		"semantic_hash": "ffcf277c186f34cce8c1615ab5a95580"
+	},
+	"/Users/raphael/DEV/_hiro/portfolio/public/icons/icon-256.png": {
+		"mtime": 1780857111.548662,
+		"ast_hash": "f625ec0ad43e0f54702a4641669edebc",
+		"semantic_hash": "f625ec0ad43e0f54702a4641669edebc"
+	},
+	"/Users/raphael/DEV/_hiro/portfolio/public/icons/icon-32.png": {
+		"mtime": 1780857111.5487874,
+		"ast_hash": "d42e8462861adc0f2768ba668caeaee8",
+		"semantic_hash": "d42e8462861adc0f2768ba668caeaee8"
+	},
+	"/Users/raphael/DEV/_hiro/portfolio/public/icons/icon-384.png": {
+		"mtime": 1780857111.548974,
+		"ast_hash": "6ed0f4f1db2618193c4ab8ddc7bc5fb7",
+		"semantic_hash": "6ed0f4f1db2618193c4ab8ddc7bc5fb7"
+	},
+	"/Users/raphael/DEV/_hiro/portfolio/public/icons/icon-48.png": {
+		"mtime": 1780857111.5490873,
+		"ast_hash": "376d2acda19577e6a8c6235d225dbafe",
+		"semantic_hash": "376d2acda19577e6a8c6235d225dbafe"
+	},
+	"/Users/raphael/DEV/_hiro/portfolio/public/icons/icon-512.png": {
+		"mtime": 1780857111.5494177,
+		"ast_hash": "6e45fb97903de171c7cd6feadf12a4da",
+		"semantic_hash": "6e45fb97903de171c7cd6feadf12a4da"
+	},
+	"/Users/raphael/DEV/_hiro/portfolio/public/icons/icon-64.png": {
+		"mtime": 1780857111.5495517,
+		"ast_hash": "3214c0d1c916850a604ae5082ca3106f",
+		"semantic_hash": "3214c0d1c916850a604ae5082ca3106f"
+	},
+	"/Users/raphael/DEV/_hiro/portfolio/public/icons/icon-96.png": {
+		"mtime": 1780857111.549693,
+		"ast_hash": "51340bd29750ca71a703e30c8f488758",
+		"semantic_hash": "51340bd29750ca71a703e30c8f488758"
+	}
+}
