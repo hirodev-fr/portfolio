@@ -4,6 +4,7 @@ import { EmDashHead } from 'emdash/ui';
 import { createPublicPageContext } from 'emdash/page';
 import Logo from '../components/Logo.astro';
 import Menu from '../components/Menu.astro';
+import { sortCollectionByIndex } from '../utils'
 import { Font } from 'astro:assets';
 import '../styles/global.css';
 
@@ -38,7 +39,8 @@ const pageCtx = createPublicPageContext({
   siteName: siteTitle,
 });
 
-const policies = await getEmDashCollection('policies');
+const policies = await getEmDashCollection('policies')
+const sortedPolicies = sortCollectionByIndex(policies, 'ascendant')
 ---
 
 <!doctype html>
@@ -79,7 +81,7 @@ const policies = await getEmDashCollection('policies');
       >
         <div class='flex flex-col space-y-3'>
           {
-            policies.entries.map((policy) => (
+            sortedPolicies.entries.map((policy) => (
               <p>
                 <a
                   href={`/policies/${policy.data.slug}`}
