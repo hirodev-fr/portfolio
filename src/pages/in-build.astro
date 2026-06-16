@@ -1,5 +1,9 @@
 ---
 import InBuildLayout from '../layouts/InBuild.astro';
+
+Astro.response.status = 503;
+Astro.response.statusText = 'Service Unavailable';
+Astro.response.headers.set('Retry-After', '3600');
 ---
 
 <InBuildLayout>

@@ -6,6 +6,9 @@ export const onRequest = defineMiddleware((context, next) => {
 
 	if (
 		url.pathname === '/in-build' ||
+		url.pathname === '/robots.txt' ||
+		url.pathname === '/sitemap-index.xml' ||
+		url.pathname === '/favicon.ico' ||
 		url.pathname.includes('_emdash/admin') ||
 		url.pathname.includes('_emdash/api')
 	) {
