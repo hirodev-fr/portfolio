@@ -2,12 +2,7 @@ import { defineConfig, fontProviders, envField } from 'astro/config';
 
 import emdash from 'emdash/astro';
 
-import node from '@astrojs/node';
-import { sqlite } from 'emdash/db';
-import { local } from 'emdash/astro';
-
-import cloudflare from '@astrojs/cloudflare';
-import { d1, r2 } from '@emdash-cms/cloudflare';
+import { loadAdapter } from './astro.build';
 
 import react from '@astrojs/react';
 import tailwindcss from '@tailwindcss/vite';
@@ -15,11 +10,12 @@ import tailwindcss from '@tailwindcss/vite';
 // needs dynamic workers
 // import hiro from './src/plugins/hiro/index.ts';
 
-const isProd = process.env.NODE_ENV === 'production';
+const adapterType = process.env.NODE_ENV === 'production' ? 'cloudflare' : 'node';
+const adapter = loadAdapter(adapterType);
 
 export default defineConfig({
 	output: 'server',
-	adapter: isProd ? cloudflare() : node({ mode: 'standalone' }),
+	adapter: adapter.mode,
 
 	image: {
 		layout: 'constrained',
@@ -29,13 +25,8 @@ export default defineConfig({
 	integrations: [
 		react(),
 		emdash({
-			database: isProd ? d1({ binding: 'DB' }) : sqlite({ url: 'file:./data/data.db' }),
-			storage: isProd
-				? r2({ binding: 'MEDIA' })
-				: local({
-						directory: './data/uploads',
-						baseUrl: '/_emdash/api/media/file',
-					}),
+			database: adapter.database,
+			storage: adapter.storage,
 
 			// needs dynamic workers
 			// plugins: [hiro()],
