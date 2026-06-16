@@ -1,7 +1,9 @@
 ---
 import { getEmDashEntry, decodeSlug } from 'emdash';
 import { PortableText } from 'emdash/ui';
-import Base from '../../layouts/Base.astro';
+import BaseLayout from '../../layouts/Base.astro';
+import InBuildLayout from '../../layouts/InBuild.astro';
+import { IN_BUILD } from 'astro:env/client';
 
 const slug = decodeSlug(Astro.params.slug);
 
@@ -24,9 +26,11 @@ const formattedDate = new Date(rawDate).toLocaleDateString('fr-FR', {
   month: 'long',
   year: 'numeric',
 });
+
+const Layout = IN_BUILD ? InBuildLayout : BaseLayout;
 ---
 
-<Base>
+<Layout>
   <div class='flex flex-col space-y-5 flex-1 py-9 px-4 sm:px-6 md:px-14'>
     <h1 class='uppercase text-xl' {...policy.edit?.title}>
       {policy.data.title}
@@ -52,4 +56,4 @@ const formattedDate = new Date(rawDate).toLocaleDateString('fr-FR', {
       <PortableText value={policy.data.content} />
     </div>
   </div>
-</Base>
+</Layout>
