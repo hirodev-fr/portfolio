@@ -40,6 +40,9 @@ const pageCtx = createPublicPageContext({
 });
 
 const policies = await getEmDashCollection('policies')
+
+if (Astro.cache?.enabled) Astro.cache.set(policies.cacheHint);
+
 const sortedPolicies = sortCollectionByIndex(policies, 'ascendant')
 
 const adminLinks: { label: string, url: string }[] = [

@@ -3,6 +3,7 @@ import { getSiteSettings, getEmDashCollection } from 'emdash';
 import { EmDashHead } from 'emdash/ui';
 import { createPublicPageContext } from 'emdash/page';
 import Logo from '../components/Logo.astro';
+import { sortCollectionByIndex } from '../utils'
 import { Font } from 'astro:assets';
 import { ALLOW_POLICIES_IN_BUILD } from 'astro:env/client';
 import '../styles/global.css';
@@ -37,6 +38,10 @@ const pageCtx = createPublicPageContext({
 const policies = ALLOW_POLICIES_IN_BUILD
   ? await getEmDashCollection('policies')
   : null;
+
+if (policies && Astro.cache?.enabled) Astro.cache.set(policies.cacheHint);
+
+const sortedPolicies = policies ? sortCollectionByIndex(policies, 'ascendant') : null
 ---
 
 <!doctype html>
@@ -77,8 +82,8 @@ const policies = ALLOW_POLICIES_IN_BUILD
       >
         <div class='flex flex-col justify-center space-y-3'>
           {
-            policies &&
-              policies.entries.map((policy) => (
+            sortedPolicies &&
+              sortedPolicies.entries.map((policy) => (
                 <p>
                   <a
                     href={`/policies/${policy.data.slug}`}
