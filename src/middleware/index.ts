@@ -4,6 +4,10 @@ import { IN_BUILD, ALLOW_POLICIES_IN_BUILD } from 'astro:env/client';
 export const onRequest = defineMiddleware((context, next) => {
 	const url = new URL(context.request.url);
 
+	if (!IN_BUILD) {
+		return next();
+	}
+
 	if (
 		url.pathname === '/in-build' ||
 		url.pathname === '/robots.txt' ||
@@ -16,10 +20,6 @@ export const onRequest = defineMiddleware((context, next) => {
 	}
 
 	const isPolicyRequest = url.pathname.includes('policies');
-
-	if (!IN_BUILD) {
-		return next();
-	}
 
 	if (isPolicyRequest && ALLOW_POLICIES_IN_BUILD) {
 		return next();
