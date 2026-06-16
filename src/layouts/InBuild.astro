@@ -72,13 +72,13 @@ const sortedPolicies = policies ? sortCollectionByIndex(policies, 'ascendant') :
       </header>
     </div>
     <main
-      class='mx-4 md:mx-11 border-x-line border-x h-full flex-1 flex flex-col'
+      class='min-h-[70vh] px-6 mx-4 md:mx-11 border-x-line border-x h-full flex-1 flex flex-col'
     >
       <slot />
     </main>
     <footer class='px-4 md:px-11 w-full border-t border-t-line'>
       <div
-        class='border-x-line border-x w-full py-10 px-4 sm:px-6 md:px-14 lg:px-20 flex flex-col md:flex-row justify-center md:justify-between space-y-10 md:space-y-0 text-sm md:text-md font-mono font-light'
+        class='border-x-line border-x w-full py-10 px-4 sm:px-6 md:px-14 lg:px-20 flex flex-col md:flex-row justify-center md:justify-between space-y-10 md:space-y-0 text-xs md:text-sm font-mono font-light'
       >
         <div class='flex flex-col justify-center space-y-3'>
           {
