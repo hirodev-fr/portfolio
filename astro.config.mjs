@@ -10,7 +10,7 @@ import tailwindcss from '@tailwindcss/vite';
 // needs dynamic workers
 // import hiro from './src/plugins/hiro/index.ts';
 
-const adapterType = process.env.NODE_ENV === 'production' ? 'cloudflare' : 'node';
+const adapterType = process.env.ENV_ADAPTER;
 const adapter = loadAdapter(adapterType);
 
 export default defineConfig({

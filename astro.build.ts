@@ -11,7 +11,8 @@ import node from '@astrojs/node';
 import { sqlite } from 'emdash/db';
 import { local } from 'emdash/astro';
 
-type AdapterType = 'node' | 'cloudflare';
+const adapterTypes = ['node', 'cloudflare'] as const;
+type AdapterType = (typeof adapterTypes)[number];
 
 interface Adapter {
 	mode: AstroIntegration;
@@ -34,5 +35,9 @@ export function loadAdapter(type: AdapterType): Adapter {
 				database: d1({ binding: 'DB' }),
 				storage: r2({ binding: 'MEDIA' }),
 			};
+		default:
+			throw new Error(
+				`Invalid adapter type : ${type}. Possible values : ${adapterTypes.join(', ')}`,
+			);
 	}
 }
