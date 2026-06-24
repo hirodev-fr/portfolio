@@ -1,0 +1,14 @@
+services:
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - '4321:4321'
+    environment:
+      # IMPORTANT: Change this to a secure key in production.
+      # You can generate one using: npx emdash auth secret
+      - EMDASH_ENCRYPTION_KEY=bPLpQ9rwyP-HcwnrayGt3ROkSo8ATVcOKm3NCW5ivUE
+    volumes:
+      - ./data:/app/data
+    restart: unless-stopped
