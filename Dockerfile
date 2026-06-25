@@ -9,7 +9,9 @@ RUN apk add --no-cache python3 make g++
 RUN pnpm install --frozen-lockfile
 COPY . .
 RUN pnpm run build
-RUN pnpm prune --prod
+RUN pnpm prune --prod \
+    && wget -qO- https://gobinaries.com/tj/node-prune | sh \
+    && node-prune
 
 FROM node:22-alpine
 WORKDIR /app
