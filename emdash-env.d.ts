@@ -3,7 +3,7 @@
 
 /// <reference types="emdash/locals" />
 
-import type { ContentBylineCredit, PortableTextBlock } from 'emdash';
+import type { ContentBylineCredit, TaxonomyTerm, PortableTextBlock } from 'emdash';
 
 export interface Policy {
 	id: string;
@@ -16,6 +16,7 @@ export interface Policy {
 	updatedAt: Date;
 	publishedAt: Date | null;
 	bylines?: ContentBylineCredit[];
+	terms?: Record<string, TaxonomyTerm[]>;
 }
 
 export interface Project {
@@ -39,6 +40,7 @@ export interface Project {
 	updatedAt: Date;
 	publishedAt: Date | null;
 	bylines?: ContentBylineCredit[];
+	terms?: Record<string, TaxonomyTerm[]>;
 }
 
 declare module 'emdash' {
