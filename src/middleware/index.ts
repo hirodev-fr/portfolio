@@ -1,10 +1,10 @@
 import { defineMiddleware } from 'astro:middleware';
-import { IN_BUILD, ALLOW_POLICIES_IN_BUILD } from 'astro:env/client';
+import { env } from '../../env';
 
 export const onRequest = defineMiddleware((context, next) => {
 	const url = new URL(context.request.url);
 
-	if (!IN_BUILD) {
+	if (!env.IN_BUILD) {
 		return next();
 	}
 
@@ -21,7 +21,7 @@ export const onRequest = defineMiddleware((context, next) => {
 
 	const isPolicyRequest = url.pathname.includes('policies');
 
-	if (isPolicyRequest && ALLOW_POLICIES_IN_BUILD) {
+	if (isPolicyRequest && env.ALLOW_POLICIES_IN_BUILD) {
 		return next();
 	}
 

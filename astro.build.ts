@@ -11,9 +11,7 @@ import node from '@astrojs/node';
 import { libsql } from 'emdash/db';
 import { local } from 'emdash/astro';
 
-import { loadEnv } from 'vite';
-
-const env = loadEnv(process.env.NODE_ENV || 'development', process.cwd(), '');
+import { env } from './env';
 
 const adapterTypes = ['node', 'cloudflare'] as const;
 type AdapterType = (typeof adapterTypes)[number];
@@ -30,7 +28,7 @@ export function loadAdapter(type: AdapterType): Adapter {
 			return {
 				mode: node({ mode: 'standalone' }),
 				database: libsql({
-					url: env.LIBSQL_DATABASE_URL,
+					url: env.DATABASE_URL,
 				}),
 				storage: local({ directory: './data/uploads', baseUrl: '/_emdash/api/media/file' }),
 			};

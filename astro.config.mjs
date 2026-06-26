@@ -1,8 +1,9 @@
-import { defineConfig, fontProviders, envField } from 'astro/config';
+import { defineConfig, fontProviders } from 'astro/config';
 
 import emdash from 'emdash/astro';
 
 import { loadAdapter } from './astro.build';
+import { env } from './env';
 
 import react from '@astrojs/react';
 import tailwindcss from '@tailwindcss/vite';
@@ -10,8 +11,7 @@ import tailwindcss from '@tailwindcss/vite';
 // needs dynamic workers
 // import hiro from './src/plugins/hiro/index.ts';
 
-const adapterType = process.env.ENV_ADAPTER;
-const adapter = loadAdapter(adapterType);
+const adapter = loadAdapter(env.ENV_ADAPTER);
 
 export default defineConfig({
 	output: 'server',
@@ -59,17 +59,6 @@ export default defineConfig({
 		// fix 500 : require is not defined
 		optimizeDeps: {
 			include: ['@emdash-cms/registry-client > semver'],
-		},
-	},
-
-	env: {
-		schema: {
-			IN_BUILD: envField.boolean({ context: 'client', access: 'public', default: false }),
-			ALLOW_POLICIES_IN_BUILD: envField.boolean({
-				context: 'client',
-				access: 'public',
-				default: false,
-			}),
 		},
 	},
 });

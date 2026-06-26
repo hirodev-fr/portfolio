@@ -3,7 +3,7 @@ import { getEmDashEntry, decodeSlug } from 'emdash';
 import { PortableText } from 'emdash/ui';
 import BaseLayout from '../../layouts/Base.astro';
 import InBuildLayout from '../../layouts/InBuild.astro';
-import { IN_BUILD } from 'astro:env/client';
+import { env } from '../../../env';
 
 const slug = decodeSlug(Astro.params.slug);
 
@@ -27,7 +27,7 @@ const formattedDate = new Date(rawDate).toLocaleDateString('fr-FR', {
   year: 'numeric',
 });
 
-const Layout = IN_BUILD ? InBuildLayout : BaseLayout;
+const Layout = env.IN_BUILD ? InBuildLayout : BaseLayout;
 ---
 
 <Layout>
