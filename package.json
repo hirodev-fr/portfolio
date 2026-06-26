@@ -13,8 +13,8 @@
 		"lint:safe": "oxlint --fix --no-error-on-unmatched-pattern .",
 		"format": "oxfmt .",
 		"format:safe": "oxfmt --no-error-on-unmatched-pattern .",
-		"check": "bun lint && bun format",
-		"check:safe": "bun run lint:safe && bun run format:safe",
+		"check": "pnpm lint && pnpm format",
+		"check:safe": "pnpm run lint:safe && pnpm run format:safe",
 		"seed:generate": "emdash export-seed -d data/data.db"
 	},
 	"dependencies": {

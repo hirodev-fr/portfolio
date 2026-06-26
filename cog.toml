@@ -14,7 +14,7 @@ pre_package_bump_hooks = []
 post_package_bump_hooks = []
 
 [git_hooks.pre-commit]
-script = "bun run check:safe"
+script = "pnpm run check:safe"
 
 [commit_types]
 
