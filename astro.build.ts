@@ -8,8 +8,12 @@ import { d1, r2 } from '@emdash-cms/cloudflare';
 
 // node
 import node from '@astrojs/node';
-import { sqlite } from 'emdash/db';
+import { libsql } from 'emdash/db';
 import { local } from 'emdash/astro';
+
+import { loadEnv } from 'vite';
+
+const env = loadEnv(process.env.NODE_ENV || 'development', process.cwd(), '');
 
 const adapterTypes = ['node', 'cloudflare'] as const;
 type AdapterType = (typeof adapterTypes)[number];
@@ -25,7 +29,9 @@ export function loadAdapter(type: AdapterType): Adapter {
 		case 'node':
 			return {
 				mode: node({ mode: 'standalone' }),
-				database: sqlite({ url: 'file:./data/data.db' }),
+				database: libsql({
+					url: env.LIBSQL_DATABASE_URL,
+				}),
 				storage: local({ directory: './data/uploads', baseUrl: '/_emdash/api/media/file' }),
 			};
 
