@@ -5,3 +5,11 @@ allowBuilds:
   esbuild: true
   sharp: true
   workerd: true
+
+minimumReleaseAgeExclude:
+  - '@emdash-cms/admin@0.23.0'
+  - '@emdash-cms/auth@0.23.0'
+  - '@emdash-cms/blocks@0.23.0'
+  - '@emdash-cms/cloudflare@0.23.0'
+  - '@emdash-cms/gutenberg-to-portable-text@0.23.0'
+  - emdash@0.23.0
