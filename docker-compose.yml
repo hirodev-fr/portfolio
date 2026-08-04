@@ -1,3 +1,5 @@
+include:
+  - db-compose.yml
 services:
   web:
     env_file: '.env'
