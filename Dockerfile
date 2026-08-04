@@ -5,6 +5,8 @@ RUN corepack enable && corepack prepare pnpm@latest --activate
 
 COPY package.json pnpm-lock.yaml pnpm-workspace.yaml ./
 
+RUN apk add --no-cache python3 make g++
+
 RUN pnpm install --frozen-lockfile
 
 COPY . .
