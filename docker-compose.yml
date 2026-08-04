@@ -1,5 +1,3 @@
-include:
-  - db-compose.yml
 services:
   emdash:
     build: .
@@ -11,5 +9,17 @@ services:
     depends_on:
       - libsql
 
+  libsql:
+    image: ghcr.io/tursodatabase/libsql-server:latest
+    platform: linux/amd64
+    ports:
+      - '8080:8080'
+      - '5001:5001'
+    environment:
+      - SQLD_NODE=primary
+    volumes:
+      - libsql_data:/var/lib/sqld
+
 volumes:
+  libsql_data:
   emdash-data:
