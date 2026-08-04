@@ -1,33 +1,33 @@
 ---
-import { getEmDashEntry, decodeSlug } from 'emdash';
-import { PortableText } from 'emdash/ui';
-import BaseLayout from '../../layouts/Base.astro';
-import InBuildLayout from '../../layouts/InBuild.astro';
-import { env } from '../../../env';
+import { decodeSlug, getEmDashEntry } from "emdash";
+import { PortableText } from "emdash/ui";
+import { env } from "../../../env";
+import BaseLayout from "../../layouts/Base.astro";
+import InBuildLayout from "../../layouts/InBuild.astro";
 
 const slug = decodeSlug(Astro.params.slug);
 
 if (!slug) {
-  return Astro.redirect('/404');
+	return Astro.redirect("/404");
 }
 
-const { entry: policy, cacheHint } = await getEmDashEntry('policies', slug);
+const { entry: policy, cacheHint } = await getEmDashEntry("policies", slug);
 
 if (!policy) {
-  return Astro.redirect('/404');
+	return Astro.redirect("/404");
 }
 
 if (Astro.cache?.enabled) Astro.cache.set(cacheHint);
 
 const rawDate = policy.data.updatedAt || policy.data.createdAt;
 
-const formattedDate = new Date(rawDate).toLocaleDateString('fr-FR', {
-  day: 'numeric',
-  month: 'long',
-  year: 'numeric',
+const formattedDate = new Date(rawDate).toLocaleDateString("fr-FR", {
+	day: "numeric",
+	month: "long",
+	year: "numeric",
 });
 
-const Layout = env.IN_BUILD ? InBuildLayout : BaseLayout;
+const Layout = process.env.IN_BUILD ? InBuildLayout : BaseLayout;
 ---
 
 <Layout>

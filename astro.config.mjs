@@ -1,21 +1,13 @@
-import { defineConfig, fontProviders } from 'astro/config';
-
-import emdash from 'emdash/astro';
-
-import { loadAdapter } from './astro.build';
-import { env } from './env';
-
+import node from '@astrojs/node';
 import react from '@astrojs/react';
 import tailwindcss from '@tailwindcss/vite';
-
-// needs dynamic workers
-// import hiro from './src/plugins/hiro/index.ts';
-
-const adapter = loadAdapter(env.ENV_ADAPTER);
+import { defineConfig, fontProviders } from 'astro/config';
+import emdash, { s3 } from 'emdash/astro';
+import { libsql } from 'emdash/db';
 
 export default defineConfig({
 	output: 'server',
-	adapter: adapter.mode,
+	adapter: node({ mode: 'standalone' }),
 
 	image: {
 		layout: 'constrained',
@@ -25,11 +17,18 @@ export default defineConfig({
 	integrations: [
 		react(),
 		emdash({
-			database: adapter.database,
-			storage: adapter.storage,
+			database: libsql({
+				url: process.env.LIBSQL_DATABASE_URL,
+				authToken: process.env.LIBSQL_AUTH_TOKEN,
+			}),
 
-			// needs dynamic workers
-			// plugins: [hiro()],
+			storage: s3({
+				endpoint: process.env.S3_ENDPOINT,
+				bucket: process.env.S3_BUCKET,
+				accessKeyId: process.env.S3_ACCESS_KEY_ID,
+				secretAccessKey: process.env.S3_SECRET_ACCESS_KEY,
+				publicUrl: process.env.S3_PUBLIC_URL,
+			}),
 		}),
 	],
 

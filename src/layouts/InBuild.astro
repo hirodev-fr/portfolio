@@ -1,47 +1,49 @@
 ---
-import { getSiteSettings, getEmDashCollection } from 'emdash';
-import { EmDashHead } from 'emdash/ui';
-import { createPublicPageContext } from 'emdash/page';
-import Logo from '../components/Logo.astro';
-import { sortCollectionByIndex } from '../utils'
-import { Font } from 'astro:assets';
-import { env } from '../../env';
-import '../styles/global.css';
+import { Font } from "astro:assets";
+import { getEmDashCollection, getSiteSettings } from "emdash";
+import { createPublicPageContext } from "emdash/page";
+import { EmDashHead } from "emdash/ui";
+import { env } from "../../env";
+import Logo from "../components/Logo.astro";
+import { sortCollectionByIndex } from "../utils";
+import "../styles/global.css";
 
 interface Props {
-  title?: string;
-  description?: string;
-  image?: string;
-  type?: 'website' | 'article';
+	title?: string;
+	description?: string;
+	image?: string;
+	type?: "website" | "article";
 }
 
-const { title, description, image, type = 'website' } = Astro.props;
+const { title, description, image, type = "website" } = Astro.props;
 const settings = await getSiteSettings();
 const siteTitle =
-  settings?.title || import.meta.env.ASTRO_APP_NAME || 'HIRO DEV';
+	settings?.title || import.meta.env.ASTRO_APP_NAME || "HIRO DEV";
 const fullTitle = title ? `${title} — ${siteTitle}` : siteTitle;
-const siteDescription = settings?.tagline || '';
+const siteDescription = settings?.tagline || "";
 
 const pageCtx = createPublicPageContext({
-  Astro,
-  kind: 'custom',
-  pageType: type,
-  title: fullTitle,
-  pageTitle: title ?? siteTitle,
-  description: description || siteDescription,
-  canonical: Astro.url.href,
-  image,
-  seo: { ogImage: image },
-  siteName: siteTitle,
+	Astro,
+	kind: "custom",
+	pageType: type,
+	title: fullTitle,
+	pageTitle: title ?? siteTitle,
+	description: description || siteDescription,
+	canonical: Astro.url.href,
+	image,
+	seo: { ogImage: image },
+	siteName: siteTitle,
 });
 
-const policies = env.ALLOW_POLICIES_IN_BUILD
-  ? await getEmDashCollection('policies')
-  : null;
+const policies = process.env.ALLOW_POLICIES_IN_BUILD
+	? await getEmDashCollection("policies")
+	: null;
 
 if (policies && Astro.cache?.enabled) Astro.cache.set(policies.cacheHint);
 
-const sortedPolicies = policies ? sortCollectionByIndex(policies, 'ascendant') : null
+const sortedPolicies = policies
+	? sortCollectionByIndex(policies, "ascendant")
+	: null;
 ---
 
 <!doctype html>
