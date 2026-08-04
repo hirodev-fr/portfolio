@@ -1,9 +1,7 @@
 ---
-import { decodeSlug, getEmDashEntry } from "emdash";
-import { PortableText } from "emdash/ui";
-import { env } from "../../../env";
-import BaseLayout from "../../layouts/Base.astro";
-import InBuildLayout from "../../layouts/InBuild.astro";
+import { getEmDashEntry, decodeSlug } from 'emdash';
+import { PortableText } from 'emdash/ui';
+import BaseLayout from '../../layouts/Base.astro';
 
 const slug = decodeSlug(Astro.params.slug);
 
@@ -27,10 +25,9 @@ const formattedDate = new Date(rawDate).toLocaleDateString("fr-FR", {
 	year: "numeric",
 });
 
-const Layout = process.env.IN_BUILD ? InBuildLayout : BaseLayout;
 ---
 
-<Layout>
+<BaseLayout inBuild={import.meta.env.IN_BUILD}>
   <div class='flex flex-col space-y-5 flex-1 py-9 md:px-14'>
     <h1 class='uppercase text-xl' {...policy.edit?.title}>
       {policy.data.title}
@@ -56,4 +53,4 @@ const Layout = process.env.IN_BUILD ? InBuildLayout : BaseLayout;
       <PortableText value={policy.data.content} />
     </div>
   </div>
-</Layout>
+</BaseLayout>

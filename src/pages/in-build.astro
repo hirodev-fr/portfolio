@@ -1,12 +1,12 @@
 ---
-import InBuildLayout from '../layouts/InBuild.astro';
+import BaseLayout from '../layouts/Base.astro';
 
 Astro.response.status = 503;
 Astro.response.statusText = 'Service Unavailable';
 Astro.response.headers.set('Retry-After', '3600');
 ---
 
-<InBuildLayout>
+<BaseLayout inBuild={true}>
   <div
     class='place-self-center flex-1 flex flex-col items-center justify-center space-y-5 py-auto'
   >
@@ -15,4 +15,4 @@ Astro.response.headers.set('Retry-After', '3600');
       Nous avons hâte de pouvoir vous présenter notre travail.
     </h2>
   </div>
-</InBuildLayout>
+</BaseLayout>

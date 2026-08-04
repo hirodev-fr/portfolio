@@ -1,55 +1,63 @@
 ---
-import { getMenu, getSiteSettings, getEmDashCollection } from 'emdash';
-import { EmDashHead } from 'emdash/ui';
-import { createPublicPageContext } from 'emdash/page';
-import Logo from '../components/Logo.astro';
-import Menu from '../components/Menu.astro';
-import { sortCollectionByIndex } from '../utils'
-import { Font } from 'astro:assets';
-import '../styles/global.css';
+import { Font } from "astro:assets";
+import { getEmDashCollection, getMenu, getSiteSettings } from "emdash";
+import { createPublicPageContext } from "emdash/page";
+import { EmDashHead } from "emdash/ui";
+import Logo from "../components/Logo.astro";
+import Menu from "../components/Menu.astro";
+import { sortCollectionByIndex } from "../utils";
+import "../styles/global.css";
 
 interface Props {
-  title?: string;
-  description?: string;
-  image?: string;
-  type?: 'website' | 'article';
+	title?: string;
+	description?: string;
+	image?: string;
+	type?: "website" | "article";
+	inBuild?: boolean;
 }
 
-const { title, description, image, type = 'website' } = Astro.props;
+const {
+	title,
+	description,
+	image,
+	type = "website",
+	inBuild = false,
+} = Astro.props;
+
 const settings = await getSiteSettings();
 const siteTitle =
-  settings?.title || import.meta.env.ASTRO_APP_NAME || 'HIRO DEV';
+	settings?.title || import.meta.env.ASTRO_APP_NAME || "HIRO DEV";
 const fullTitle = title ? `${title} — ${siteTitle}` : siteTitle;
-const siteDescription = settings?.tagline || '';
+const siteDescription = settings?.tagline || "";
 
-const githubURL = settings.social?.github;
-
-const menu = await getMenu('primary');
+const menu = !inBuild ? await getMenu("primary") : null;
 
 const pageCtx = createPublicPageContext({
-  Astro,
-  kind: 'custom',
-  pageType: type,
-  title: fullTitle,
-  pageTitle: title ?? siteTitle,
-  description: description || siteDescription,
-  canonical: Astro.url.href,
-  image,
-  seo: { ogImage: image },
-  siteName: siteTitle,
+	Astro,
+	kind: "custom",
+	pageType: type,
+	title: fullTitle,
+	pageTitle: title ?? siteTitle,
+	description: description || siteDescription,
+	canonical: Astro.url.href,
+	image,
+	seo: { ogImage: image },
+	siteName: siteTitle,
 });
 
-const policies = await getEmDashCollection('policies')
+const policies = inBuild
+	? import.meta.env.ALLOW_POLICIES_IN_BUILD
+		? await getEmDashCollection("policies")
+		: null
+	: await getEmDashCollection("policies");
 
-if (Astro.cache?.enabled) Astro.cache.set(policies.cacheHint);
+const links = !inBuild ? await getEmDashCollection("links") : null;
 
-const sortedPolicies = sortCollectionByIndex(policies, 'ascendant')
+if (policies && Astro.cache?.enabled) Astro.cache.set(policies.cacheHint);
 
-const adminLinks: { label: string, url: string }[] = [
-  { label: 'Admin', url: '/_emdash/admin/' },
-  { label: 'Github', url: githubURL ?? 'https://github.com' },
-]
-
+const sortedPolicies = policies
+	? sortCollectionByIndex(policies, "ascendant")
+	: null;
 ---
 
 <!doctype html>
@@ -65,6 +73,7 @@ const adminLinks: { label: string, url: string }[] = [
     <link rel='sitemap' href='/sitemap-index.xml' />
     <meta name='viewport' content='width=device-width' />
     <meta name='generator' content={Astro.generator} />
+    {inBuild && <meta name='robots' content='noindex, nofollow' />}
     <title>{fullTitle}</title>
     <EmDashHead page={pageCtx} />
     <Font cssVariable='--font-display' preload />
@@ -76,7 +85,7 @@ const adminLinks: { label: string, url: string }[] = [
         <a href='/' aria-label="Retour à l'accueil">
           <Logo class='h-6 md:h-10 w-auto' />
         </a>
-        <Menu class='ml-auto' items={menu?.items} />
+        {!inBuild && <Menu class='ml-auto' items={menu?.items} />}
       </header>
     </div>
     <main
@@ -88,9 +97,9 @@ const adminLinks: { label: string, url: string }[] = [
       <div
         class='border-x-line border-x w-full py-10 px-4 sm:px-6 md:px-14 lg:px-20 flex flex-col md:flex-row justify-center md:justify-between space-y-10 md:space-y-0 text-xs md:text-sm font-mono font-light'
       >
-        <div class='flex flex-col space-y-3 md:self-end'>
+        <div class={`flex flex-col space-y-3 ${inBuild ? 'justify-center' : 'md:self-end'}`}>
           {
-            sortedPolicies.entries.map((policy) => (
+            sortedPolicies?.entries.map((policy) => (
               <p>
                 <a
                   href={`/policies/${policy.data.slug}`}
@@ -101,36 +110,51 @@ const adminLinks: { label: string, url: string }[] = [
               </p>
             ))
           }
-          
-        </div>
-        <div class="w-min h-min md:self-end flex justify-center items-center text-xs text-ink">
-        {
-          adminLinks.flatMap((link, index) => index < adminLinks.length - 1 ? (
+          {
+            inBuild && (
               <p>
                 <a
-                href={link.url}
-                target='_blank'
-                rel='noopener noreferrer'
-                class='underline'>
-                  {link.label}
-                </a>
+                  href='/_emdash/admin/'
+                  target='_blank'
+                  rel='noopener noreferrer'
+                  class='underline'>Admin</a
+                >
               </p>
-              <span class="px-1.5">&bull;</span>
-          ) : (
-            <p>
-                <a
-                href={link.url}
-                target='_blank'
-                rel='noopener noreferrer'
-                class='underline'>
-                  {link.label}
-                </a>
-              </p>
-          ))
+            )
+          }
+        </div>
+        {
+          links?.entries && (
+            <div class="w-min h-min md:self-end flex justify-center items-center text-xs text-ink">
+              {
+                links.entries.flatMap((link, index) => index < links.entries.length - 1 ? (
+                    <p>
+                      <a
+                      href={link.data.url as string}
+                      target='_blank'
+                      rel='noopener noreferrer'
+                      class='underline'>
+                        {link.data.label}
+                      </a>
+                    </p>
+                    <span class="px-1.5">&bull;</span>
+                ) : (
+                  <p>
+                      <a
+                      href={link.data.url as string}
+                      target='_blank'
+                      rel='noopener noreferrer'
+                      class='underline'>
+                        {link.data.label}
+                      </a>
+                    </p>
+                ))
+              }
+            </div>
+          )
         }
-      </div>
         <div class='flex flex-col space-y-3 md:self-end'>
-          <p class='mt-7'>
+          <p class={inBuild ? '' : 'mt-7'}>
             Contact : <a
               href='mailto:contact@hirodev.fr'
               class='underline decoration-primary'>contact@hirodev.fr</a>
