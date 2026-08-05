@@ -8,11 +8,7 @@ import { postgres } from 'emdash/db';
 import { loadEnv } from 'vite';
 
 const {
-	DB_HOST,
-	DB_PORT,
-	DB_USER,
-	DB_PASSWORD,
-	DB_NAME,
+	POSTGRES_URL,
 	S3_PUBLIC_URL,
 	S3_ENDPOINT,
 	S3_BUCKET,
@@ -33,11 +29,7 @@ export default defineConfig({
 		react(),
 		emdash({
 			database: postgres({
-				host: DB_HOST,
-				port: DB_PORT,
-				user: DB_USER,
-				password: DB_PASSWORD,
-				database: DB_NAME,
+				connectionString: POSTGRES_URL,
 			}),
 			storage: s3({
 				endpoint: S3_ENDPOINT,
