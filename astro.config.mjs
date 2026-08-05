@@ -3,13 +3,16 @@ import react from '@astrojs/react';
 import tailwindcss from '@tailwindcss/vite';
 import { defineConfig, fontProviders } from 'astro/config';
 import emdash, { s3 } from 'emdash/astro';
-import { libsql } from 'emdash/db';
+import { postgres } from 'emdash/db';
 
 import { loadEnv } from 'vite';
 
 const {
-	LIBSQL_DATABASE_URL,
-	LIBSQL_AUTH_TOKEN,
+	DB_HOST,
+	DB_PORT,
+	DB_USER,
+	DB_PASSWORD,
+	DB_NAME,
 	S3_PUBLIC_URL,
 	S3_ENDPOINT,
 	S3_BUCKET,
@@ -29,9 +32,12 @@ export default defineConfig({
 	integrations: [
 		react(),
 		emdash({
-			database: libsql({
-				url: LIBSQL_DATABASE_URL,
-				authToken: LIBSQL_AUTH_TOKEN,
+			database: postgres({
+				host: DB_HOST,
+				port: DB_PORT,
+				user: DB_USER,
+				password: DB_PASSWORD,
+				database: DB_NAME,
 			}),
 			storage: s3({
 				endpoint: S3_ENDPOINT,

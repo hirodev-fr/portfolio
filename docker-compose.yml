@@ -7,19 +7,20 @@ services:
       - emdash-data:/app/data
     restart: unless-stopped
     depends_on:
-      - libsql
+      - postgres
 
-  libsql:
-    image: ghcr.io/tursodatabase/libsql-server:latest
+  postgres:
+    image: postgres:18
     platform: linux/amd64
     ports:
-      - '8080:8080'
-      - '5001:5001'
+      - '${DB_PORT}:5432'
     environment:
-      - SQLD_NODE=primary
+      - POSTGRES_USER=${DB_USER}
+      - POSTGRES_PASSWORD=${DB_PASSWORD}
+      - POSTGRES_DB=${DB_NAME}
     volumes:
-      - libsql_data:/var/lib/sqld
+      - postgres_data:/var/lib/postgresql
 
 volumes:
-  libsql_data:
   emdash-data:
+  postgres_data:
