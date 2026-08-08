@@ -1,0 +1,32 @@
+services:
+  emdash:
+    image: ghcr.io/hirodev-fr/portfolio:latest
+    ports:
+      - '4321:4321'
+    volumes:
+      - emdash-data:/app/data
+    restart: unless-stopped
+    depends_on:
+      postgres:
+        condition: service_healthy
+
+  postgres:
+    image: postgres:18
+    platform: linux/amd64
+    ports:
+      - '5432:5432'
+    environment:
+      - POSTGRES_USER=root
+      - POSTGRES_PASSWORD=root
+      - POSTGRES_DB=portfolio-db
+    volumes:
+      - postgres_data:/var/lib/postgresql
+    healthcheck:
+      test: ['CMD-SHELL', 'pg_isready -U root -d portfolio-db']
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+volumes:
+  emdash-data:
+  postgres_data:
