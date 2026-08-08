@@ -1,33 +1,45 @@
-# --- step 1 : buid ---
-FROM node:22-alpine AS builder
+# setup
+FROM node:22-alpine AS base
+
 WORKDIR /app
 
-RUN corepack enable && corepack prepare pnpm@latest --activate
+ENV PNPM_HOME="/pnpm" \
+    PATH="/pnpm:$PATH"
+RUN corepack enable
 
-RUN apk add --no-cache python3 make g++
+# --- step 1: prod-deps ---
+FROM base AS prod-deps
 
+RUN apk add --no-cache python3 make g++ vips-dev
+
+COPY package.json pnpm-lock.yaml pnpm-workspace.yaml ./
+RUN --mount=type=cache,id=pnpm,target=/pnpm/store \
+    pnpm install --frozen-lockfile --prod
+
+# --- step 2: builder ---
+FROM base AS builder
+
+RUN apk add --no-cache python3 make g++ vips-dev
+
+COPY package.json pnpm-lock.yaml pnpm-workspace.yaml ./
+RUN --mount=type=cache,id=pnpm,target=/pnpm/store \
+    pnpm install --frozen-lockfile
 COPY . .
-
-RUN pnpm install --frozen-lockfile
-
 RUN pnpm run build
 
-RUN pnpm deploy --filter=portfolio --prod --legacy /pruned
-
-# --- step 2 : final image ---
+# --- step 3: runner ---
 FROM node:22-alpine AS runner
 WORKDIR /app
+ENV NODE_ENV=production \
+    HOST=0.0.0.0 \
+    PORT=4321
+RUN apk add --no-cache tini
 
-ENV NODE_ENV=production
-ENV HOST=0.0.0.0
-ENV PORT=4321
+COPY --from=prod-deps --chown=node:node /app/node_modules ./node_modules
+COPY --from=builder --chown=node:node /app/dist ./dist
+COPY --from=builder --chown=node:node /app/package.json ./
 
-COPY --from=builder /pruned/package.json ./
-COPY --from=builder /pruned/node_modules ./node_modules
-COPY --from=builder /app/dist ./dist
-
-RUN rm -rf node_modules/better-sqlite3/build/Release/obj || true
-RUN rm -rf node_modules/better-sqlite3/deps || true
-
+USER node
 EXPOSE 4321
+ENTRYPOINT ["/sbin/tini", "--"]
 CMD ["node", "./dist/server/entry.mjs"]
