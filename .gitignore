@@ -1,3 +1,6 @@
+# scripts
+*.sh
+
 # build output
 dist/
 
