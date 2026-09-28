@@ -1,9 +1,9 @@
 ---
-import "../styles/global.css";
-import { getMenuWithCacheHint, getSiteSettingsWithCacheHint } from "emdash";
-import { createPublicPageContext } from "emdash/page";
-import { EmDashBodyEnd, EmDashBodyStart, EmDashHead } from "emdash/ui";
-import { resolveStarterSiteIdentity } from "../utils/site-identity";
+import '../styles/global.css';
+import { getMenuWithCacheHint, getSiteSettingsWithCacheHint } from 'emdash';
+import { createPublicPageContext } from 'emdash/page';
+import { EmDashBodyEnd, EmDashBodyStart, EmDashHead } from 'emdash/ui';
+import { resolveStarterSiteIdentity } from '../utils/site-identity';
 
 interface Props {
 	title: string;
@@ -19,7 +19,7 @@ const { title, pageTitle, description, image, canonical, content } =
 	Astro.props;
 const [settingsResult, menuResult] = await Promise.all([
 	getSiteSettingsWithCacheHint(),
-	getMenuWithCacheHint("primary"),
+	getMenuWithCacheHint('primary'),
 ]);
 if (Astro.cache?.enabled) {
 	Astro.cache.set(settingsResult.cacheHint);
@@ -36,11 +36,12 @@ const titleIncludesSiteName =
 const fullTitle = titleIncludesSiteName ? title : `${title} — ${siteTitle}`;
 const pageDescription = description ?? siteTagline;
 const menu = menuResult.data;
+const socials = settingsResult.data?.social;
 
 const pageCtx = createPublicPageContext({
 	Astro,
-	kind: content ? "content" : "custom",
-	pageType: "website",
+	kind: content ? 'content' : 'custom',
+	pageType: 'website',
 	title: fullTitle,
 	pageTitle: pageTitle ?? title,
 	description: pageDescription,
@@ -54,46 +55,67 @@ const pageCtx = createPublicPageContext({
 <!doctype html>
 <html lang="fr">
 	<head>
-		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<meta charset="UTF-8">
+		<meta content="width=device-width, initial-scale=1.0" name="viewport">
 		<title>{fullTitle}</title>
 		<EmDashHead page={pageCtx} />
 	</head>
-	<body>
+	<body class="w-full min-h-screen flex flex-col">
 		<EmDashBodyStart page={pageCtx} />
 
-		<header>
-			<nav>
-				<a href="/">
-					{
-						siteLogo ? (
-							<img
-								src={siteLogo.url}
-								alt={siteLogo.alt || siteTitle}
-								style="height:48px;width:auto;margin:-8px 0;display:block;"
-							/>
-						) : (
-							siteTitle
-						)
-					}
-				</a>
-				{
-					menu?.items.map((item) => (
-						<a
-							href={item.url}
-							target={item.target}
-							rel={item.target === "_blank" ? "noopener noreferrer" : undefined}
-						>
-							{item.label}
-						</a>
-					))
-				}
+		<header class="h-[12vh] lineh p-6 flex items-center justify-between">
+			<a aria-label="Retourner à l'accueil" href="/">
+				{siteLogo ? (
+					<img
+						alt={siteLogo.alt || siteTitle}
+						class="h-12 w-full mx-3"
+						src={siteLogo.url}
+					/>
+				) : (
+					<span class="text-xl">{siteTitle}</span>
+				)}
+			</a>
+			<nav class="flex gap-4">
+				{menu?.items.map((item) => (
+					<a
+						class="link"
+						href={item.url}
+						rel={item.target === '_blank' ? 'noopener noreferrer' : undefined}
+						target={item.target}
+					>
+						{item.label}
+					</a>
+				))}
 			</nav>
 		</header>
 
-		<main>
+		<!-- horizontal line -->
+		<div class="border-t border-line"></div>
+
+		<main class="lineh p-6 min-h-[70vh]">
 			<slot />
 		</main>
+
+		<!-- horizontal line -->
+		<div class="border-t border-line"></div>
+
+		<footer class="h-[18vh] lineh p-6 flex items-center justify-between">
+			{socials && (
+				<span>Liens</span>
+					<div class="flex gap-4">
+						{Object.entries(socials).map(([label, url]) => (
+							<a
+								class="link"
+								href={url}
+								rel="noopener noreferrer"
+								target="_blank"
+							>
+								{label}
+							</a>
+						))}
+					</div>
+				)}
+		</footer>
 
 		<EmDashBodyEnd page={pageCtx} />
 	</body>
