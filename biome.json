@@ -11,7 +11,6 @@
 	"formatter": {
 		"enabled": true,
 		"indentStyle": "tab",
-		"attributePosition": "multiline",
 		"bracketSpacing": true
 	},
 	"linter": {
