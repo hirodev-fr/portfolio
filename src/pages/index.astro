@@ -1,13 +1,13 @@
 ---
-import { getSiteSettings } from "emdash";
-import Base from "../layouts/Base.astro";
-import { resolveStarterSiteIdentity } from "../utils/site-identity";
+import { getSiteSettings } from 'emdash';
+import Base from '../layouts/Base.astro';
+import { resolveStarterSiteIdentity } from '../utils/site-identity';
 
 const { siteTitle, siteTagline } = resolveStarterSiteIdentity(
 	await getSiteSettings(),
 );
 ---
 
-<Base title={siteTitle} description={siteTagline}>
+<Base description={siteTagline} title={siteTitle}>
 	<h1>Accueil</h1>
 </Base>

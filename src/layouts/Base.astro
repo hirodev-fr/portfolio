@@ -66,26 +66,26 @@ const pageCtx = createPublicPageContext({
 		<header class="h-[12vh] lineh p-6 flex items-center justify-between">
 			<a aria-label="Retourner à l'accueil" href="/">
 				{siteLogo ? (
-					<img
-						alt={siteLogo.alt || siteTitle}
-						class="h-12 w-full mx-3"
-						src={siteLogo.url}
-					/>
-				) : (
-					<span class="text-xl">{siteTitle}</span>
-				)}
+	<img
+		alt={siteLogo.alt || siteTitle}
+		class="h-12 w-full mx-3"
+		src={siteLogo.url}
+	/>
+) : (
+	<span class="text-xl">{siteTitle}</span>
+)}
 			</a>
 			<nav class="flex gap-4">
 				{menu?.items.map((item) => (
-					<a
-						class="link"
-						href={item.url}
-						rel={item.target === '_blank' ? 'noopener noreferrer' : undefined}
-						target={item.target}
-					>
-						{item.label}
-					</a>
-				))}
+	<a
+		class="link"
+		href={item.url}
+		rel={item.target === '_blank' ? 'noopener noreferrer' : undefined}
+		target={item.target}
+	>
+		{item.label}
+	</a>
+))}
 			</nav>
 		</header>
 
@@ -101,20 +101,15 @@ const pageCtx = createPublicPageContext({
 
 		<footer class="h-[18vh] lineh p-6 flex items-center justify-between">
 			{socials && (
-				<span>Liens</span>
-					<div class="flex gap-4">
-						{Object.entries(socials).map(([label, url]) => (
-							<a
-								class="link"
-								href={url}
-								rel="noopener noreferrer"
-								target="_blank"
-							>
-								{label}
-							</a>
-						))}
-					</div>
-				)}
+		<span>Liens</span>
+		<div class="flex gap-4">
+			{Object.entries(socials).map(([label, url]) => (
+				<a class="link" href={url} rel="noopener noreferrer" target="_blank">
+					{label}
+				</a>
+			))}
+		</div>
+)}
 		</footer>
 
 		<EmDashBodyEnd page={pageCtx} />

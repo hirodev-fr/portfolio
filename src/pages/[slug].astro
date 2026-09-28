@@ -4,21 +4,21 @@ import {
 	getEmDashEntry,
 	getSeoMeta,
 	getSiteSettings,
-} from "emdash";
-import { PortableText } from "emdash/ui";
-import Base from "../layouts/Base.astro";
-import { resolveStarterSiteIdentity } from "../utils/site-identity";
+} from 'emdash';
+import { PortableText } from 'emdash/ui';
+import Base from '../layouts/Base.astro';
+import { resolveStarterSiteIdentity } from '../utils/site-identity';
 
 const slug = decodeSlug(Astro.params.slug);
 
 if (!slug) {
-	return Astro.redirect("/404");
+	return Astro.redirect('/404');
 }
 
-const { entry: page, cacheHint } = await getEmDashEntry("pages", slug);
+const { entry: page, cacheHint } = await getEmDashEntry('pages', slug);
 
 if (!page) {
-	return Astro.redirect("/404");
+	return Astro.redirect('/404');
 }
 
 if (Astro.cache?.enabled) Astro.cache.set(cacheHint);
@@ -27,16 +27,16 @@ const { siteTitle } = resolveStarterSiteIdentity(await getSiteSettings());
 const seo = getSeoMeta(page, {
 	siteTitle,
 	siteUrl: Astro.url.origin,
-	path: Astro.url.pathname.replace(/\/$/, ""),
+	path: Astro.url.pathname.replace(/\/$/, ''),
 });
 ---
 
 <Base
-	title={seo.title}
-	pageTitle={seo.ogTitle}
-	description={seo.description}
 	canonical={seo.canonical}
-	content={{ collection: "pages", id: page.data.id, slug }}
+	content={{ collection: 'pages', id: page.data.id, slug }}
+	description={seo.description}
+	pageTitle={seo.ogTitle}
+	title={seo.title}
 >
 	<article>
 		<h1 {...page.edit.title}>{page.data.title}</h1>

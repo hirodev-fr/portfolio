@@ -12,8 +12,8 @@ export interface StarterSiteIdentitySettings {
 	favicon?: MediaReference;
 }
 
-const DEFAULT_SITE_TITLE = "HIRO DEV";
-const DEFAULT_SITE_TAGLINE = "Le développement, à la lyonnaise.";
+const DEFAULT_SITE_TITLE = 'HIRO DEV';
+const DEFAULT_SITE_TAGLINE = 'Le développement, à la lyonnaise.';
 
 export function resolveStarterSiteIdentity(
 	settings?: StarterSiteIdentitySettings,

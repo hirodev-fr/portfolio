@@ -3,13 +3,9 @@
 	"version": "0.0.3",
 	"private": true,
 	"type": "module",
-	"emdash": {
-		"label": "HIRO DEV",
-		"seed": "seed/seed.json"
-	},
 	"scripts": {
-		"dev": "astro dev",
 		"build": "astro build",
+		"dev": "astro dev",
 		"preview": "astro preview",
 		"start": "node ./dist/server/entry.mjs",
 		"typecheck": "astro check"
@@ -27,5 +23,9 @@
 	"devDependencies": {
 		"@astrojs/check": "^0.9.10",
 		"@biomejs/biome": "2.5.14"
+	},
+	"emdash": {
+		"label": "HIRO DEV",
+		"seed": "seed/seed.json"
 	}
 }
