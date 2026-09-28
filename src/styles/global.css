@@ -1,1 +1,66 @@
 @import "tailwindcss";
+
+@theme {
+	/* base color*/
+	--color-base: oklch(0.96 0.005 110);
+	/* font-colors */
+	--color-ink: oklch(0.18 0 0);
+	--color-ink-light: oklch(0.38 0 0);
+
+	/* accent color */
+	--color-primary: oklch(0.6 0.197 25);
+	--color-primary-hover: oklch(0.54 0.176 25);
+
+	/* line color*/
+	--color-line: oklch(0.7953 0.005 110);
+
+	/* title font */
+	--font-display: 'Space Grotesk', system-ui, sans-serif;
+
+	/* text font */
+	--font-mono: 'JetBrains Mono', monospace;
+
+	/* emdash aliases */
+	--font-serif: var(--font-display);
+	--font-sans: var(--font-mono);
+}
+
+:root {
+	--color-bg: var(--color-base);
+	--color-text: var(--color-ink);
+	--color-muted: var(--color-ink-light);
+	--color-border: var(--color-ink);
+	--color-surface: var(--color-base);
+	--color-accent: var(--color-primary);
+	--color-accent-muted: var(--color-primary--hover);
+}
+
+@layer base {
+	body {
+		background-color: var(--color-base);
+		color: var(--color-ink);
+		font-family: var(--font-mono);
+		font-weight: 400;
+		font-size: 14px;
+		line-height: 1.6;
+
+		/* font antialiasing */
+		-webkit-font-smoothing: antialiased;
+		-moz-osx-font-smoothing: grayscale;
+	}
+
+	h1,
+	h2,
+	h3 {
+		font-family: var(--font-display);
+		font-weight: 700;
+		letter-spacing: -0.03em;
+		line-height: 0.95;
+	}
+
+	/* text selection color*/
+	::selection {
+		background-color: var(--color-primary-hover);
+		color: var(--color-base);
+	}
+}
