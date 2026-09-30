@@ -3,29 +3,24 @@
 
 /// <reference types="emdash/locals" />
 
-import type {
-	BylineSummary,
-	ContentBylineCredit,
-	PortableTextBlock,
-	TaxonomyTerm,
-} from 'emdash';
+import type { BylineSummary, ContentBylineCredit, TaxonomyTerm, PortableTextBlock } from "emdash";
 
 export interface Page {
-	id: string;
-	slug: string | null;
-	status: string;
-	title: string;
-	content?: PortableTextBlock[];
-	createdAt: Date;
-	updatedAt: Date;
-	publishedAt: Date | null;
-	byline?: BylineSummary | null;
-	bylines?: ContentBylineCredit[];
-	terms?: Record<string, TaxonomyTerm[]>;
+  id: string;
+  slug: string | null;
+  status: string;
+  title: string;
+  content?: PortableTextBlock[];
+  createdAt: Date;
+  updatedAt: Date;
+  publishedAt: Date | null;
+  byline?: BylineSummary | null;
+  bylines?: ContentBylineCredit[];
+  terms?: Record<string, TaxonomyTerm[]>;
 }
 
-declare module 'emdash' {
-	interface EmDashCollections {
-		pages: Page;
-	}
+declare module "emdash" {
+  interface EmDashCollections {
+    pages: Page;
+  }
 }
