@@ -4,6 +4,7 @@ import { getMenuWithCacheHint, getSiteSettingsWithCacheHint } from 'emdash';
 import { createPublicPageContext } from 'emdash/page';
 import { EmDashBodyEnd, EmDashBodyStart, EmDashHead } from 'emdash/ui';
 import Logo from '../components/Logo.astro';
+import MenuBar from '../components/MenuBar.astro';
 import { capitalizeLinkLabel } from '../utils/index.ts';
 import { resolveStarterSiteIdentity } from '../utils/site-identity';
 
@@ -69,18 +70,7 @@ const pageCtx = createPublicPageContext({
 			<a aria-label="Retourner à l'accueil" href="/">
 				<Logo class="h-8 md:h-10 lg:h-11 w-full" />
 			</a>
-			<nav class="flex gap-4">
-				{menu?.items.map((item) => (
-	<a
-		class="link"
-		href={item.url}
-		rel={item.target === '_blank' ? 'noopener noreferrer' : undefined}
-		target={item.target}
-	>
-		{item.label}
-	</a>
-))}
-			</nav>
+			<MenuBar items={menu.items} />
 		</header>
 
 		<!-- horizontal line -->
