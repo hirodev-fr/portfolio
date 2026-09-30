@@ -2,7 +2,7 @@ import node from '@astrojs/node';
 import react from '@astrojs/react';
 import tailwindcss from '@tailwindcss/vite';
 import { defineConfig } from 'astro/config';
-import emdash, { local } from 'emdash/astro';
+import emdash, { local, memoryCache } from 'emdash/astro';
 import { sqlite } from 'emdash/db';
 
 export default defineConfig({
@@ -25,6 +25,7 @@ export default defineConfig({
 				directory: './uploads',
 				baseUrl: '/_emdash/api/media/file',
 			}),
+			objectCache: memoryCache(),
 		}),
 	],
 
