@@ -1,0 +1,54 @@
+---
+import type { MenuItem } from 'emdash';
+
+interface Props {
+	items: MenuItem[];
+}
+
+const { items } = Astro.props;
+---
+
+<nav class="hidden md:flex gap-4">
+	{items.map((item) => (
+	<a
+		class="link"
+		href={item.url}
+		rel={item.target === '_blank' ? 'noopener noreferrer' : undefined}
+		target={item.target}
+	>
+		{item.label}
+	</a>
+))}
+</nav>
+
+<button
+	class="md:hidden btn btn-ghost font-normal border border-ink"
+	onclick="menu_modal.showModal()"
+	type="button"
+>
+	Menu
+</button>
+<dialog class="modal" id="menu_modal">
+	<div
+		class="modal-box flex flex-col items-center shadow-none border border-ink"
+	>
+		<nav class="flex flex-col gap-4 my-4 items-center text-lg">
+			{items.map((item) => (
+			<a
+				class="link"
+				href={item.url}
+				rel={item.target === '_blank' ? 'noopener noreferrer' : undefined}
+				target={item.target}
+			>
+				{item.label}
+			</a>
+		))}
+		</nav>
+		<p class="mt-10 text-xs font-light italic text-center">
+			Vous pouvez fermer ce menu en cliquant n'importe où en dehors.
+		</p>
+	</div>
+	<form class="modal-backdrop bg-base/70" method="dialog">
+		<button>Fermer le menu</button>
+	</form>
+</dialog>
