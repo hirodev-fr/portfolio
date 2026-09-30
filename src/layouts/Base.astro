@@ -28,7 +28,7 @@ if (Astro.cache?.enabled) {
 	Astro.cache.set(menuResult.cacheHint);
 }
 
-const { siteTitle, siteTagline, siteLogo } = resolveStarterSiteIdentity(
+const { siteTitle, siteTagline } = resolveStarterSiteIdentity(
 	settingsResult.data,
 );
 const titleIncludesSiteName =
