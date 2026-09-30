@@ -3,6 +3,8 @@ import '../styles/global.css';
 import { getMenuWithCacheHint, getSiteSettingsWithCacheHint } from 'emdash';
 import { createPublicPageContext } from 'emdash/page';
 import { EmDashBodyEnd, EmDashBodyStart, EmDashHead } from 'emdash/ui';
+import Logo from '../components/Logo.astro';
+import { capitalizeLinkLabel } from '../utils/index.ts';
 import { resolveStarterSiteIdentity } from '../utils/site-identity';
 
 interface Props {
@@ -65,15 +67,7 @@ const pageCtx = createPublicPageContext({
 
 		<header class="h-[12vh] lineh p-6 flex items-center justify-between">
 			<a aria-label="Retourner à l'accueil" href="/">
-				{siteLogo ? (
-	<img
-		alt={siteLogo.alt || siteTitle}
-		class="h-12 w-full mx-3"
-		src={siteLogo.url}
-	/>
-) : (
-	<span class="text-xl">{siteTitle}</span>
-)}
+				<Logo class="h-12 w-full" />
 			</a>
 			<nav class="flex gap-4">
 				{menu?.items.map((item) => (
@@ -99,17 +93,45 @@ const pageCtx = createPublicPageContext({
 		<!-- horizontal line -->
 		<div class="border-t border-line"></div>
 
-		<footer class="h-[18vh] lineh p-6 flex items-center justify-between">
+		<footer
+			class="min-h-[18vh] lineh p-6 grid grid-cols-1 sm:grid-cols-2 gap-4 items-center"
+		>
 			{socials && (
-		<span>Liens</span>
-		<div class="flex gap-4">
-			{Object.entries(socials).map(([label, url]) => (
-				<a class="link" href={url} rel="noopener noreferrer" target="_blank">
-					{label}
+	<div class="flex flex-col space-y-2">
+		{Object.entries(socials).map(([label, url]) => (
+				<span class="font-light italic">Liens</span>
+				<a
+					class="link w-min text-nowrap"
+					href={url}
+					rel="noopener noreferrer"
+					target="_blank"
+				>
+					{capitalizeLinkLabel(label)}
 				</a>
-			))}
-		</div>
+		))}
+
+		<a
+			class="link decoration-ink"
+			href="/_emdash/admin"
+			rel="noopener noreferrer"
+			target="_blank"
+		>
+			Admin
+		</a>
+	</div>
 )}
+
+			<div class="flex flex-col space-y-2 sm:items-end sm:text-right">
+				<p>
+					<span class="font-light italic">Contact : </span>
+					<a class="link" href="mailto:contact@hirodev.fr"
+						>contact@hirodev.fr
+					</a>
+				</p>
+				<span class="font-light italic"
+					>© {new Date().getFullYear()} {siteTitle}. Tous droits réservés.</span
+				>
+			</div>
 		</footer>
 
 		<EmDashBodyEnd page={pageCtx} />
