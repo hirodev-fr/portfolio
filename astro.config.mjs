@@ -1,5 +1,6 @@
 import node from '@astrojs/node';
 import react from '@astrojs/react';
+import { maintenancePlugin } from '@portfolio/maintenance';
 import tailwindcss from '@tailwindcss/vite';
 import { defineConfig } from 'astro/config';
 import emdash, { local, memoryCache } from 'emdash/astro';
@@ -26,6 +27,7 @@ export default defineConfig({
 				baseUrl: '/_emdash/api/media/file',
 			}),
 			objectCache: memoryCache(),
+			plugins: [maintenancePlugin()],
 		}),
 	],
 
