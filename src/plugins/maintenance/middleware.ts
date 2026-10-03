@@ -1,31 +1,58 @@
 import { defineMiddleware } from 'astro:middleware';
 import { withEmDashRuntime } from 'emdash/middleware';
 
-export const maintenanceMiddleware = defineMiddleware(async (context, next) => {
-	const WHITELIST = ['/_emdash'];
+const IGNORED_PATHS = ['/_emdash'];
+const MAINTENANCE_PAGE = '/maintenance';
 
-	const { url } = context.request;
+const CACHE_TTL_MS = 30_000;
 
-	if (WHITELIST.some((path) => url.includes(path))) return next();
+let cache: { active: boolean; expiresAt: number } | null = null;
+let inflight: Promise<boolean> | null = null;
 
+async function fetchMaintenanceState(): Promise<boolean> {
 	const result = await withEmDashRuntime(async (runtime) => {
 		return await runtime.handlePluginApiRoute(
 			'maintenance',
 			'GET',
 			'/active',
-			new Request('https://internal/', {
-				method: 'GET',
-			}),
+			new Request('https://internal/', { method: 'GET' }),
 		);
 	});
+	return (result.data as { active: boolean }).active;
+}
 
-	const { active } = result.data as { active: boolean };
+async function isMaintenanceActive(): Promise<boolean> {
+	if (cache && cache.expiresAt > Date.now()) {
+		return cache.active;
+	}
 
-	console.log('ran maintenance middleware');
+	inflight ??= fetchMaintenanceState().finally(() => {
+		inflight = null;
+	});
 
-	if (!active) return next();
+	const active = await inflight;
+	cache = { active, expiresAt: Date.now() + CACHE_TTL_MS };
+	return active;
+}
 
-	console.log('maintenance mode active');
+export const maintenanceMiddleware = defineMiddleware(async (context, next) => {
+	const { pathname } = context.url;
 
-	return next('/maintenance');
+	if (IGNORED_PATHS.some((path) => pathname.startsWith(path))) {
+		return next();
+	}
+
+	const onMaintenancePage = pathname.startsWith(MAINTENANCE_PAGE);
+
+	let active: boolean;
+	try {
+		active = await isMaintenanceActive();
+	} catch {
+		return next();
+	}
+
+	if (!active) {
+		return onMaintenancePage ? context.redirect('/') : next();
+	}
+	return onMaintenancePage ? next() : context.redirect(MAINTENANCE_PAGE);
 });
