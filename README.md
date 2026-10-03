@@ -2,9 +2,7 @@
 
 Notre portfolio, basé sur [EmDash](https://github.com/emdash-cms/emdash) et déployé sur nos serveurs grâce à Node.js.
 
-## Infrastructure
+## TODO
 
-- **Runtime:** Node.js
-- **Database:** libSQL
-- **Storage:** R2
-- **Framework:** Astro via `@astrojs/cloudflare`
+- [ ] plugins/maintenance: leverage emdash integration to cache maintenance state
+- [ ] plugins/maintenance: find an alternative to `withEmdashRuntime`, since we just need to fetch plugin state via a private API route
