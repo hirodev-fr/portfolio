@@ -13,7 +13,6 @@
 	"dependencies": {
 		"@astrojs/node": "^11.1.5",
 		"@astrojs/react": "^6.0.5",
-		"@portfolio/maintenance": "./plugins/maintenance",
 		"@tailwindcss/vite": "^4.3.3",
 		"astro": "^7.3.2",
 		"daisyui": "^5.7.47",

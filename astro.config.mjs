@@ -1,10 +1,10 @@
 import node from '@astrojs/node';
 import react from '@astrojs/react';
-import { maintenancePlugin } from '@portfolio/maintenance';
 import tailwindcss from '@tailwindcss/vite';
 import { defineConfig } from 'astro/config';
 import emdash, { local, memoryCache } from 'emdash/astro';
 import { sqlite } from 'emdash/db';
+import { maintenancePlugin } from './src/plugins/maintenance';
 
 export default defineConfig({
 	output: 'server',
