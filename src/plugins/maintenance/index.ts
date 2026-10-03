@@ -5,8 +5,9 @@ export function maintenancePlugin(): PluginDescriptor {
 	return {
 		id: 'maintenance',
 		version: '0.0.1',
+
 		format: 'native',
-		entrypoint: './src/plugins/maintenance.ts',
+		entrypoint: './src/plugins/maintenance/index.ts',
 	};
 }
 
@@ -25,13 +26,14 @@ export function createPlugin() {
 			},
 		},
 		routes: {
-			status: {
-				permission: 'plugins:read',
-				public: true,
-				handler: async (ctx) => ({
-					enabled:
-						(await ctx.settings.get<boolean>('enableMaintenanceMode')) ?? false,
-				}),
+			active: {
+				methods: ['GET'],
+				handler: async (ctx) => {
+					const active =
+						(await ctx.kv.get<boolean>('settings:enableMaintenanceMode')) ??
+						false;
+					return { active };
+				},
 			},
 		},
 	});
