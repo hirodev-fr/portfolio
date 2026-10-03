@@ -15,6 +15,25 @@ export function createPlugin() {
 		id: 'plugin-maintenance',
 		version: '0.0.1',
 		capabilities: [],
+		admin: {
+			settingsSchema: {
+				enableMaintenanceMode: {
+					type: 'boolean',
+					label: 'Activer le mode "maintenance"',
+					default: false,
+				},
+			},
+		},
+		routes: {
+			status: {
+				permission: 'plugins:read',
+				public: true,
+				handler: async (ctx) => ({
+					enabled:
+						(await ctx.settings.get<boolean>('enableMaintenanceMode')) ?? false,
+				}),
+			},
+		},
 	});
 }
 
