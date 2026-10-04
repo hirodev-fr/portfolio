@@ -2,7 +2,7 @@ import node from '@astrojs/node';
 import react from '@astrojs/react';
 import tailwindcss from '@tailwindcss/vite';
 import { defineConfig } from 'astro/config';
-import emdash, { memoryCache } from 'emdash/astro';
+import emdash, { memoryCache, s3 } from 'emdash/astro';
 import { libsql } from 'emdash/db';
 import { maintenancePlugin } from './src/plugins/maintenance';
 
