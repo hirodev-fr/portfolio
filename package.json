@@ -27,6 +27,7 @@
 		"@astrojs/check": "^0.9.10",
 		"@biomejs/biome": "2.5.14"
 	},
+	"packageManager": "bun@1.3.14",
 	"emdash": {
 		"label": "HIRO DEV",
 		"seed": "seed/seed.json"
