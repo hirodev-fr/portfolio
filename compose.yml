@@ -1,16 +1,21 @@
 services:
-  emdash:
-    env_file: ".env"
-    build:
-        context: .
-        args:
-          EMDASH_ENCRYPTION_KEY: $EMDASH_ENCRYPTION_KEY
-          EMDASH_SITE_URL: $EMDASH_SITE_URL
-    ports:
-      - "4321:4321"
-    volumes:
-      - emdash-data:/app/data
+  libsql:
+    image: ghcr.io/tursodatabase/libsql-server:latest
     restart: unless-stopped
 
+    environment:
+      SQLD_NODE: standalone
+      SQLD_DB_PATH: /var/lib/sqld/data.db
+      SQLD_HTTP_LISTEN_ADDR: 0.0.0.0:8080
+
+    volumes:
+      - libsql-data:/var/lib/sqld
+    networks:
+      - dokploy-network
+
 volumes:
-  emdash-data:
+  libsql-data:
+
+networks:
+  dokploy-network:
+    external: true
