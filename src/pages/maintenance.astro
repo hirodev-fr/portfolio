@@ -9,5 +9,10 @@ const { siteTitle, siteTagline } = resolveStarterSiteIdentity(
 ---
 
 <Base description={siteTagline} title={siteTitle}>
-	<h1>Maintenance</h1>
+	<div class="flex-1 flex flex-col items-center justify-center space-y-5">
+		<h1 class="text-4xl sm:text-5xl lg:text-6xl">Site en maintenance.</h1>
+		<h2 class="text-md md:text-lg lg:text-xl">
+			Nous avons hâte de pouvoir vous présenter notre travail.
+		</h2>
+	</div>
 </Base>
