@@ -4,7 +4,14 @@ import tailwindcss from '@tailwindcss/vite';
 import { defineConfig } from 'astro/config';
 import emdash, { memoryCache, s3 } from 'emdash/astro';
 import { libsql } from 'emdash/db';
+import { loadEnv } from 'vite';
 import { maintenancePlugin } from './src/plugins/maintenance';
+
+const { LIBSQL_AUTH_TOKEN, LIBSQL_DATABASE_URL } = loadEnv(
+	process.env.NODE_ENV,
+	process.cwd(),
+	'',
+);
 
 export default defineConfig({
 	output: 'server',
@@ -22,8 +29,8 @@ export default defineConfig({
 		react(),
 		emdash({
 			database: libsql({
-				url: process.env.LIBSQL_DATABASE_URL,
-				authToken: process.env.LIBSQL_AUTH_TOKEN,
+				url: LIBSQL_DATABASE_URL,
+				authToken: LIBSQL_AUTH_TOKEN,
 				migrationAuthTokenEnv: 'LIBSQL_AUTH_TOKEN',
 			}),
 			storage: s3(),
