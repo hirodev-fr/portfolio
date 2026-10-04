@@ -7,7 +7,7 @@ import { libsql } from 'emdash/db';
 import { loadEnv } from 'vite';
 import { maintenancePlugin } from './src/plugins/maintenance';
 
-const { LIBSQL_AUTH_TOKEN, LIBSQL_DATABASE_URL } = loadEnv(
+const { LIBSQL_DATABASE_URL } = loadEnv(
 	process.env.NODE_ENV,
 	process.cwd(),
 	'',
@@ -30,8 +30,6 @@ export default defineConfig({
 		emdash({
 			database: libsql({
 				url: LIBSQL_DATABASE_URL,
-				authToken: LIBSQL_AUTH_TOKEN,
-				migrationAuthTokenEnv: 'LIBSQL_AUTH_TOKEN',
 			}),
 			storage: s3(),
 			objectCache: memoryCache(),
