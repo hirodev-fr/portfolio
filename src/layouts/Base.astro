@@ -66,7 +66,7 @@ const pageCtx = createPublicPageContext({
 	<body class="w-full min-h-screen flex flex-col">
 		<EmDashBodyStart page={pageCtx} />
 
-		<header class="h-[12vh] lineh p-6 flex items-center justify-between">
+		<header class="shrink-0 lineh p-6 flex items-center justify-between">
 			<a aria-label="Retourner à l'accueil" href="/">
 				<Logo class="h-8 md:h-10 lg:h-11 w-full" />
 			</a>
@@ -76,7 +76,7 @@ const pageCtx = createPublicPageContext({
 		<!-- horizontal line -->
 		<div class="border-t border-line"></div>
 
-		<main class="lineh p-6 min-h-[70vh]">
+		<main class="flex-1 flex lineh p-6">
 			<slot />
 		</main>
 
@@ -84,7 +84,7 @@ const pageCtx = createPublicPageContext({
 		<div class="border-t border-line"></div>
 
 		<footer
-			class="min-h-[18vh] lineh p-6 flex flex-col space-y-10 sm:grid sm:grid-cols-2 sm:space-y-0 sm:items-center"
+			class="shrink-0 lineh p-6 flex flex-col space-y-10 sm:grid sm:grid-cols-2 sm:space-y-0 sm:items-center"
 		>
 			{socials && (
 	<div class="flex flex-col space-y-2">
