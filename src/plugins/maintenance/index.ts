@@ -25,17 +25,6 @@ export function createPlugin() {
 				},
 			},
 		},
-		routes: {
-			active: {
-				methods: ['GET'],
-				handler: async (ctx) => {
-					const active =
-						(await ctx.kv.get<boolean>('settings:enableMaintenanceMode')) ??
-						false;
-					return { active };
-				},
-			},
-		},
 	});
 }
 
