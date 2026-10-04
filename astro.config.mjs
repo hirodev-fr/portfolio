@@ -2,8 +2,8 @@ import node from '@astrojs/node';
 import react from '@astrojs/react';
 import tailwindcss from '@tailwindcss/vite';
 import { defineConfig } from 'astro/config';
-import emdash, { local, memoryCache } from 'emdash/astro';
-import { sqlite } from 'emdash/db';
+import emdash, { memoryCache } from 'emdash/astro';
+import { libsql } from 'emdash/db';
 import { maintenancePlugin } from './src/plugins/maintenance';
 
 export default defineConfig({
@@ -21,11 +21,11 @@ export default defineConfig({
 	integrations: [
 		react(),
 		emdash({
-			database: sqlite({ url: 'file:./data/data.db' }),
-			storage: local({
-				directory: './data/uploads',
-				baseUrl: '/_emdash/api/media/file',
+			database: libsql({
+				url: process.env.LIBSQL_DATABASE_URL,
+				authToken: process.env.LIBSQL_AUTH_TOKEN,
 			}),
+			storage: s3(),
 			objectCache: memoryCache(),
 			plugins: [maintenancePlugin()],
 		}),
