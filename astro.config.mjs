@@ -31,6 +31,10 @@ export default defineConfig({
 			database: libsql({
 				url: LIBSQL_DATABASE_URL,
 			}),
+			migrations: {
+				runtime: 'check',
+				dev: 'auto',
+			},
 			storage: s3(),
 			objectCache: memoryCache(),
 			plugins: [maintenancePlugin()],
