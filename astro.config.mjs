@@ -24,6 +24,7 @@ export default defineConfig({
 			database: libsql({
 				url: process.env.LIBSQL_DATABASE_URL,
 				authToken: process.env.LIBSQL_AUTH_TOKEN,
+				migrationAuthTokenEnv: 'LIBSQL_AUTH_TOKEN',
 			}),
 			storage: s3(),
 			objectCache: memoryCache(),
