@@ -7,7 +7,7 @@ export function maintenancePlugin(): PluginDescriptor {
 		version: '0.0.1',
 
 		format: 'native',
-		entrypoint: './src/plugins/maintenance/index.ts',
+		entrypoint: new URL('./index.ts', import.meta.url).href,
 	};
 }
 
