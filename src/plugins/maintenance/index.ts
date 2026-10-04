@@ -18,7 +18,7 @@ export function createPlugin() {
 		capabilities: [],
 		admin: {
 			settingsSchema: {
-				enableMaintenanceMode: {
+				active: {
 					type: 'boolean',
 					label: 'Activer le mode "maintenance"',
 					default: false,
