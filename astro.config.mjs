@@ -23,7 +23,7 @@ export default defineConfig({
 		emdash({
 			database: sqlite({ url: 'file:./data/data.db' }),
 			storage: local({
-				directory: './uploads',
+				directory: './data/uploads',
 				baseUrl: '/_emdash/api/media/file',
 			}),
 			objectCache: memoryCache(),
