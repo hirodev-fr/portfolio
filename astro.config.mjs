@@ -4,6 +4,7 @@ import tailwindcss from '@tailwindcss/vite';
 import { defineConfig } from 'astro/config';
 import emdash, { memoryCache, s3 } from 'emdash/astro';
 import { libsql } from 'emdash/db';
+import { emdashSmtp } from 'emdash-smtp';
 import { loadEnv } from 'vite';
 import { maintenancePlugin } from './src/plugins/maintenance';
 
@@ -37,7 +38,7 @@ export default defineConfig({
 			},
 			storage: s3(),
 			objectCache: memoryCache(),
-			plugins: [maintenancePlugin()],
+			plugins: [maintenancePlugin(), emdashSmtp()],
 		}),
 	],
 
