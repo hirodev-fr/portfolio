@@ -3,9 +3,8 @@ import '../styles/global.css';
 import { getMenuWithCacheHint, getSiteSettingsWithCacheHint } from 'emdash';
 import { createPublicPageContext } from 'emdash/page';
 import { EmDashBodyEnd, EmDashBodyStart, EmDashHead } from 'emdash/ui';
-import Logo from '../components/Logo.astro';
-import MenuBar from '../components/MenuBar.astro';
-import { capitalizeLinkLabel } from '../utils/index.ts';
+import Footer from '../components/Footer.astro';
+import Header from '../components/Header.astro';
 import { resolveStarterSiteIdentity } from '../utils/site-identity';
 
 interface Props {
@@ -66,12 +65,7 @@ const pageCtx = createPublicPageContext({
 	<body class="w-full min-h-screen flex flex-col">
 		<EmDashBodyStart page={pageCtx} />
 
-		<header class="shrink-0 lineh p-6 flex items-center justify-between">
-			<a aria-label="Retourner à l'accueil" href="/">
-				<Logo class="h-8 md:h-10 lg:h-11 w-full" />
-			</a>
-			<MenuBar items={menu.items} />
-		</header>
+		<Header items={menu.items} />
 
 		<!-- horizontal line -->
 		<div class="border-t border-line"></div>
@@ -83,46 +77,7 @@ const pageCtx = createPublicPageContext({
 		<!-- horizontal line -->
 		<div class="border-t border-line"></div>
 
-		<footer
-			class="shrink-0 lineh p-6 flex flex-col space-y-10 sm:grid sm:grid-cols-2 sm:space-y-0 sm:items-center"
-		>
-			{socials && (
-	<div class="flex flex-col space-y-2">
-		{Object.entries(socials).map(([label, url]) => (
-				<span class="font-light italic">Liens</span>
-				<a
-					class="link w-min text-nowrap"
-					href={url}
-					rel="noopener noreferrer"
-					target="_blank"
-				>
-					{capitalizeLinkLabel(label)}
-				</a>
-		))}
-
-		<a
-			class="link decoration-ink"
-			href="/_emdash/admin"
-			rel="noopener noreferrer"
-			target="_blank"
-		>
-			Admin
-		</a>
-	</div>
-)}
-
-			<div class="flex flex-col space-y-2 sm:items-end sm:text-right">
-				<p>
-					<span class="font-light italic">Contact : </span>
-					<a class="link" href="mailto:contact@hirodev.fr"
-						>contact@hirodev.fr
-					</a>
-				</p>
-				<span class="font-light italic text-xs"
-					>© {new Date().getFullYear()} {siteTitle}. Tous droits réservés.</span
-				>
-			</div>
-		</footer>
+		<Footer siteTitle={siteTitle} socials={socials} />
 
 		<EmDashBodyEnd page={pageCtx} />
 	</body>

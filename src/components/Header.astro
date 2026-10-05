@@ -1,0 +1,18 @@
+---
+import type { MenuItem } from 'emdash';
+import Logo from '../components/Logo.astro';
+import MenuBar from '../components/MenuBar.astro';
+
+interface Props {
+	items: MenuItem[];
+}
+
+const { items } = Astro.props;
+---
+
+<header class="shrink-0 lineh p-6 flex items-center justify-between">
+	<a aria-label="Retourner à l'accueil" href="/">
+		<Logo class="h-8 md:h-10 lg:h-11 w-full" />
+	</a>
+	<MenuBar items={items} />
+</header>

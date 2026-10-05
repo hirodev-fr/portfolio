@@ -1,0 +1,56 @@
+---
+import { capitalizeLinkLabel } from '../utils/index.ts';
+
+type Socials = {
+	twitter?: string;
+	github?: string;
+	facebook?: string;
+	instagram?: string;
+	linkedin?: string;
+	youtube?: string;
+};
+
+export interface Props {
+	siteTitle: string;
+	socials?: Socials;
+}
+
+const { siteTitle, socials } = Astro.props;
+---
+
+<footer
+	class="shrink-0 lineh p-6 flex flex-col space-y-10 sm:grid sm:grid-cols-2 sm:space-y-0 sm:items-center"
+>
+	<div class="flex flex-col space-y-2">
+		<span class="font-light italic">Liens</span>
+		{socials && Object.entries(socials).map(([label, url]) => (
+				<a
+					class="link w-min text-nowrap"
+					href={url}
+					rel="noopener noreferrer"
+					target="_blank"
+				>
+					{capitalizeLinkLabel(label)}
+				</a>
+			))}
+
+		<a
+			class="link decoration-ink"
+			href="/_emdash/admin"
+			rel="noopener noreferrer"
+			target="_blank"
+		>
+			Admin
+		</a>
+	</div>
+
+	<div class="flex flex-col space-y-2 sm:items-end sm:text-right">
+		<p>
+			<span class="font-light italic">Contact : </span>
+			<a class="link" href="mailto:contact@hirodev.fr">contact@hirodev.fr </a>
+		</p>
+		<span class="font-light italic text-xs"
+			>© {new Date().getFullYear()} {siteTitle}. Tous droits réservés.</span
+		>
+	</div>
+</footer>
