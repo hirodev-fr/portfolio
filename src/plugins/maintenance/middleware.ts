@@ -11,7 +11,9 @@ export const maintenanceMiddleware = defineMiddleware(async (context, next) => {
 		return next();
 	}
 
-	const onMaintenancePage = pathname.startsWith(MAINTENANCE_PAGE);
+	const onMaintenancePage =
+		pathname === MAINTENANCE_PAGE ||
+		pathname.startsWith(`${MAINTENANCE_PAGE}/`);
 
 	let active: boolean;
 	try {
