@@ -1,4 +1,5 @@
 import { defineMiddleware } from 'astro:middleware';
+import { isPageAllowedInMaintenance } from './policy';
 import { isMaintenanceActive } from './status';
 
 const IGNORED_PATHS = ['/_emdash'];
@@ -25,5 +26,14 @@ export const maintenanceMiddleware = defineMiddleware(async (context, next) => {
 	if (!active) {
 		return onMaintenancePage ? context.redirect('/') : next();
 	}
-	return onMaintenancePage ? next() : context.redirect(MAINTENANCE_PAGE);
+
+	if (onMaintenancePage) return next();
+
+	const allowed = await isPageAllowedInMaintenance(pathname);
+
+	if (!allowed) {
+		return context.redirect(MAINTENANCE_PAGE);
+	}
+
+	return next();
 });
