@@ -1,5 +1,5 @@
 import { defineMiddleware } from 'astro:middleware';
-import { isMaintenanceActive } from './state';
+import { isMaintenanceActive } from './status';
 
 const IGNORED_PATHS = ['/_emdash'];
 const MAINTENANCE_PAGE = '/maintenance';
