@@ -1,7 +1,13 @@
 ---
-import { decodeSlug, getEmDashEntry } from 'emdash';
+import {
+	decodeSlug,
+	getEmDashEntry,
+	getSeoMeta,
+	getSiteSettings,
+} from 'emdash';
 import { PortableText } from 'emdash/ui';
 import BaseLayout from '../../layouts/Base.astro';
+import { resolveStarterSiteIdentity } from '../../utils/site-identity';
 
 const slug = decodeSlug(Astro.params.slug);
 
@@ -19,6 +25,14 @@ if (error) return new Response('An error occurred', { status: 500 });
 if (!policy) return Astro.rewrite('/404');
 if (Astro.cache?.enabled) Astro.cache.set(cacheHint);
 
+const { siteTitle } = resolveStarterSiteIdentity(await getSiteSettings());
+
+const seo = getSeoMeta(policy, {
+	siteTitle,
+	siteUrl: Astro.url.origin,
+	path: Astro.url.pathname.replace(/\/$/, ''),
+});
+
 const rawDate = policy.data.updatedAt || policy.data.createdAt;
 
 const formattedDate = new Date(rawDate).toLocaleDateString('fr-FR', {
@@ -28,17 +42,23 @@ const formattedDate = new Date(rawDate).toLocaleDateString('fr-FR', {
 });
 ---
 
-<BaseLayout title={policy.data.title}>
-	<div class="flex flex-col space-y-5 flex-1">
-		<h1 class="uppercase text-2xl">
+<BaseLayout
+	canonical={seo.canonical}
+	content={{ collection: 'policies', id: policy.data.id, slug }}
+	description={seo.description}
+	pageTitle={seo.ogTitle}
+	title={seo.title}
+>
+	<article class="flex flex-col space-y-5 flex-1">
+		<h1 class="uppercase text-2xl" {...policy.edit.title}>
 			{policy.data.title}
 		</h1>
 
 		{formattedDate && (
-            <span class="font-light text-accent/80 text-sm uppercase">
-          		Dernière mise à jour : {formattedDate}
-           	</span>
-        )}
+	<span class="font-light text-accent/80 text-sm uppercase">
+		Dernière mise à jour : {formattedDate}
+	</span>
+)}
 
 		<div
 			class="flex flex-col space-y-4
@@ -51,5 +71,5 @@ const formattedDate = new Date(rawDate).toLocaleDateString('fr-FR', {
 		>
 			<PortableText value={policy.data.content} />
 		</div>
-	</div>
+	</article>
 </BaseLayout>
