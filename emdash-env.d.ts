@@ -26,7 +26,7 @@ export interface Policy {
   index: number;
   show_in_maintenance: boolean;
   title: string;
-  content: string;
+  content: PortableTextBlock[];
   createdAt: Date;
   updatedAt: Date;
   publishedAt: Date | null;

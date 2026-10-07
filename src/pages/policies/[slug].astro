@@ -1,0 +1,75 @@
+---
+import {
+	decodeSlug,
+	getEmDashEntry,
+	getSeoMeta,
+	getSiteSettings,
+} from 'emdash';
+import { PortableText } from 'emdash/ui';
+import BaseLayout from '../../layouts/Base.astro';
+import { resolveStarterSiteIdentity } from '../../utils/site-identity';
+
+const slug = decodeSlug(Astro.params.slug);
+
+if (!slug) {
+	return Astro.rewrite('/404');
+}
+
+const {
+	entry: policy,
+	error,
+	cacheHint,
+} = await getEmDashEntry('policies', slug);
+
+if (error) return new Response('An error occurred', { status: 500 });
+if (!policy) return Astro.rewrite('/404');
+if (Astro.cache?.enabled) Astro.cache.set(cacheHint);
+
+const { siteTitle } = resolveStarterSiteIdentity(await getSiteSettings());
+
+const seo = getSeoMeta(policy, {
+	siteTitle,
+	siteUrl: Astro.url.origin,
+	path: Astro.url.pathname.replace(/\/$/, ''),
+});
+
+const rawDate = policy.data.updatedAt || policy.data.createdAt;
+
+const formattedDate = new Date(rawDate).toLocaleDateString('fr-FR', {
+	day: 'numeric',
+	month: 'long',
+	year: 'numeric',
+});
+---
+
+<BaseLayout
+	canonical={seo.canonical}
+	content={{ collection: 'policies', id: policy.data.id, slug }}
+	description={seo.description}
+	pageTitle={seo.ogTitle}
+	title={seo.title}
+>
+	<article class="flex flex-col space-y-5 flex-1">
+		<h1 class="uppercase text-2xl" {...policy.edit.title}>
+			{policy.data.title}
+		</h1>
+
+		{formattedDate && (
+	<span class="font-light text-accent/80 text-sm uppercase">
+		Dernière mise à jour : {formattedDate}
+	</span>
+)}
+
+		<div
+			class="flex flex-col space-y-4
+			[&_p]:leading-relaxed
+			[&_h2]:text-xl [&_h2]:uppercase [&_h2]:font-bold
+			[&_h3]:text-lg [&_h3]:uppercase [&_h3]:font-medium
+			[&_ul]:list-disc [&_ul]:list-inside [&_ul]:space-y-1
+			[&_ol]:list-decimal [&_ol]:list-inside [&_ol]:space-y-1
+			[&_a]:underline [&_a]:decoration-primary [&_a]:underline-offset-3 [&_a]:cursor-pointer"
+		>
+			<PortableText value={policy.data.content} />
+		</div>
+	</article>
+</BaseLayout>
