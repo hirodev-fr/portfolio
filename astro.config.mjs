@@ -29,6 +29,7 @@ export default defineConfig({
 	integrations: [
 		react(),
 		emdash({
+			admin: { locales: ['en', 'fr'] },
 			database: libsql({
 				url: LIBSQL_DATABASE_URL,
 			}),
