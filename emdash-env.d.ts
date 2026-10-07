@@ -19,8 +19,25 @@ export interface Page {
   terms?: Record<string, TaxonomyTerm[]>;
 }
 
+export interface Policy {
+  id: string;
+  slug: string | null;
+  status: string;
+  index: number;
+  show_in_maintenance: boolean;
+  title: string;
+  content: string;
+  createdAt: Date;
+  updatedAt: Date;
+  publishedAt: Date | null;
+  byline?: BylineSummary | null;
+  bylines?: ContentBylineCredit[];
+  terms?: Record<string, TaxonomyTerm[]>;
+}
+
 declare module "emdash" {
   interface EmDashCollections {
     pages: Page;
+    policies: Policy;
   }
 }
