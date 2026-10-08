@@ -40,8 +40,43 @@ jobs:
     if: github.ref == 'refs/heads/main' && github.event_name == 'push'
     environment:
       name: production
+    permissions:
+      contents: read
+      packages: write
 
     steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Log in to GitHub Container Registry
+        uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Install Railpack
+        run: curl -sSL https://railpack.com/install.sh | sh
+
+      - name: Start BuildKit
+        run: |
+          docker run --rm --privileged -d --name buildkit moby/buildkit
+          echo "BUILDKIT_HOST=docker-container://buildkit" >> $GITHUB_ENV
+
+      - name: Build and Push Image with Railpack
+        run: |
+          # Railpack defaults the local image name to the working directory's name
+          IMAGE_NAME=$(basename "$PWD")
+
+          # Execute the build with registry layer caching to speed up subsequent runs
+          ~/.local/bin/railpack build . \
+            --cache-to="type=registry,ref=ghcr.io/${{ github.repository }}:cache,mode=max" \
+            --cache-from="type=registry,ref=ghcr.io/${{ github.repository }}:cache"
+
+          # Tag and push the final image to your repository's registry
+          docker tag "$IMAGE_NAME" "ghcr.io/${{ github.repository }}:latest"
+          docker push "ghcr.io/${{ github.repository }}:latest"
+
       - name: Trigger Dokploy deployment
         uses: benbristow/dokploy-deploy-action@0.2.2
         with:
