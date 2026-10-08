@@ -60,9 +60,10 @@ jobs:
         uses: iloveitaly/github-action-railpack@master
         env:
           IMAGE_NAME: ghcr.io/${{ github.repository }}
-          LIBSQL_DATABASE_URL: http://libsql:8080
         with:
             push: true
+            env: |
+                LIBSQL_DATABASE_URL: http://libsql:8080
             tags: |
                 ${{ env.IMAGE_NAME }}:custom-${{ env.DATE_STAMP }}
                 ${{ env.IMAGE_NAME }}:latest
