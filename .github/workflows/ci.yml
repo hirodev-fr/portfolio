@@ -63,7 +63,7 @@ jobs:
         with:
             push: true
             env: |
-                LIBSQL_DATABASE_URL: http://libsql:8080
+                LIBSQL_DATABASE_URL=http://libsql:8080
             tags: |
                 ${{ env.IMAGE_NAME }}:custom-${{ env.DATE_STAMP }}
                 ${{ env.IMAGE_NAME }}:latest
