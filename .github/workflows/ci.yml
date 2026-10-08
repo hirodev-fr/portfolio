@@ -27,6 +27,10 @@ jobs:
 
       - name: Build application
         run: bun run build
+        env:
+            NODE_ENV: production
+            EMDASH_ENCRYPTION_KEY: ci-mock-key-not-for-production
+            DATABASE_URL: file:./ci-mock.db
 
   cd:
     name: CD
