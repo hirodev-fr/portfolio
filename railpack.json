@@ -1,0 +1,10 @@
+{
+	"$schema": "https://schema.railpack.com",
+	"steps": {
+		"build": {
+			"variables": {
+				"LIBSQL_DATABASE_URL": "http://libsql:8080"
+			}
+		}
+	}
+}

@@ -62,8 +62,6 @@ jobs:
           IMAGE_NAME: ghcr.io/${{ github.repository }}
         with:
             push: true
-            env: |
-                LIBSQL_DATABASE_URL=${{ vars.LIBSQL_DATABASE_URL }}
             tags: |
                 ${{ env.IMAGE_NAME }}:custom-${{ env.DATE_STAMP }}
                 ${{ env.IMAGE_NAME }}:latest
