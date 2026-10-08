@@ -2,13 +2,15 @@ import { defineMiddleware } from 'astro:middleware';
 import { isPageAllowedInMaintenance } from './policy';
 import { isMaintenanceActive } from './status';
 
-const IGNORED_PATHS = ['/_emdash'];
+const IGNORED_PATHS = ['/_emdash', '/robots.txt', '/sitemap'];
 const MAINTENANCE_PAGE = '/maintenance';
 
 export const maintenanceMiddleware = defineMiddleware(async (context, next) => {
 	const { pathname } = context.url;
 
-	if (IGNORED_PATHS.some((path) => pathname.startsWith(path))) {
+	if (
+		IGNORED_PATHS.some((path) => pathname === path || pathname.startsWith(path))
+	) {
 		return next();
 	}
 

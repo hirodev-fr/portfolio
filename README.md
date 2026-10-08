@@ -10,5 +10,5 @@ Notre portfolio, basé sur [EmDash](https://github.com/emdash-cms/emdash) et dé
 - [x] ui/layout: show admin link even if socials links are not configured
 - [ ] build: simplify environment implementation at both build and runtime
 - [ ] build: minimize image size
-- [ ] feat/middleware: allow access to robots.txt and sitemap.xml
+- [x] feat/middleware: allow access to robots.txt and sitemap.xml
 - [x] feat/middleware: allow access to policies
