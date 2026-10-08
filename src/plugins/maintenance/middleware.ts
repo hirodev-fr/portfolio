@@ -8,7 +8,9 @@ const MAINTENANCE_PAGE = '/maintenance';
 export const maintenanceMiddleware = defineMiddleware(async (context, next) => {
 	const { pathname } = context.url;
 
-	if (IGNORED_PATHS.some((path) => pathname.startsWith(path))) {
+	if (
+		IGNORED_PATHS.some((path) => pathname === path || pathname.startsWith(path))
+	) {
 		return next();
 	}
 
