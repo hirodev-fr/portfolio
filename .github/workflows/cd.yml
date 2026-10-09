@@ -4,6 +4,11 @@ on:
   push:
     branches: [main]
   workflow_dispatch:
+    inputs:
+      skip_deploy:
+        description: 'Skips deploy job if enabled'
+        type: boolean
+        default: true
 
 concurrency:
   group: cd-${{ github.ref }}
@@ -57,6 +62,7 @@ jobs:
   deploy:
     name: Deploy
     needs: publish
+    if: ${{ !inputs.skip_deploy }}
     runs-on: ubuntu-latest
     timeout-minutes: 10
     environment:
