@@ -1,6 +1,7 @@
 {
 	"$schema": "https://emdashcms.com/seed.schema.json",
 	"version": "1",
+	"defaultLocale": "fr",
 	"meta": {
 		"name": "HIRO DEV",
 		"description": "Le développement web, à la lyonnaise.",
@@ -30,6 +31,44 @@
 					"label": "Content",
 					"type": "portableText",
 					"searchable": true
+				}
+			]
+		},
+		{
+			"slug": "policies",
+			"label": "Policies",
+			"labelSingular": "Policy",
+			"urlPattern": "/policies/{slug}",
+			"supports": ["drafts", "revisions", "preview", "seo"],
+			"fields": [
+				{
+					"slug": "title",
+					"label": "Title",
+					"type": "string",
+					"required": true,
+					"unique": true
+				},
+				{
+					"slug": "index",
+					"label": "Index",
+					"type": "integer",
+					"required": true,
+					"unique": true,
+					"validation": {
+						"min": 0
+					}
+				},
+				{
+					"slug": "show_in_maintenance",
+					"label": "Allow access even if maintenance mode is active",
+					"type": "boolean",
+					"required": true
+				},
+				{
+					"slug": "content",
+					"label": "Content",
+					"type": "portableText",
+					"required": true
 				}
 			]
 		}

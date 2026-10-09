@@ -23,9 +23,9 @@ export interface Policy {
   id: string;
   slug: string | null;
   status: string;
+  title: string;
   index: number;
   show_in_maintenance: boolean;
-  title: string;
   content: PortableTextBlock[];
   createdAt: Date;
   updatedAt: Date;
