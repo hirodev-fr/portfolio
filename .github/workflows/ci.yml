@@ -12,6 +12,9 @@ concurrency:
 permissions:
   contents: read
 
+env:
+  LIBSQL_DATABASE_URL: http://libsql:8080
+
 jobs:
   typecheck:
     name: Typecheck
