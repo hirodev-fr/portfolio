@@ -23,10 +23,10 @@ export interface Policy {
   id: string;
   slug: string | null;
   status: string;
-  index: number;
-  show_in_maintenance: boolean;
   title: string;
   content: PortableTextBlock[];
+  index: number;
+  show_in_maintenance: boolean;
   createdAt: Date;
   updatedAt: Date;
   publishedAt: Date | null;

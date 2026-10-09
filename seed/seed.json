@@ -67,7 +67,8 @@
 				{
 					"slug": "show_in_maintenance",
 					"label": "Allow access even if maintenance mode is active",
-					"type": "boolean"
+					"type": "boolean",
+					"required": true
 				}
 			]
 		}
