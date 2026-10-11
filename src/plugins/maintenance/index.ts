@@ -15,15 +15,7 @@ export function createPlugin() {
 		id: 'maintenance',
 		version: '0.0.1',
 		capabilities: [],
-		admin: {
-			settingsSchema: {
-				active: {
-					type: 'boolean',
-					label: 'Activer le mode "maintenance"',
-					default: false,
-				},
-			},
-		},
+		admin: {},
 	});
 }
 
