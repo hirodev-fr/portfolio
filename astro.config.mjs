@@ -39,6 +39,7 @@ export default defineConfig({
 			},
 			storage: s3(),
 			objectCache: memoryCache(),
+			sandboxRunner: '@emdash-cms/sandbox-workerd/sandbox',
 			plugins: [maintenancePlugin(), emdashSmtp()],
 		}),
 	],
