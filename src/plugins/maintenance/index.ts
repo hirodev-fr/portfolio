@@ -5,7 +5,6 @@ export function maintenancePlugin(): PluginDescriptor {
 	return {
 		id: 'maintenance',
 		version: '0.0.1',
-
 		format: 'native',
 		entrypoint: new URL('./index.ts', import.meta.url).href,
 	};
