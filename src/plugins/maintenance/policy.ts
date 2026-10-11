@@ -24,5 +24,5 @@ export async function isPageAllowedInMaintenance(
 		return false;
 	}
 
-	return parsed.data.showInMaintenance;
+	return !!parsed.data.showInMaintenance;
 }
