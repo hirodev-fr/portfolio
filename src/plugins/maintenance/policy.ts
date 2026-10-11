@@ -3,7 +3,7 @@ import { z } from 'zod';
 
 const maintenanceSchema = z
 	.object({
-		show_in_maintenance: z.boolean(),
+		show_in_maintenance: z.boolean().nullable(),
 	})
 	.transform(({ show_in_maintenance }) => ({
 		showInMaintenance: show_in_maintenance,
