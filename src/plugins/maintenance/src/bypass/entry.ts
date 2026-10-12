@@ -1,16 +1,28 @@
 import { getPluginSetting, type RouteContext } from 'emdash';
 import { getEntryKey } from '../utils';
-import type { SetKVResponse } from './index';
+import type { GetKVResponse, SetKVResponse } from './index';
 
 export const getEntryBypassFlag = async (
 	collection: string,
 	entryId: string,
-): Promise<boolean> => {
+): Promise<GetKVResponse> => {
 	const key = getEntryKey(collection, entryId);
 
-	const flag = await getPluginSetting<boolean>('maintenance', key);
+	try {
+		const flag = await getPluginSetting<boolean>('maintenance', key);
 
-	return flag ?? false;
+		return {
+			success: true,
+			data: {
+				allowBypass: flag ?? false,
+			},
+		};
+	} catch {
+		return {
+			success: false,
+			message: 'Could not get entry bypass flag.',
+		};
+	}
 };
 
 export const setEntryBypassFlag = async (

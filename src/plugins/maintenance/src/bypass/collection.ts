@@ -1,15 +1,27 @@
 import { getPluginSetting, type RouteContext } from 'emdash';
 import { getCollectionKey } from '../utils';
-import type { SetKVResponse } from './index';
+import type { GetKVResponse, SetKVResponse } from './index';
 
 export const getCollectionBypassFlag = async (
 	collection: string,
-): Promise<boolean> => {
+): Promise<GetKVResponse> => {
 	const key = getCollectionKey(collection);
 
-	const flag = await getPluginSetting<boolean>('maintenance', key);
+	try {
+		const flag = await getPluginSetting<boolean>('maintenance', key);
 
-	return flag ?? false;
+		return {
+			success: true,
+			data: {
+				allowBypass: flag ?? false,
+			},
+		};
+	} catch {
+		return {
+			success: false,
+			message: 'Could not get collection bypass flag.',
+		};
+	}
 };
 
 export const setCollectionBypassFlag = async (

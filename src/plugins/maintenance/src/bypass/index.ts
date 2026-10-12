@@ -1,6 +1,18 @@
 import { getCollectionBypassFlag } from './collection';
 import { getEntryBypassFlag } from './entry';
 
+export type GetKVResponse =
+	| {
+			success: true;
+			data: {
+				allowBypass: boolean;
+			};
+	  }
+	| {
+			success: false;
+			message: string;
+	  };
+
 export type SetKVResponse =
 	| {
 			success: true;
@@ -15,7 +27,12 @@ export const isBypassAllowed = async (
 	entryId: string,
 ): Promise<boolean> => {
 	const entryOverride = await getEntryBypassFlag(collection, entryId);
+
+	if (entryOverride.success) return entryOverride.data.allowBypass;
+
 	const collectionDefault = await getCollectionBypassFlag(collection);
 
-	return entryOverride ?? collectionDefault ?? false;
+	if (collectionDefault.success) return collectionDefault.data.allowBypass;
+
+	return false;
 };
