@@ -1,6 +1,6 @@
 import { getPluginSetting, type RouteContext } from 'emdash';
 import { getEntryKey } from '../utils';
-import type { Response } from './index';
+import type { SetKVResponse } from './index';
 
 export const getEntryBypassFlag = async (
 	collection: string,
@@ -16,7 +16,7 @@ export const getEntryBypassFlag = async (
 export const setEntryBypassFlag = async (
 	ctx: RouteContext,
 	input: { collection: string; entryId: string; value: boolean },
-): Promise<Response> => {
+): Promise<SetKVResponse> => {
 	const { collection, entryId, value } = input;
 
 	const key = getEntryKey(collection, entryId);

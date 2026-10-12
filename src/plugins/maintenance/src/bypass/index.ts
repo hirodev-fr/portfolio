@@ -1,7 +1,7 @@
 import { getCollectionBypassFlag } from './collection';
 import { getEntryBypassFlag } from './entry';
 
-export type Response =
+export type SetKVResponse =
 	| {
 			success: true;
 	  }
