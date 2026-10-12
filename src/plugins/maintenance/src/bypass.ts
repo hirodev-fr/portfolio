@@ -1,18 +1,26 @@
 import { getPluginSetting } from 'emdash';
 
-export const getEntryBypassFlag = async (collection: string, entryId: string) =>
-	await getPluginSetting<boolean>(
+export const getEntryBypassFlag = async (
+	collection: string,
+	entryId: string,
+): Promise<boolean> =>
+	(await getPluginSetting<boolean>(
 		'maintenance',
 		`bypass:entry:${collection}:${entryId}`,
-	);
+	)) ?? false;
 
-export const getCollectionBypassFlag = async (collection: string) =>
-	await getPluginSetting<boolean>(
+export const getCollectionBypassFlag = async (
+	collection: string,
+): Promise<boolean> =>
+	(await getPluginSetting<boolean>(
 		'maintenance',
 		`bypass:collection:${collection}`,
-	);
+	)) ?? false;
 
-export const isBypassAllowed = async (collection: string, entryId: string) => {
+export const isBypassAllowed = async (
+	collection: string,
+	entryId: string,
+): Promise<boolean> => {
 	const entryOverride = await getEntryBypassFlag(collection, entryId);
 	const collectionDefault = await getCollectionBypassFlag(collection);
 
