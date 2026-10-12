@@ -1,21 +1,26 @@
 import { getPluginSetting } from 'emdash';
+import { getCollectionKey, getEntryKey } from './utils';
 
 export const getEntryBypassFlag = async (
 	collection: string,
 	entryId: string,
-): Promise<boolean> =>
-	(await getPluginSetting<boolean>(
-		'maintenance',
-		`bypass:entry:${collection}:${entryId}`,
-	)) ?? false;
+): Promise<boolean> => {
+	const key = getEntryKey(collection, entryId);
+
+	const flag = await getPluginSetting<boolean>('maintenance', key);
+
+	return flag ?? false;
+};
 
 export const getCollectionBypassFlag = async (
 	collection: string,
-): Promise<boolean> =>
-	(await getPluginSetting<boolean>(
-		'maintenance',
-		`bypass:collection:${collection}`,
-	)) ?? false;
+): Promise<boolean> => {
+	const key = getCollectionKey(collection);
+
+	const flag = await getPluginSetting<boolean>('maintenance', key);
+
+	return flag ?? false;
+};
 
 export const isBypassAllowed = async (
 	collection: string,
