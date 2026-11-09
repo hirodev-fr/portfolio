@@ -12,7 +12,8 @@
 	"formatter": {
 		"enabled": true,
 		"indentStyle": "tab",
-		"bracketSpacing": true
+		"bracketSpacing": true,
+		"includes": ["**", "!emdash-env.d.ts"]
 	},
 	"linter": {
 		"enabled": true,
