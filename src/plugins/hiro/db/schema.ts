@@ -1,7 +1,7 @@
 import { defineRelationsPart, sql } from 'drizzle-orm';
 import { index, integer, sqliteTable, text } from 'drizzle-orm/sqlite-core';
 
-export const users = sqliteTable('hiro_customers', {
+export const hiro_customers = sqliteTable('hiro_customers', {
 	id: text('id').primaryKey(),
 	name: text('name').notNull(),
 	email: text('email').notNull().unique(),
@@ -22,7 +22,7 @@ export const users = sqliteTable('hiro_customers', {
 	banExpires: integer('ban_expires', { mode: 'timestamp_ms' }),
 });
 
-export const sessions = sqliteTable(
+export const hiro_sessions = sqliteTable(
 	'hiro_sessions',
 	{
 		id: text('id').primaryKey(),
@@ -38,13 +38,13 @@ export const sessions = sqliteTable(
 		userAgent: text('user_agent'),
 		userId: text('user_id')
 			.notNull()
-			.references(() => users.id, { onDelete: 'cascade' }),
+			.references(() => hiro_customers.id, { onDelete: 'cascade' }),
 		impersonatedBy: text('impersonated_by'),
 	},
 	(table) => [index('hiro_sessions_userId_idx').on(table.userId)],
 );
 
-export const accounts = sqliteTable(
+export const hiro_accounts = sqliteTable(
 	'hiro_accounts',
 	{
 		id: text('id').primaryKey(),
@@ -52,7 +52,7 @@ export const accounts = sqliteTable(
 		providerId: text('provider_id').notNull(),
 		userId: text('user_id')
 			.notNull()
-			.references(() => users.id, { onDelete: 'cascade' }),
+			.references(() => hiro_customers.id, { onDelete: 'cascade' }),
 		accessToken: text('access_token'),
 		refreshToken: text('refresh_token'),
 		idToken: text('id_token'),
@@ -74,7 +74,7 @@ export const accounts = sqliteTable(
 	(table) => [index('hiro_accounts_userId_idx').on(table.userId)],
 );
 
-export const verifications = sqliteTable(
+export const hiro_verifications = sqliteTable(
 	'hiro_verifications',
 	{
 		id: text('id').primaryKey(),
@@ -92,7 +92,7 @@ export const verifications = sqliteTable(
 	(table) => [index('hiro_verifications_identifier_idx').on(table.identifier)],
 );
 
-export const apikeys = sqliteTable(
+export const hiro_apikeys = sqliteTable(
 	'hiro_apikeys',
 	{
 		id: text('id').primaryKey(),
@@ -128,28 +128,34 @@ export const apikeys = sqliteTable(
 );
 
 export const authRelations = defineRelationsPart(
-	{ users, sessions, accounts, verifications, apikeys },
+	{
+		hiro_customers,
+		hiro_sessions,
+		hiro_accounts,
+		hiro_verifications,
+		hiro_apikeys,
+	},
 	(r) => ({
-		users: {
-			sessions: r.many.sessions({
-				from: r.users.id,
-				to: r.sessions.userId,
+		hiro_customers: {
+			hiro_sessions: r.many.hiro_sessions({
+				from: r.hiro_customers.id,
+				to: r.hiro_sessions.userId,
 			}),
-			accounts: r.many.accounts({
-				from: r.users.id,
-				to: r.accounts.userId,
-			}),
-		},
-		sessions: {
-			users: r.one.users({
-				from: r.sessions.userId,
-				to: r.users.id,
+			hiro_accounts: r.many.hiro_accounts({
+				from: r.hiro_customers.id,
+				to: r.hiro_accounts.userId,
 			}),
 		},
-		accounts: {
-			users: r.one.users({
-				from: r.accounts.userId,
-				to: r.users.id,
+		hiro_sessions: {
+			hiro_customer: r.one.hiro_customers({
+				from: r.hiro_sessions.userId,
+				to: r.hiro_customers.id,
+			}),
+		},
+		hiro_accounts: {
+			hiro_customer: r.one.hiro_customers({
+				from: r.hiro_accounts.userId,
+				to: r.hiro_customers.id,
 			}),
 		},
 	}),
