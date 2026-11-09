@@ -1,3 +1,4 @@
+import { apiKey } from '@better-auth/api-key';
 import { drizzleAdapter } from '@better-auth/drizzle-adapter/relations-v2';
 import { betterAuth } from 'better-auth/minimal';
 import { admin } from 'better-auth/plugins';
@@ -47,6 +48,14 @@ export const auth = betterAuth({
 	plugins: [
 		admin({
 			defaultRole: 'customer',
+		}),
+		apiKey({
+			enableSessionForAPIKeys: true,
+			schema: {
+				apikey: {
+					modelName: 'hiro_apikey',
+				},
+			},
 		}),
 	],
 });
