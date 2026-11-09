@@ -6,6 +6,8 @@
 	"scripts": {
 		"build": "astro build",
 		"dev": "astro dev",
+		"format": "biome format --write",
+		"lint": "biome lint --write",
 		"preview": "astro preview",
 		"start": "node ./dist/server/entry.mjs",
 		"typecheck": "astro check"
