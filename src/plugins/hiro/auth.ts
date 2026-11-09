@@ -1,5 +1,6 @@
 import { drizzleAdapter } from '@better-auth/drizzle-adapter/relations-v2';
 import { betterAuth } from 'better-auth/minimal';
+import { admin } from 'better-auth/plugins';
 import { db } from './db';
 import * as schema from './db/schema';
 
@@ -42,4 +43,10 @@ export const auth = betterAuth({
 	emailAndPassword: {
 		enabled: false,
 	},
+
+	plugins: [
+		admin({
+			defaultRole: 'customer',
+		}),
+	],
 });
