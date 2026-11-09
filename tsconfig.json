@@ -3,9 +3,9 @@
 	"compilerOptions": {
 		"types": ["node"],
 		"baseUrl": ".",
-        "paths": {
-            "@/*": ["src/*"]
-        }
+		"paths": {
+			"@/*": ["src/*"]
+		}
 	},
 	"include": ["src", ".astro/types.d.ts", "emdash-env.d.ts"]
 }
