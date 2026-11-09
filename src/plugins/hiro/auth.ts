@@ -9,6 +9,7 @@ export const auth = betterAuth({
 	database: drizzleAdapter(db, {
 		provider: 'sqlite',
 		schema,
+		usePlural: true,
 	}),
 
 	advanced: {
@@ -23,6 +24,19 @@ export const auth = betterAuth({
 				name: 'c_dont_remember',
 			},
 		},
+	},
+
+	user: {
+		modelName: 'hiro_customer',
+	},
+	session: {
+		modelName: 'hiro_session',
+	},
+	verification: {
+		modelName: 'hiro_verification',
+	},
+	account: {
+		modelName: 'hiro_account',
 	},
 
 	emailAndPassword: {
