@@ -1,7 +1,7 @@
 import type { PluginDescriptor } from 'emdash';
 import { definePlugin } from 'emdash';
 
-export function maintenancePlugin(): PluginDescriptor {
+export function hiroPlugin(): PluginDescriptor {
 	return {
 		id: 'hiro',
 		version: '0.0.1',
