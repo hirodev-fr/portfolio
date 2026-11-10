@@ -13,6 +13,7 @@
 		"lint": "biome lint .",
 		"lint:fix": "biome lint --write .",
 		"preview": "astro preview",
+		"security:check": "bun scripts/check-audit.ts",
 		"start": "node ./dist/server/entry.mjs",
 		"typecheck": "astro check"
 	},
