@@ -1,0 +1,794 @@
+{
+	"version": "7",
+	"dialect": "sqlite",
+	"id": "ce217856-6786-4896-9146-0685bad047ca",
+	"prevIds": ["130907aa-d07f-4bdd-8072-f765fd4e0dcd"],
+	"ddl": [
+		{
+			"name": "hiro_accounts",
+			"entityType": "tables"
+		},
+		{
+			"name": "hiro_apikeys",
+			"entityType": "tables"
+		},
+		{
+			"name": "hiro_sessions",
+			"entityType": "tables"
+		},
+		{
+			"name": "hiro_customers",
+			"entityType": "tables"
+		},
+		{
+			"name": "hiro_verifications",
+			"entityType": "tables"
+		},
+		{
+			"table": "hiro_accounts",
+			"name": "id",
+			"type": "text",
+			"notNull": false,
+			"autoincrement": false,
+			"default": null,
+			"generated": null,
+			"entityType": "columns"
+		},
+		{
+			"table": "hiro_accounts",
+			"name": "account_id",
+			"type": "text",
+			"notNull": true,
+			"autoincrement": false,
+			"default": null,
+			"generated": null,
+			"entityType": "columns"
+		},
+		{
+			"table": "hiro_accounts",
+			"name": "provider_id",
+			"type": "text",
+			"notNull": true,
+			"autoincrement": false,
+			"default": null,
+			"generated": null,
+			"entityType": "columns"
+		},
+		{
+			"table": "hiro_accounts",
+			"name": "user_id",
+			"type": "text",
+			"notNull": true,
+			"autoincrement": false,
+			"default": null,
+			"generated": null,
+			"entityType": "columns"
+		},
+		{
+			"table": "hiro_accounts",
+			"name": "access_token",
+			"type": "text",
+			"notNull": false,
+			"autoincrement": false,
+			"default": null,
+			"generated": null,
+			"entityType": "columns"
+		},
+		{
+			"table": "hiro_accounts",
+			"name": "refresh_token",
+			"type": "text",
+			"notNull": false,
+			"autoincrement": false,
+			"default": null,
+			"generated": null,
+			"entityType": "columns"
+		},
+		{
+			"table": "hiro_accounts",
+			"name": "id_token",
+			"type": "text",
+			"notNull": false,
+			"autoincrement": false,
+			"default": null,
+			"generated": null,
+			"entityType": "columns"
+		},
+		{
+			"table": "hiro_accounts",
+			"name": "access_token_expires_at",
+			"type": "integer",
+			"notNull": false,
+			"autoincrement": false,
+			"default": null,
+			"generated": null,
+			"entityType": "columns"
+		},
+		{
+			"table": "hiro_accounts",
+			"name": "refresh_token_expires_at",
+			"type": "integer",
+			"notNull": false,
+			"autoincrement": false,
+			"default": null,
+			"generated": null,
+			"entityType": "columns"
+		},
+		{
+			"table": "hiro_accounts",
+			"name": "scope",
+			"type": "text",
+			"notNull": false,
+			"autoincrement": false,
+			"default": null,
+			"generated": null,
+			"entityType": "columns"
+		},
+		{
+			"table": "hiro_accounts",
+			"name": "password",
+			"type": "text",
+			"notNull": false,
+			"autoincrement": false,
+			"default": null,
+			"generated": null,
+			"entityType": "columns"
+		},
+		{
+			"table": "hiro_accounts",
+			"name": "created_at",
+			"type": "integer",
+			"notNull": true,
+			"autoincrement": false,
+			"default": "(cast(unixepoch('subsecond') * 1000 as integer))",
+			"generated": null,
+			"entityType": "columns"
+		},
+		{
+			"table": "hiro_accounts",
+			"name": "updated_at",
+			"type": "integer",
+			"notNull": true,
+			"autoincrement": false,
+			"default": null,
+			"generated": null,
+			"entityType": "columns"
+		},
+		{
+			"table": "hiro_apikeys",
+			"name": "id",
+			"type": "text",
+			"notNull": false,
+			"autoincrement": false,
+			"default": null,
+			"generated": null,
+			"entityType": "columns"
+		},
+		{
+			"table": "hiro_apikeys",
+			"name": "config_id",
+			"type": "text",
+			"notNull": true,
+			"autoincrement": false,
+			"default": "'default'",
+			"generated": null,
+			"entityType": "columns"
+		},
+		{
+			"table": "hiro_apikeys",
+			"name": "name",
+			"type": "text",
+			"notNull": false,
+			"autoincrement": false,
+			"default": null,
+			"generated": null,
+			"entityType": "columns"
+		},
+		{
+			"table": "hiro_apikeys",
+			"name": "start",
+			"type": "text",
+			"notNull": false,
+			"autoincrement": false,
+			"default": null,
+			"generated": null,
+			"entityType": "columns"
+		},
+		{
+			"table": "hiro_apikeys",
+			"name": "reference_id",
+			"type": "text",
+			"notNull": true,
+			"autoincrement": false,
+			"default": null,
+			"generated": null,
+			"entityType": "columns"
+		},
+		{
+			"table": "hiro_apikeys",
+			"name": "prefix",
+			"type": "text",
+			"notNull": false,
+			"autoincrement": false,
+			"default": null,
+			"generated": null,
+			"entityType": "columns"
+		},
+		{
+			"table": "hiro_apikeys",
+			"name": "key",
+			"type": "text",
+			"notNull": true,
+			"autoincrement": false,
+			"default": null,
+			"generated": null,
+			"entityType": "columns"
+		},
+		{
+			"table": "hiro_apikeys",
+			"name": "refill_interval",
+			"type": "integer",
+			"notNull": false,
+			"autoincrement": false,
+			"default": null,
+			"generated": null,
+			"entityType": "columns"
+		},
+		{
+			"table": "hiro_apikeys",
+			"name": "refill_amount",
+			"type": "integer",
+			"notNull": false,
+			"autoincrement": false,
+			"default": null,
+			"generated": null,
+			"entityType": "columns"
+		},
+		{
+			"table": "hiro_apikeys",
+			"name": "last_refill_at",
+			"type": "integer",
+			"notNull": false,
+			"autoincrement": false,
+			"default": null,
+			"generated": null,
+			"entityType": "columns"
+		},
+		{
+			"table": "hiro_apikeys",
+			"name": "enabled",
+			"type": "integer",
+			"notNull": false,
+			"autoincrement": false,
+			"default": "true",
+			"generated": null,
+			"entityType": "columns"
+		},
+		{
+			"table": "hiro_apikeys",
+			"name": "rate_limit_enabled",
+			"type": "integer",
+			"notNull": false,
+			"autoincrement": false,
+			"default": "true",
+			"generated": null,
+			"entityType": "columns"
+		},
+		{
+			"table": "hiro_apikeys",
+			"name": "rate_limit_time_window",
+			"type": "integer",
+			"notNull": false,
+			"autoincrement": false,
+			"default": "86400000",
+			"generated": null,
+			"entityType": "columns"
+		},
+		{
+			"table": "hiro_apikeys",
+			"name": "rate_limit_max",
+			"type": "integer",
+			"notNull": false,
+			"autoincrement": false,
+			"default": "10",
+			"generated": null,
+			"entityType": "columns"
+		},
+		{
+			"table": "hiro_apikeys",
+			"name": "request_count",
+			"type": "integer",
+			"notNull": false,
+			"autoincrement": false,
+			"default": "0",
+			"generated": null,
+			"entityType": "columns"
+		},
+		{
+			"table": "hiro_apikeys",
+			"name": "remaining",
+			"type": "integer",
+			"notNull": false,
+			"autoincrement": false,
+			"default": null,
+			"generated": null,
+			"entityType": "columns"
+		},
+		{
+			"table": "hiro_apikeys",
+			"name": "last_request",
+			"type": "integer",
+			"notNull": false,
+			"autoincrement": false,
+			"default": null,
+			"generated": null,
+			"entityType": "columns"
+		},
+		{
+			"table": "hiro_apikeys",
+			"name": "expires_at",
+			"type": "integer",
+			"notNull": false,
+			"autoincrement": false,
+			"default": null,
+			"generated": null,
+			"entityType": "columns"
+		},
+		{
+			"table": "hiro_apikeys",
+			"name": "created_at",
+			"type": "integer",
+			"notNull": true,
+			"autoincrement": false,
+			"default": null,
+			"generated": null,
+			"entityType": "columns"
+		},
+		{
+			"table": "hiro_apikeys",
+			"name": "updated_at",
+			"type": "integer",
+			"notNull": true,
+			"autoincrement": false,
+			"default": null,
+			"generated": null,
+			"entityType": "columns"
+		},
+		{
+			"table": "hiro_apikeys",
+			"name": "permissions",
+			"type": "text",
+			"notNull": false,
+			"autoincrement": false,
+			"default": null,
+			"generated": null,
+			"entityType": "columns"
+		},
+		{
+			"table": "hiro_apikeys",
+			"name": "metadata",
+			"type": "text",
+			"notNull": false,
+			"autoincrement": false,
+			"default": null,
+			"generated": null,
+			"entityType": "columns"
+		},
+		{
+			"table": "hiro_sessions",
+			"name": "id",
+			"type": "text",
+			"notNull": false,
+			"autoincrement": false,
+			"default": null,
+			"generated": null,
+			"entityType": "columns"
+		},
+		{
+			"table": "hiro_sessions",
+			"name": "expires_at",
+			"type": "integer",
+			"notNull": true,
+			"autoincrement": false,
+			"default": null,
+			"generated": null,
+			"entityType": "columns"
+		},
+		{
+			"table": "hiro_sessions",
+			"name": "token",
+			"type": "text",
+			"notNull": true,
+			"autoincrement": false,
+			"default": null,
+			"generated": null,
+			"entityType": "columns"
+		},
+		{
+			"table": "hiro_sessions",
+			"name": "created_at",
+			"type": "integer",
+			"notNull": true,
+			"autoincrement": false,
+			"default": "(cast(unixepoch('subsecond') * 1000 as integer))",
+			"generated": null,
+			"entityType": "columns"
+		},
+		{
+			"table": "hiro_sessions",
+			"name": "updated_at",
+			"type": "integer",
+			"notNull": true,
+			"autoincrement": false,
+			"default": null,
+			"generated": null,
+			"entityType": "columns"
+		},
+		{
+			"table": "hiro_sessions",
+			"name": "ip_address",
+			"type": "text",
+			"notNull": false,
+			"autoincrement": false,
+			"default": null,
+			"generated": null,
+			"entityType": "columns"
+		},
+		{
+			"table": "hiro_sessions",
+			"name": "user_agent",
+			"type": "text",
+			"notNull": false,
+			"autoincrement": false,
+			"default": null,
+			"generated": null,
+			"entityType": "columns"
+		},
+		{
+			"table": "hiro_sessions",
+			"name": "user_id",
+			"type": "text",
+			"notNull": true,
+			"autoincrement": false,
+			"default": null,
+			"generated": null,
+			"entityType": "columns"
+		},
+		{
+			"table": "hiro_sessions",
+			"name": "impersonated_by",
+			"type": "text",
+			"notNull": false,
+			"autoincrement": false,
+			"default": null,
+			"generated": null,
+			"entityType": "columns"
+		},
+		{
+			"table": "hiro_customers",
+			"name": "id",
+			"type": "text",
+			"notNull": false,
+			"autoincrement": false,
+			"default": null,
+			"generated": null,
+			"entityType": "columns"
+		},
+		{
+			"table": "hiro_customers",
+			"name": "name",
+			"type": "text",
+			"notNull": true,
+			"autoincrement": false,
+			"default": null,
+			"generated": null,
+			"entityType": "columns"
+		},
+		{
+			"table": "hiro_customers",
+			"name": "email",
+			"type": "text",
+			"notNull": true,
+			"autoincrement": false,
+			"default": null,
+			"generated": null,
+			"entityType": "columns"
+		},
+		{
+			"table": "hiro_customers",
+			"name": "email_verified",
+			"type": "integer",
+			"notNull": true,
+			"autoincrement": false,
+			"default": "false",
+			"generated": null,
+			"entityType": "columns"
+		},
+		{
+			"table": "hiro_customers",
+			"name": "image",
+			"type": "text",
+			"notNull": false,
+			"autoincrement": false,
+			"default": null,
+			"generated": null,
+			"entityType": "columns"
+		},
+		{
+			"table": "hiro_customers",
+			"name": "created_at",
+			"type": "integer",
+			"notNull": true,
+			"autoincrement": false,
+			"default": "(cast(unixepoch('subsecond') * 1000 as integer))",
+			"generated": null,
+			"entityType": "columns"
+		},
+		{
+			"table": "hiro_customers",
+			"name": "updated_at",
+			"type": "integer",
+			"notNull": true,
+			"autoincrement": false,
+			"default": "(cast(unixepoch('subsecond') * 1000 as integer))",
+			"generated": null,
+			"entityType": "columns"
+		},
+		{
+			"table": "hiro_customers",
+			"name": "role",
+			"type": "text",
+			"notNull": false,
+			"autoincrement": false,
+			"default": null,
+			"generated": null,
+			"entityType": "columns"
+		},
+		{
+			"table": "hiro_customers",
+			"name": "banned",
+			"type": "integer",
+			"notNull": false,
+			"autoincrement": false,
+			"default": "false",
+			"generated": null,
+			"entityType": "columns"
+		},
+		{
+			"table": "hiro_customers",
+			"name": "ban_reason",
+			"type": "text",
+			"notNull": false,
+			"autoincrement": false,
+			"default": null,
+			"generated": null,
+			"entityType": "columns"
+		},
+		{
+			"table": "hiro_customers",
+			"name": "ban_expires",
+			"type": "integer",
+			"notNull": false,
+			"autoincrement": false,
+			"default": null,
+			"generated": null,
+			"entityType": "columns"
+		},
+		{
+			"table": "hiro_verifications",
+			"name": "id",
+			"type": "text",
+			"notNull": false,
+			"autoincrement": false,
+			"default": null,
+			"generated": null,
+			"entityType": "columns"
+		},
+		{
+			"table": "hiro_verifications",
+			"name": "identifier",
+			"type": "text",
+			"notNull": true,
+			"autoincrement": false,
+			"default": null,
+			"generated": null,
+			"entityType": "columns"
+		},
+		{
+			"table": "hiro_verifications",
+			"name": "value",
+			"type": "text",
+			"notNull": true,
+			"autoincrement": false,
+			"default": null,
+			"generated": null,
+			"entityType": "columns"
+		},
+		{
+			"table": "hiro_verifications",
+			"name": "expires_at",
+			"type": "integer",
+			"notNull": true,
+			"autoincrement": false,
+			"default": null,
+			"generated": null,
+			"entityType": "columns"
+		},
+		{
+			"table": "hiro_verifications",
+			"name": "created_at",
+			"type": "integer",
+			"notNull": true,
+			"autoincrement": false,
+			"default": "(cast(unixepoch('subsecond') * 1000 as integer))",
+			"generated": null,
+			"entityType": "columns"
+		},
+		{
+			"table": "hiro_verifications",
+			"name": "updated_at",
+			"type": "integer",
+			"notNull": true,
+			"autoincrement": false,
+			"default": "(cast(unixepoch('subsecond') * 1000 as integer))",
+			"generated": null,
+			"entityType": "columns"
+		},
+		{
+			"table": "hiro_accounts",
+			"name": "hiro_accounts_userId_idx",
+			"columns": [
+				{
+					"value": "user_id",
+					"isExpression": false
+				}
+			],
+			"isUnique": false,
+			"where": null,
+			"origin": "manual",
+			"entityType": "indexes"
+		},
+		{
+			"table": "hiro_apikeys",
+			"name": "hiro_apikeys_configId_idx",
+			"columns": [
+				{
+					"value": "config_id",
+					"isExpression": false
+				}
+			],
+			"isUnique": false,
+			"where": null,
+			"origin": "manual",
+			"entityType": "indexes"
+		},
+		{
+			"table": "hiro_apikeys",
+			"name": "hiro_apikeys_referenceId_idx",
+			"columns": [
+				{
+					"value": "reference_id",
+					"isExpression": false
+				}
+			],
+			"isUnique": false,
+			"where": null,
+			"origin": "manual",
+			"entityType": "indexes"
+		},
+		{
+			"table": "hiro_apikeys",
+			"name": "hiro_apikeys_key_idx",
+			"columns": [
+				{
+					"value": "key",
+					"isExpression": false
+				}
+			],
+			"isUnique": false,
+			"where": null,
+			"origin": "manual",
+			"entityType": "indexes"
+		},
+		{
+			"table": "hiro_sessions",
+			"name": "hiro_sessions_userId_idx",
+			"columns": [
+				{
+					"value": "user_id",
+					"isExpression": false
+				}
+			],
+			"isUnique": false,
+			"where": null,
+			"origin": "manual",
+			"entityType": "indexes"
+		},
+		{
+			"table": "hiro_verifications",
+			"name": "hiro_verifications_identifier_idx",
+			"columns": [
+				{
+					"value": "identifier",
+					"isExpression": false
+				}
+			],
+			"isUnique": false,
+			"where": null,
+			"origin": "manual",
+			"entityType": "indexes"
+		},
+		{
+			"table": "hiro_accounts",
+			"name": "fk_account_user_id_user_id_fk",
+			"columns": ["user_id"],
+			"tableTo": "hiro_customers",
+			"columnsTo": ["id"],
+			"onUpdate": "NO ACTION",
+			"onDelete": "CASCADE",
+			"nameExplicit": false,
+			"entityType": "fks"
+		},
+		{
+			"table": "hiro_sessions",
+			"name": "fk_session_user_id_user_id_fk",
+			"columns": ["user_id"],
+			"tableTo": "hiro_customers",
+			"columnsTo": ["id"],
+			"onUpdate": "NO ACTION",
+			"onDelete": "CASCADE",
+			"nameExplicit": false,
+			"entityType": "fks"
+		},
+		{
+			"table": "hiro_accounts",
+			"name": "account_pk",
+			"columns": ["id"],
+			"nameExplicit": false,
+			"entityType": "pks"
+		},
+		{
+			"table": "hiro_apikeys",
+			"name": "hiro_apikeys_pk",
+			"columns": ["id"],
+			"nameExplicit": false,
+			"entityType": "pks"
+		},
+		{
+			"table": "hiro_sessions",
+			"name": "session_pk",
+			"columns": ["id"],
+			"nameExplicit": false,
+			"entityType": "pks"
+		},
+		{
+			"table": "hiro_customers",
+			"name": "user_pk",
+			"columns": ["id"],
+			"nameExplicit": false,
+			"entityType": "pks"
+		},
+		{
+			"table": "hiro_verifications",
+			"name": "verification_pk",
+			"columns": ["id"],
+			"nameExplicit": false,
+			"entityType": "pks"
+		},
+		{
+			"table": "hiro_sessions",
+			"name": "session_token_unique",
+			"columns": ["token"],
+			"nameExplicit": false,
+			"entityType": "uniques"
+		},
+		{
+			"table": "hiro_customers",
+			"name": "user_email_unique",
+			"columns": ["email"],
+			"nameExplicit": false,
+			"entityType": "uniques"
+		}
+	],
+	"renames": []
+}

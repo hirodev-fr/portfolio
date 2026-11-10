@@ -2,7 +2,7 @@ import { defineMiddleware } from 'astro:middleware';
 import { isPageAllowedInMaintenance } from './policy';
 import { isMaintenanceActive } from './status';
 
-const IGNORED_PATHS = ['/_emdash', '/robots.txt', '/sitemap'];
+const IGNORED_PATHS = ['/_emdash', '/robots.txt', '/sitemap', '/api'];
 const MAINTENANCE_PAGE = '/maintenance';
 
 export const maintenanceMiddleware = defineMiddleware(async (context, next) => {
