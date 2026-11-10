@@ -27,17 +27,19 @@ audit.stderr.on('data', (chunk) => {
 	stderr += chunk;
 });
 
-const exitCode = await new Promise<number>((resolve, reject) => {
+await new Promise<number>((resolve, reject) => {
 	audit.once('error', reject);
 	audit.once('close', (code) => resolve(code ?? 1));
 });
 
-if (exitCode !== 0) {
-	console.error(stderr || stdout);
-	process.exit(exitCode);
-}
+let report: Record<string, Advisory[]>;
 
-const report = parseAuditReport(stdout);
+try {
+	report = parseAuditReport(stdout);
+} catch (error) {
+	console.error(stderr || stdout);
+	throw error;
+}
 const blockingFindings = Object.entries(report).flatMap(
 	([packageName, advisories]) =>
 		advisories
