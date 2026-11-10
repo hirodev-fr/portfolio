@@ -22,6 +22,12 @@ Les migrations EmDash sont appliquées automatiquement en développement. Utilis
 
 libSQL est uniquement relié au réseau Docker interne `portfolio-data`. Dans Dokploy, le conteneur de l'application doit rejoindre à la fois ce réseau et le réseau du proxy public ; aucun autre service ne doit rejoindre `portfolio-data`. La base de données ne doit jamais publier le port `8080` sur l'hôte de production.
 
+### Politique d'accès à la base
+
+L'instance libSQL n'utilise pas encore d'authentification applicative. Cette exception de sécurité est acceptée uniquement si l'isolation du réseau `portfolio-data` est vérifiée dans Dokploy avant chaque déploiement. Avant toute mise à jour EmDash ou migration, créer et vérifier une sauvegarde restaurable de la base et des médias ; une exportation JSON seule ne suffit pas à une restauration complète.
+
+Pour supprimer cette exception, configurer `SQLD_AUTH_JWT_KEY` (ou `SQLD_AUTH_JWT_KEY_FILE`) sur libSQL, stocker le JWT applicatif dans les secrets Dokploy, puis transmettre ce dernier à `libsql({ authToken })` dans la configuration Astro. Ne jamais placer cette clé ou ce jeton dans le dépôt.
+
 ## Commandes de qualité
 
 | Commande | Usage |
