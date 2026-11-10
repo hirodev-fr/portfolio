@@ -16,6 +16,8 @@ const { LIBSQL_DATABASE_URL } = loadEnv(
 
 export default defineConfig({
 	output: 'server',
+	site: 'https://hirodev.fr',
+	security: { allowedDomains: [{ protocol: 'https', hostname: 'hirodev.fr' }] },
 
 	adapter: node({
 		mode: 'standalone',
@@ -29,6 +31,7 @@ export default defineConfig({
 	integrations: [
 		react(),
 		emdash({
+			siteUrl: 'https://hirodev.fr',
 			admin: { locales: ['en', 'fr'] },
 			database: libsql({
 				url: LIBSQL_DATABASE_URL,

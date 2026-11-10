@@ -14,7 +14,7 @@
 		"lint:fix": "biome lint --write .",
 		"preview": "astro preview",
 		"security:check": "bun scripts/check-audit.ts",
-		"start": "node ./dist/server/entry.mjs",
+		"start": "node ./scripts/start.mjs",
 		"typecheck": "astro check"
 	},
 	"overrides": {
