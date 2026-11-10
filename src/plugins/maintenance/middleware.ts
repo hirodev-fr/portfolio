@@ -35,5 +35,11 @@ export const maintenanceMiddleware = defineMiddleware(async (context, next) => {
 	} catch (error) {
 		console.error('Maintenance lookup failed', error);
 	}
-	return pathname === '/maintenance' ? next() : context.rewrite('/maintenance');
+	const response = await (pathname === '/maintenance'
+		? next()
+		: context.rewrite('/maintenance'));
+	const headers = new Headers(response.headers);
+	headers.set('Retry-After', '300');
+	headers.set('Cache-Control', 'no-store');
+	return new Response(response.body, { status: 503, headers });
 });
