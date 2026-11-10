@@ -1,14 +1,40 @@
-# HIRO DEV - Portfolio
+# HIRO DEV — Portfolio
 
-Notre portfolio, basé sur [EmDash](https://github.com/emdash-cms/emdash) et déployé sur nos serveurs grâce à Node.js.
+Portfolio basé sur [EmDash](https://github.com/emdash-cms/emdash), Astro et Node.js.
 
-## TODO
+## Démarrer localement
 
-- [x] plugins/maintenance: leverage emdash integration to cache maintenance state
-- [x] plugins/maintenance: find an alternative to `withEmdashRuntime`, since we just need to fetch plugin state via a private API route
-- [x] emdash: add email provider
-- [x] ui/layout: show admin link even if socials links are not configured
-- [ ] build: simplify environment implementation at both build and runtime
-- [ ] build: minimize image size
-- [x] feat/middleware: allow access to robots.txt and sitemap.xml
-- [x] feat/middleware: allow access to policies
+Prérequis : Bun `1.3.14`, Docker avec Docker Compose, Cog, et un fichier `.env` créé à partir de `.env.example`.
+
+```bash
+cp .env.example .env
+docker compose -f compose.dev.yml up -d
+bun install --frozen-lockfile
+cog install-hook pre-commit
+bun run dev
+```
+
+Pour le développement local, renseigner `LIBSQL_DATABASE_URL=http://localhost:8080` dans `.env`, puis configurer les secrets et les services requis par EmDash et le stockage S3. L'administration est disponible sur `http://localhost:4321/_emdash/admin`.
+
+Les migrations EmDash sont appliquées automatiquement en développement. Utiliser `compose.dev.yml` uniquement pour l'infrastructure locale ; la composition de production est utilisée par le déploiement Dokploy.
+
+## Commandes de qualité
+
+| Commande | Usage |
+| --- | --- |
+| `bun run check` | Vérifie formatage, lint, types et build sans modifier les sources. |
+| `bun run format:check` | Vérifie le formatage uniquement. |
+| `bun run lint` | Exécute le lint sans correction automatique. |
+| `bun run fix` | Applique les corrections Biome disponibles. |
+| `bun run build` | Produit le build Node de production. |
+
+Le hook pre-commit exécute les vérifications rapides sans réécrire les fichiers. La CI utilise `bun run check`, ce qui assure le même résultat localement et sur GitHub.
+
+## Organisation
+
+- `src/pages`, `src/layouts` et `src/components` : surface Astro rendue côté serveur.
+- `src/plugins/maintenance` : réglage EmDash et middleware de maintenance.
+- `src/middleware.ts` : composition des middlewares transverses ; conserver les règles de chaque domaine dans son plugin.
+- `seed/seed.json` : schéma et contenu de démarrage EmDash.
+
+Les plugins restent internes à cette application : ils ne sont pas des packages publiés et ne nécessitent pas de monorepo tant qu'ils ne sont pas consommés par une autre application.
