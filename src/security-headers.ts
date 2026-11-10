@@ -21,7 +21,9 @@ export const securityHeaders = defineMiddleware(async (context, next) => {
 			[
 				"default-src 'self'",
 				`script-src 'self' https://analytics.hirodev.fr`,
-				"style-src 'self'",
+				import.meta.env.DEV
+					? "style-src 'self' 'unsafe-inline'"
+					: "style-src 'self'",
 				`img-src ${sources} data:`,
 				`connect-src ${sources}`,
 				`media-src ${sources}`,
