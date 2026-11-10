@@ -34,15 +34,15 @@ const { items } = Astro.props;
 	>
 		<nav class="flex flex-col gap-4 my-4 items-center text-lg">
 			{items.map((item) => (
-			<a
-				class="link"
-				href={item.url}
-				rel={item.target === '_blank' ? 'noopener noreferrer' : undefined}
-				target={item.target}
-			>
-				{item.label}
-			</a>
-		))}
+	<a
+		class="link"
+		href={item.url}
+		rel={item.target === '_blank' ? 'noopener noreferrer' : undefined}
+		target={item.target}
+	>
+		{item.label}
+	</a>
+))}
 		</nav>
 		<p class="mt-10 text-xs font-light italic text-center">
 			Vous pouvez fermer ce menu en cliquant n'importe où en dehors.
