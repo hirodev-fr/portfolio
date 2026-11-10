@@ -15,6 +15,7 @@ export const auth = betterAuth({
 	}),
 
 	advanced: {
+		disableOriginCheck: true,
 		cookies: {
 			session_token: {
 				name: 'c_session_token',
