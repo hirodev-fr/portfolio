@@ -16,22 +16,13 @@ env:
   LIBSQL_DATABASE_URL: http://libsql:8080
 
 jobs:
-  typecheck:
-    name: Typecheck
-    runs-on: ubuntu-latest
-    timeout-minutes: 10
-    steps:
-      - uses: actions/checkout@v4
-      - uses: ./.github/actions/setup-bun
-      - run: bun run typecheck
-
-  build:
-    name: Build
+  check:
+    name: Check
     runs-on: ubuntu-latest
     timeout-minutes: 15
     steps:
       - uses: actions/checkout@v4
       - uses: ./.github/actions/setup-bun
-      - run: bun run build
+      - run: bun run check
         env:
           NODE_ENV: production
