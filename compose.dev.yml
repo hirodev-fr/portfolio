@@ -1,10 +1,11 @@
 services:
   libsql:
-    image: ghcr.io/tursodatabase/libsql-server:latest
+    # Pinned multi-platform manifest for reproducible local infrastructure.
+    image: ghcr.io/tursodatabase/libsql-server@sha256:6dd3eb276d9d3604e4a48ac4a999a2e267814732d57d7e94c04ba71482333a67
     restart: unless-stopped
 
     ports:
-      - "8080:8080"
+      - "127.0.0.1:8080:8080"
 
     environment:
       SQLD_NODE: standalone
