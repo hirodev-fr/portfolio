@@ -1,6 +1,7 @@
 ---
 import { getEmDashCollection } from 'emdash';
 import { capitalizeLinkLabel } from '../utils/index.ts';
+import { safeUrl } from '../utils/safe-url';
 
 type Socials = {
 	twitter?: string;
@@ -17,6 +18,10 @@ export interface Props {
 }
 
 const { siteTitle, socials } = Astro.props;
+const socialLinks = Object.entries(socials ?? {}).flatMap(([label, value]) => {
+	const url = safeUrl(value);
+	return url ? [{ label, url }] : [];
+});
 
 const { entries: policies, cacheHint } = await getEmDashCollection('policies', {
 	orderBy: { index: 'asc' },
@@ -30,8 +35,7 @@ if (Astro.cache?.enabled) Astro.cache.set(cacheHint);
 >
 	<div class="flex flex-col space-y-2">
 		<span class="font-light italic">Liens</span>
-		{socials &&
-	Object.entries(socials).map(([label, url]) => (
+		{socialLinks.map(({ label, url }) => (
 		<a
 			class="link w-min text-nowrap"
 			href={url}
