@@ -1,15 +1,20 @@
 ---
 import type { MenuItem } from 'emdash';
+import { safeUrl } from '../utils/safe-url';
 
 interface Props {
 	items: MenuItem[];
 }
 
 const { items } = Astro.props;
+const links = items.flatMap((item) => {
+	const url = safeUrl(item.url);
+	return url ? [{ ...item, url }] : [];
+});
 ---
 
 <nav class="hidden md:flex gap-4">
-	{items.map((item) => (
+	{links.map((item) => (
 	<a
 		class="link"
 		href={item.url}
@@ -23,7 +28,7 @@ const { items } = Astro.props;
 
 <button
 	class="md:hidden btn btn-ghost font-normal border border-ink"
-	onclick="menu_modal.showModal()"
+	id="open-menu"
 	type="button"
 >
 	Menu
@@ -33,7 +38,7 @@ const { items } = Astro.props;
 		class="modal-box flex flex-col items-center shadow-none border border-ink"
 	>
 		<nav class="flex flex-col gap-4 my-4 items-center text-lg">
-			{items.map((item) => (
+			{links.map((item) => (
 	<a
 		class="link"
 		href={item.url}
@@ -52,3 +57,11 @@ const { items } = Astro.props;
 		<button type="submit">Fermer le menu</button>
 	</form>
 </dialog>
+
+<script>
+document.getElementById('open-menu')?.addEventListener('click', () => {
+	(
+		document.getElementById('menu_modal') as HTMLDialogElement | null
+	)?.showModal();
+});
+</script>
