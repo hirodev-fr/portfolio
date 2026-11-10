@@ -1,6 +1,7 @@
 services:
   libsql:
-    image: ghcr.io/tursodatabase/libsql-server:latest
+    # Pinned multi-platform manifest for reproducible production infrastructure.
+    image: ghcr.io/tursodatabase/libsql-server@sha256:6dd3eb276d9d3604e4a48ac4a999a2e267814732d57d7e94c04ba71482333a67
     restart: unless-stopped
 
     environment:
@@ -11,11 +12,11 @@ services:
     volumes:
       - libsql-data:/var/lib/sqld
     networks:
-      - dokploy-network
+      - portfolio-data
 
 volumes:
   libsql-data:
 
 networks:
-  dokploy-network:
-    external: true
+  portfolio-data:
+    internal: true

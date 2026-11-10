@@ -18,6 +18,10 @@ Pour le développement local, renseigner `LIBSQL_DATABASE_URL=http://localhost:8
 
 Les migrations EmDash sont appliquées automatiquement en développement. Utiliser `compose.dev.yml` uniquement pour l'infrastructure locale ; la composition de production est utilisée par le déploiement Dokploy.
 
+## Réseau de production
+
+libSQL est uniquement relié au réseau Docker interne `portfolio-data`. Dans Dokploy, le conteneur de l'application doit rejoindre à la fois ce réseau et le réseau du proxy public ; aucun autre service ne doit rejoindre `portfolio-data`. La base de données ne doit jamais publier le port `8080` sur l'hôte de production.
+
 ## Commandes de qualité
 
 | Commande | Usage |
