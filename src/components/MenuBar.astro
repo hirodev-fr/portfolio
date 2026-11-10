@@ -23,7 +23,7 @@ const { items } = Astro.props;
 
 <button
 	class="md:hidden btn btn-ghost font-normal border border-ink"
-	onclick="menu_modal.showModal()"
+	id="open-menu"
 	type="button"
 >
 	Menu
@@ -52,3 +52,11 @@ const { items } = Astro.props;
 		<button type="submit">Fermer le menu</button>
 	</form>
 </dialog>
+
+<script>
+document.getElementById('open-menu')?.addEventListener('click', () => {
+	(
+		document.getElementById('menu_modal') as HTMLDialogElement | null
+	)?.showModal();
+});
+</script>
