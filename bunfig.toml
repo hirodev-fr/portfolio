@@ -1,0 +1,4 @@
+[install]
+# Keep the supply-chain age gate that previously lived in pnpm-workspace.yaml.
+minimumReleaseAge = 1440
+minimumReleaseAgeExcludes = ["emdash", "@emdash-cms/*"]

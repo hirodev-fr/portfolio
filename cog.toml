@@ -14,7 +14,8 @@ post_bump_hooks = []
 pre_package_bump_hooks = []
 post_package_bump_hooks = []
 
-[git_hooks]
+[git_hooks.pre-commit]
+script = "bun run format:check && bun run lint && bun run typecheck"
 
 [commit_types]
 
