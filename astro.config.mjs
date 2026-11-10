@@ -18,6 +18,7 @@ export default defineConfig({
 	output: 'server',
 	site: 'https://hirodev.fr',
 	security: { allowedDomains: [{ protocol: 'https', hostname: 'hirodev.fr' }] },
+	build: { inlineStylesheets: 'never' },
 
 	adapter: node({
 		mode: 'standalone',
