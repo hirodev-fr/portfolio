@@ -1,9 +1,19 @@
 ---
 import Base from '../layouts/Base.astro';
+
+const siteTitle = 'Page introuvable';
 ---
 
-<Base title="Page introuvable">
-	<h1>Page introuvable</h1>
-	<p>Vous vous êtes sans doute perdu...</p>
-	<a href="/">Retourner à l'accueil</a>
+<Base title={siteTitle}>
+	<div class="flex-1 flex flex-col items-center justify-center space-y-5">
+		<h1 class="text-4xl sm:text-5xl lg:text-6xl">Page introuvable.</h1>
+		<h2 class="text-md md:text-lg lg:text-xl">
+			Vous vous êtes sans doute perdu...
+		</h2>
+		<a
+			class="btn btn-primary mt-10 w-3/4 md:w-1/2 lg:w-1/3 text-nowrap"
+			href="/"
+			>Retourner à l'accueil</a
+		>
+	</div>
 </Base>
